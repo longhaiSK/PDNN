@@ -35,7 +35,7 @@ editor_options:
 #| cache: false
 #| label: data-cleaning
 library(dplyr)
-
+cleaned_data_file
 if (!file.exists(cleaned_data_file)) {
   dataset <- read.csv("HillsBurnPD.csv", stringsAsFactors=TRUE)
 
