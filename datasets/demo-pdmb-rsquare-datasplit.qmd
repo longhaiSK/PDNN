@@ -87,30 +87,4 @@ if (!file.exists(cleaned_data_file)) {
   cleaned_dataset <- read.csv(cleaned_data_file, stringsAsFactors = TRUE)
 }
 
-# 1. Extract the response vector (y)
-y <- cleaned_dataset$parkinson_disease
-Y_numeric <- as.numeric(y == "yes")
-
-# 2. Prepare the predictor dataframe (X_df) and convert directly to matrix
-X_df <- cleaned_dataset %>% select(-parkinson_disease)
-X <- as.matrix(X_df)
-
-# ==========================================
-# --- DATA SPLITTING FOR ORDERING/EVAL ---
-# ==========================================
-
-set.seed(params$seed) # Ensure strict reproducibility of the split
-idx_ord <- sample(1:nrow(X), n_ord)
-
-# Create the Ordering Set
-X_ord <- X[idx_ord, ]
-Y_ord <- Y_numeric[idx_ord]
-
-# Create the Evaluation Set
-X_eval <- X[-idx_ord, ]
-Y_eval <- Y_numeric[-idx_ord]
-
-print(paste("Dimensions of X (Full):", nrow(X), "rows,", ncol(X), "columns"))
-print(paste("Ordering Set:", nrow(X_ord), "cases"))
-print(paste("Evaluation Set:", nrow(X_eval), "cases"))
 ```

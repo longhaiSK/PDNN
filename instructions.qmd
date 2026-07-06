@@ -1,0 +1,29 @@
+---
+title: "A Case Study of Employing Deep Learning to Predict Parkinson's Disease with Microbiome Data"
+author:
+    - name: Longhai Li
+      url: https://longhaisk.github.io
+date: last-modified
+execute: 
+  cache: false
+  freeze: false
+  warning: false
+  message: false
+params:
+  clearresults: FALSE
+  seed: 400
+format:
+  html:
+    self-contained: true
+    code-fold: true
+    number-sections: true
+    cache: false
+    freeze: false
+  typst: 
+    echo: false
+    cache: false
+    freeze: false
+    fig-format: pdf
+editor_options:
+  chunk_output_type: console
+---
