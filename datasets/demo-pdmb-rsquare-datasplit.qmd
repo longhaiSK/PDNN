@@ -1,0 +1,135 @@
+---
+title: "Cleaning a Parkinson's Disease Microbiome Data"
+author:
+    - name: Longhai Li
+      url: https://longhaisk.github.io
+date: last-modified
+execute: 
+  cache: false
+  freeze: false
+  warning: false
+  message: false
+params:
+  clearresults: FALSE
+  seed: 400
+format:
+  html:
+    self-contained: true
+    code-fold: true
+    number-sections: true
+    cache: false
+    freeze: false
+  typst: 
+    echo: false
+    cache: false
+    freeze: false
+    fig-format: pdf
+editor_options:
+  chunk_output_type: console
+---
+
+
+## Data Loading, Cleaning and Diagnostics
+
+```{r}
+#| cache: false
+#| label: data-cleaning
+library(dplyr)
+
+if (!file.exists(cleaned_data_file)) {
+  dataset <- read.csv("HillsBurnPD.csv", stringsAsFactors=TRUE)
+
+  print(paste("Total starting rows:", nrow(dataset)))
+  print(paste("Rows with < 5000 reads:", sum(dataset$Total_reads < 5000, na.rm = TRUE)))
+  summary(dataset %>% select(sex, age, parkinson_disease))
+
+  duplicates_to_drop <- c("10567.EC0104201B", "10567.EP0201201B", "10567.GMWA.1067B")
+
+  shorten_taxa_names_robust <- function(taxa_strings, prefix = "otu_") {
+    shortened_names <- sapply(taxa_strings, function(x) {
+      if (grepl("Unassigned", x, ignore.case = TRUE)) return("Unassigned")
+      matches <- regmatches(x, gregexpr("[kpcofgs]__[\\._]*[A-Za-z0-9-]+", x))[[1]]
+      if (length(matches) > 0) {
+        last_match <- tail(matches, 1)
+        clean_match <- sub("([kpcofgs]__)[\\._]+", "\\1", last_match)
+        return(clean_match)
+      } else {
+        return(x)
+      }
+    })
+    return(paste0(prefix, shortened_names))
+  }
+
+  cleaned_dataset <- dataset %>%
+    filter(Total_reads >= 5000) %>%
+    filter(!sample_name %in% duplicates_to_drop) %>%
+    rename_with(
+      ~ make.unique(shorten_taxa_names_robust(.)), 
+      starts_with("k__") | starts_with("Unassigned")
+    ) %>%
+    mutate(across(starts_with("otu_", ignore.case = FALSE), ~ asin(sqrt(.x / Total_reads)))) %>%
+    mutate(
+      parkinson_disease = factor(tolower(parkinson_disease)),
+      sex = ifelse(tolower(sex) == "female", 1, 0),
+      sex_age = sex * age  
+    ) %>%
+    select(parkinson_disease, sex, age, sex_age, starts_with("otu_", ignore.case = FALSE))
+
+  print(paste("Final sample count:", nrow(cleaned_dataset)))
+  saveRDS(cleaned_dataset, file = cleaned_data_file)
+} else {
+  cleaned_dataset <- readRDS(cleaned_data_file)
+}
+
+# 1. Extract the response vector (y)
+y <- cleaned_dataset$parkinson_disease
+Y_numeric <- as.numeric(y == "yes")
+
+# 2. Prepare the predictor dataframe (X_df) and convert directly to matrix
+X_df <- cleaned_dataset %>% select(-parkinson_disease)
+X <- as.matrix(X_df)
+
+# ==========================================
+# --- DATA SPLITTING FOR ORDERING/EVAL ---
+# ==========================================
+
+set.seed(seed) # Ensure strict reproducibility of the split
+idx_ord <- sample(1:nrow(X), n_ord)
+
+# Create the Ordering Set
+X_ord <- X[idx_ord, ]
+Y_ord <- Y_numeric[idx_ord]
+
+# Create the Evaluation Set
+X_eval <- X[-idx_ord, ]
+Y_eval <- Y_numeric[-idx_ord]
+
+print(paste("Dimensions of X (Full):", nrow(X), "rows,", ncol(X), "columns"))
+print(paste("Ordering Set:", nrow(X_ord), "cases"))
+print(paste("Evaluation Set:", nrow(X_eval), "cases"))
+```
+
+### Information of the data
+
+```{r}
+library(dplyr)
+cleaned_dataset %>%
+  group_by(parkinson_disease) %>%
+  summarize(
+    Mean_Age = mean(age, na.rm = TRUE),
+    Median_Age = median(age, na.rm = TRUE),
+    Min_Age = min(age, na.rm = TRUE),
+    Max_Age = max(age, na.rm = TRUE)
+  )
+hist(cleaned_dataset$age, 
+     main = "Distribution of Age in PD Dataset", 
+     xlab = "Age", 
+     col = "lightblue", 
+     breaks = 20)
+library(dplyr)
+library(tidyr)
+
+cleaned_dataset %>%
+  count(parkinson_disease, sex) %>%
+  pivot_wider(names_from = sex, values_from = n, values_fill = 0)
+```
