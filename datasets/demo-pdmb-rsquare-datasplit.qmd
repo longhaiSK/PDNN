@@ -31,11 +31,14 @@ editor_options:
 
 ## Data Loading, Cleaning and Diagnostics
 
+
 ```{r}
 #| cache: false
 #| label: data-cleaning
 library(dplyr)
-cleaned_data_file
+# Changed extension to .csv
+cleaned_data_file <- "clearned_HillsBurnPD.csv" 
+n_ord <- 200
 if (!file.exists(cleaned_data_file)) {
   dataset <- read.csv("HillsBurnPD.csv", stringsAsFactors=TRUE)
 
@@ -76,9 +79,12 @@ if (!file.exists(cleaned_data_file)) {
     select(parkinson_disease, sex, age, sex_age, starts_with("otu_", ignore.case = FALSE))
 
   print(paste("Final sample count:", nrow(cleaned_dataset)))
-  saveRDS(cleaned_dataset, file = cleaned_data_file)
+  
+  # Export as CSV without carrying over artificial row indices
+  write.csv(cleaned_dataset, file = cleaned_data_file, row.names = FALSE)
 } else {
-  cleaned_dataset <- readRDS(cleaned_data_file)
+  # Read back from CSV, automatically restoring strings/factors
+  cleaned_dataset <- read.csv(cleaned_data_file, stringsAsFactors = TRUE)
 }
 
 # 1. Extract the response vector (y)
@@ -93,7 +99,7 @@ X <- as.matrix(X_df)
 # --- DATA SPLITTING FOR ORDERING/EVAL ---
 # ==========================================
 
-set.seed(seed) # Ensure strict reproducibility of the split
+set.seed(params$seed) # Ensure strict reproducibility of the split
 idx_ord <- sample(1:nrow(X), n_ord)
 
 # Create the Ordering Set
@@ -107,29 +113,4 @@ Y_eval <- Y_numeric[-idx_ord]
 print(paste("Dimensions of X (Full):", nrow(X), "rows,", ncol(X), "columns"))
 print(paste("Ordering Set:", nrow(X_ord), "cases"))
 print(paste("Evaluation Set:", nrow(X_eval), "cases"))
-```
-
-### Information of the data
-
-```{r}
-library(dplyr)
-cleaned_dataset %>%
-  group_by(parkinson_disease) %>%
-  summarize(
-    Mean_Age = mean(age, na.rm = TRUE),
-    Median_Age = median(age, na.rm = TRUE),
-    Min_Age = min(age, na.rm = TRUE),
-    Max_Age = max(age, na.rm = TRUE)
-  )
-hist(cleaned_dataset$age, 
-     main = "Distribution of Age in PD Dataset", 
-     xlab = "Age", 
-     col = "lightblue", 
-     breaks = 20)
-library(dplyr)
-library(tidyr)
-
-cleaned_dataset %>%
-  count(parkinson_disease, sex) %>%
-  pivot_wider(names_from = sex, values_from = n, values_fill = 0)
 ```
