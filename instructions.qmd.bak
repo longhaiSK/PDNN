@@ -41,44 +41,6 @@ Here is a fake, simplified example of what this data looks like:
 
 Notice how in this fake example, the "Healthy" patients have thousands of *Bifidobacterium*, while the "Parkinson's" patients have very few? That is the exact kind of hidden pattern we want our computer program to find!
 
-### The Problem with Raw Counts: "Total Reads"
-
-When scientists run a DNA sequencer, it doesn't count every single bacteria in the gut. It grabs a random sample. We call the total number of bacteria successfully counted in a sample the **Total Reads**. 
-
-Because every stool sample is a little different, the sequencer might count 10,000 total bacteria for Patient 1, but 30,000 for Patient 4. 
-
-Here is what the raw data looks like:
-
-| Patient ID | *Bifidobacterium* | *Lactobacillus* | *Escherichia* | ... | Total Reads | Diagnosis |
-|---|---|---|---|---|---|---|
-| Patient_001 | 500 | 200 | 150 | ... | **10,000** | Parkinson's |
-| Patient_002 | 1,000 | 400 | 300 | ... | **20,000** | Parkinson's |
-| Patient_003 | 2,500 | 1,500 | 50 | ... | **10,000** | Healthy |
-| Patient_004 | 7,500 | 4,500 | 150 | ... | **30,000** | Healthy |
-
-If we give these raw numbers to our computer, it might get confused. It might look at Patient 2 and Patient 3 and think, *"Wow, Patient 2 has 1,000 Bifidobacterium and Patient 3 only has 2,500. They aren't that different!"*
-
-But that is an illusion. Patient 2 had *twice* as much gut fluid tested (20,000 total reads). 
-
-### The Solution: Converting to Proportions
-
-To make it a fair comparison, we have to convert the raw counts into **proportions** (or percentages). We do this by dividing the count of a specific bacteria by the Total Reads for that patient. 
-
-For example, for Patient 2: `1,000 / 20,000 = 0.05` (or 5%).
-
-Here is what the **Proportion Table** looks like after we do the math for everyone:
-
-| Patient ID | *Bifidobacterium* | *Lactobacillus* | *Escherichia* | ... | Diagnosis |
-|---|---|---|---|---|---|
-| Patient_001 | 0.05 (5%) | 0.02 (2%) | 0.015 | ... | Parkinson's |
-| Patient_002 | 0.05 (5%) | 0.02 (2%) | 0.015 | ... | Parkinson's |
-| Patient_003 | 0.25 (25%) | 0.15 (15%) | 0.005 | ... | Healthy |
-| Patient_004 | 0.25 (25%) | 0.15 (15%) | 0.005 | ... | Healthy |
-
-Now the hidden pattern is obvious! Both healthy patients have a high proportion (25%) of *Bifidobacterium*, while both Parkinson's patients have a low proportion (5%). 
-
-In the real datasets you will use, we have already done this math. The data you feed into your Neural Network will be a giant proportion table just like this one.
-
 ---
 
 ## 2. The Tech: What is a Neural Network?
