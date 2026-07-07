@@ -71,7 +71,7 @@ init_notebook_mode(all_interactive=True)
 
 You can download the raw code for this project or run it directly in your browser using Google Colab.
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/longhaiSK/PDNN/blob/main/your_notebook.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/longhaiSK/PDNN/blob/main/index.ipynb)
 
 [Download the .ipynb File](index.ipynb)
 
