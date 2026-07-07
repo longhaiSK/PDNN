@@ -751,12 +751,6 @@ Never used Colab or coded a Neural Network before? Don't panic — the internet 
 :::
 ---
 
-**Yes, they absolutely can!** In fact, this is often the best approach for high school students because it means they don't have to install any software on their own computers. They can use Google Colab's cloud servers to do both the coding and the document publishing.
-
-Here is exactly how they can write and render their final PDF directly inside their Google Colab notebook.
-
----
-
 ## The Publishing Press: Rendering Your PDF Inside Colab
 
 You don't need to leave Google Colab to create your final PDF. You can tell Colab's servers to install Quarto, read your notebook, and generate the final manuscript right in the cloud.

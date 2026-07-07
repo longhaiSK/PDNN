@@ -1,7 +1,16 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
-<meta charset="utf-8">
+<script src="index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="index_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="index_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="index_files/libs/quarto-html/anchor.min.js"></script>
+<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="index_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="index_files/libs/bootstrap/bootstrap-f690ed9cbefaa42fdaafd0af3980d139.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
@@ -158,13 +167,13 @@ window.Quarto = {
   <li><a href="#plans-and-goals" id="toc-plans-and-goals" class="nav-link" data-scroll-target="#plans-and-goals"><span class="header-section-number">10</span> Plans and Goals</a></li>
   <li><a href="#appendix-starter-template-for-your-report" id="toc-appendix-starter-template-for-your-report" class="nav-link" data-scroll-target="#appendix-starter-template-for-your-report"><span class="header-section-number">11</span> Appendix: Starter Template for Your Report</a></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.ipynb" download="index.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.ipynb" download="index.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.ipynb" download="index.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
 </div>
 <main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Employing Deep Learning to Predict Parkinson’s Disease using Microbiome Data</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<div class="quarto-title-block"><div><div class="quarto-title-block"><div><h1 class="title">Employing Deep Learning to Predict Parkinson’s Disease using Microbiome Data</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 </div>
 
 
@@ -352,10 +361,10 @@ Figure&nbsp;1: The <strong>gut–brain axis</strong>: signals travel in both dir
 <h3 data-number="4.1" class="anchored" data-anchor-id="step-1-a-synthesized-raw-data"><span class="header-section-number">4.1</span> Step 1: A Synthesized Raw Data</h3>
 <p>First, let’s generate the raw counts — the messy numbers straight off the machine, before anyone cleans them up.</p>
 <p><strong>Data Generating Function</strong></p>
-<div id="47eb09b6" class="cell" data-execution_count="2">
+<div id="27de6e98" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<div class="code-copy-outer-scaffold"><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Reusable Data Generating Process (DGP)</span></span>
@@ -413,13 +422,13 @@ Figure&nbsp;1: The <strong>gut–brain axis</strong>: signals travel in both dir
 <span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> df[bacteria_cols].values</span>
 <span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> (df[<span class="st">"Diagnosis"</span>] <span class="op">==</span> <span class="st">"Parkinson's"</span>).astype(<span class="bu">int</span>).values</span>
 <span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> X, y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> X, y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div id="generate-raw-data" class="cell page-columns page-full" data-message="false" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itables <span class="im">import</span> show, init_notebook_mode</span>
+<div class="code-copy-outer-scaffold"><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itables <span class="im">import</span> show, init_notebook_mode</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>init_notebook_mode(all_interactive<span class="op">=</span><span class="va">True</span>)</span>
@@ -456,7 +465,7 @@ Figure&nbsp;1: The <strong>gut–brain axis</strong>: signals travel in both dir
 <span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    autoWidth<span class="op">=</span><span class="va">False</span>,</span>
 <span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    lengthMenu<span class="op">=</span>[<span class="dv">10</span>, <span class="dv">20</span>], </span>
 <span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    style<span class="op">=</span><span class="st">"width: 100%; table-layout: fixed; font-size: 0.8rem;"</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div id="generate-raw-data-1" class="cell-output cell-output-display column-page">
 <script type="module">
@@ -557,7 +566,7 @@ This is the <code>init_notebook_mode</code> cell from ITables v2.8.1<br>
 </div>
 <div id="generate-raw-data-3" class="cell-output cell-output-display">
 <!--| quarto-html-table-processing: none -->
-<table id="itables_cd739a0e_a4c6_48e9_887c_e3e5dcb6d17c">
+<table id="itables_28c55634_f157_4bad_b057_e9fe9a8a6c44">
   <tbody>
     <tr>
       <td style="vertical-align:middle; text-align:left"><a href="https://mwouts.github.io/itables/"><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="64" viewbox="0 0 500 400" style="font-family: 'Droid Sans', sans-serif;">
@@ -628,7 +637,7 @@ This is the <code>init_notebook_mode</code> cell from ITables v2.8.1<br>
         async function init() {
             const { ITable, jQuery: $ } = await window._itables_2_8_1;
 
-            document.querySelectorAll("#itables_cd739a0e_a4c6_48e9_887c_e3e5dcb6d17c:not(.dataTable)").forEach(table => {
+            document.querySelectorAll("#itables_28c55634_f157_4bad_b057_e9fe9a8a6c44:not(.dataTable)").forEach(table => {
                 if (!(table instanceof HTMLTableElement))
                     return;
 
@@ -664,7 +673,7 @@ This is the <code>init_notebook_mode</code> cell from ITables v2.8.1<br>
 <div id="cell-plot-raw-boxplot" class="cell" data-fig-height="5" data-fig-width="10" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reshape the data for seaborn plotting</span></span>
+<div class="code-copy-outer-scaffold"><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reshape the data for seaborn plotting</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> [<span class="st">"Bifidobacterium"</span>, <span class="st">"Lactobacillus"</span>, <span class="st">"Bacteroides"</span>, <span class="st">"Prevotella"</span>, <span class="st">"Escherichia"</span>, <span class="st">"Klebsiella"</span>]</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>df_raw_melted <span class="op">=</span> df_raw.melt(id_vars<span class="op">=</span>[<span class="st">"Diagnosis"</span>], value_vars<span class="op">=</span>cols, var_name<span class="op">=</span><span class="st">"Bacteria"</span>, value_name<span class="op">=</span><span class="st">"Raw_Count"</span>)</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -672,7 +681,7 @@ This is the <code>init_notebook_mode</code> cell from ITables v2.8.1<br>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>sns.boxplot(data<span class="op">=</span>df_raw_melted, x<span class="op">=</span><span class="st">"Bacteria"</span>, y<span class="op">=</span><span class="st">"Raw_Count"</span>, hue<span class="op">=</span><span class="st">"Diagnosis"</span>, palette<span class="op">=</span>[<span class="st">"#e74c3c"</span>, <span class="st">"#2ecc71"</span>])</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Step 1: Raw Counts (Misleading! Parkinson's looks higher in everything)"</span>)</span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Raw Bacteria Count"</span>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -689,7 +698,7 @@ This is the <code>init_notebook_mode</code> cell from ITables v2.8.1<br>
 <div id="cell-calculate-proportions" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate Proportions</span></span>
+<div class="code-copy-outer-scaffold"><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate Proportions</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df_prop <span class="op">=</span> df_raw.copy()</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> bacteria_cols:</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    df_prop[col] <span class="op">=</span> df_prop[col] <span class="op">/</span> df_prop[<span class="st">"Total_Reads"</span>]</span>
@@ -704,11 +713,11 @@ This is the <code>init_notebook_mode</code> cell from ITables v2.8.1<br>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    autoWidth<span class="op">=</span><span class="va">False</span>,</span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    lengthMenu<span class="op">=</span>[<span class="dv">10</span>, <span class="dv">20</span>], </span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    style<span class="op">=</span><span class="st">"width: 100%; table-layout: fixed; font-size: 0.8rem;"</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div id="calculate-proportions" class="cell-output cell-output-display">
 <!--| quarto-html-table-processing: none -->
-<table id="itables_eb592549_b308_49d8_882b_97200774d99f">
+<table id="itables_e6fba7a6_284b_4a42_9f10_4b720a9ca4a1">
   <tbody>
     <tr>
       <td style="vertical-align:middle; text-align:left"><a href="https://mwouts.github.io/itables/"><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="64" viewbox="0 0 500 400" style="font-family: 'Droid Sans', sans-serif;">
@@ -779,7 +788,7 @@ This is the <code>init_notebook_mode</code> cell from ITables v2.8.1<br>
         async function init() {
             const { ITable, jQuery: $ } = await window._itables_2_8_1;
 
-            document.querySelectorAll("#itables_eb592549_b308_49d8_882b_97200774d99f:not(.dataTable)").forEach(table => {
+            document.querySelectorAll("#itables_e6fba7a6_284b_4a42_9f10_4b720a9ca4a1:not(.dataTable)").forEach(table => {
                 if (!(table instanceof HTMLTableElement))
                     return;
 
@@ -816,14 +825,14 @@ This is the <code>init_notebook_mode</code> cell from ITables v2.8.1<br>
 <div id="cell-plot-prop-boxplot" class="cell" data-fig-height="5" data-fig-width="10" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reshape and plot the proportion data</span></span>
+<div class="code-copy-outer-scaffold"><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reshape and plot the proportion data</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df_prop_melted <span class="op">=</span> df_prop.melt(id_vars<span class="op">=</span>[<span class="st">"Diagnosis"</span>], value_vars<span class="op">=</span>cols, var_name<span class="op">=</span><span class="st">"Bacteria"</span>, value_name<span class="op">=</span><span class="st">"Proportion"</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">5</span>))</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>sns.boxplot(data<span class="op">=</span>df_prop_melted, x<span class="op">=</span><span class="st">"Bacteria"</span>, y<span class="op">=</span><span class="st">"Proportion"</span>, hue<span class="op">=</span><span class="st">"Diagnosis"</span>, palette<span class="op">=</span>[<span class="st">"#e74c3c"</span>, <span class="st">"#2ecc71"</span>])</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Step 2: Individual Proportions (Overlapping and Confusing)"</span>)</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Proportion of Microbiome"</span>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -842,7 +851,7 @@ This is the <code>init_notebook_mode</code> cell from ITables v2.8.1<br>
 <div id="cell-plot-combined-boxplot" class="cell" data-fig-height="5" data-fig-width="10" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create 3 Combined Columns</span></span>
+<div class="code-copy-outer-scaffold"><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create 3 Combined Columns</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df_prop[<span class="st">"Pair1_Bifido_Lacto"</span>] <span class="op">=</span> df_prop[<span class="st">"Bifidobacterium"</span>] <span class="op">+</span> df_prop[<span class="st">"Lactobacillus"</span>]</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>df_prop[<span class="st">"Pair2_Bact_Prev"</span>] <span class="op">=</span> df_prop[<span class="st">"Bacteroides"</span>] <span class="op">+</span> df_prop[<span class="st">"Prevotella"</span>]</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>df_prop[<span class="st">"Pair3_Esch_Kleb"</span>] <span class="op">=</span> df_prop[<span class="st">"Escherichia"</span>] <span class="op">+</span> df_prop[<span class="st">"Klebsiella"</span>]</span>
@@ -856,7 +865,7 @@ This is the <code>init_notebook_mode</code> cell from ITables v2.8.1<br>
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Combined Proportion"</span>)</span>
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Make x-axis labels cleaner</span></span>
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>plt.xticks(ticks<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>], labels<span class="op">=</span>[<span class="st">"Pair 1</span><span class="ch">\n</span><span class="st">(Bifido+Lacto)"</span>, <span class="st">"Pair 2</span><span class="ch">\n</span><span class="st">(Bact+Prev)"</span>, <span class="st">"Pair 3</span><span class="ch">\n</span><span class="st">(Esch+Kleb)"</span>])</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -881,7 +890,7 @@ This is the <code>init_notebook_mode</code> cell from ITables v2.8.1<br>
 <div id="cell-plot-logistic-regression" class="cell" data-fig-height="5" data-fig-width="15" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<div class="code-copy-outer-scaffold"><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -920,7 +929,7 @@ This is the <code>init_notebook_mode</code> cell from ITables v2.8.1<br>
 <span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>    ax.legend()</span>
 <span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1046,13 +1055,13 @@ z = \beta_0 + \beta_1 \cdot (\text{Bifidobacterium} + \text{Lactobacillus})
 <div id="setup-train-test-data" class="cell" data-message="false" data-execution_count="9">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate our two independent datasets (Training and Testing)</span></span>
+<div class="code-copy-outer-scaffold"><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate our two independent datasets (Training and Testing)</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>X_train, y_train <span class="op">=</span> generate_microbiome_data(<span class="dv">100</span>,<span class="dv">100</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>X_test, y_test <span class="op">=</span> generate_microbiome_data(<span class="dv">100</span>,<span class="dv">100</span>)</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Data generated successfully!"</span>)</span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Training set: </span><span class="sc">{</span>X_train<span class="sc">.</span>shape[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> patients"</span>)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Testing set: </span><span class="sc">{</span>X_test<span class="sc">.</span>shape[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> patients"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Testing set: </span><span class="sc">{</span>X_test<span class="sc">.</span>shape[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> patients"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Data generated successfully!
@@ -1068,7 +1077,7 @@ Testing set: 200 patients</code></pre>
 <div id="full-neural-network-pipeline-baseline" class="cell" data-fig-height="8" data-fig-width="12" data-message="false" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<div class="code-copy-outer-scaffold"><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
@@ -1146,7 +1155,7 @@ Testing set: 200 patients</code></pre>
 <span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a><span class="co"># Display as a clean HTML table</span></span>
 <span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Grading the Exam: Model Metrics Summary"</span>)</span>
-<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a>display(cm_df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a>display(cm_df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Model Training Complete!
@@ -1155,7 +1164,7 @@ The Final Exam: Individual Patient Predictions</code></pre>
 </div>
 <div id="full-neural-network-pipeline-baseline-1" class="cell-output cell-output-display">
 <!--| quarto-html-table-processing: none -->
-<table id="itables_f551ba8c_305f_4e4a_9a9e_2ba32e49809d">
+<table id="itables_eb06069a_6e58_42d3_bd43_166d12d0ee51">
   <tbody>
     <tr>
       <td style="vertical-align:middle; text-align:left"><a href="https://mwouts.github.io/itables/"><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="64" viewbox="0 0 500 400" style="font-family: 'Droid Sans', sans-serif;">
@@ -1226,14 +1235,14 @@ The Final Exam: Individual Patient Predictions</code></pre>
         async function init() {
             const { ITable, jQuery: $ } = await window._itables_2_8_1;
 
-            document.querySelectorAll("#itables_f551ba8c_305f_4e4a_9a9e_2ba32e49809d:not(.dataTable)").forEach(table => {
+            document.querySelectorAll("#itables_eb06069a_6e58_42d3_bd43_166d12d0ee51:not(.dataTable)").forEach(table => {
                 if (!(table instanceof HTMLTableElement))
                     return;
 
                 let dt_args = {
           "classes": ["display", "compact"],
           "columnDefs": [{"render": "function (data, type, row, meta) { return type === 'sort' || type === 'type' ? data[1] : data[0]; }", "targets": [1]}],
-          "data_json": "[[1, [\"0.774\", 0.7739999890327454], 1], [1, [\"0.434\", 0.4339999854564667], 0], [1, [\"0.636\", 0.6359999775886536], 1], [1, [\"0.869\", 0.8690000176429749], 1], [1, [\"0.757\", 0.7570000290870667], 1], [1, [\"0.649\", 0.6489999890327454], 1], [1, [\"0.823\", 0.8230000138282776], 1], [1, [\"0.527\", 0.5270000100135803], 1], [1, [\"0.583\", 0.5830000042915344], 1], [1, [\"0.778\", 0.777999997138977], 1], [1, [\"0.608\", 0.6079999804496765], 1], [1, [\"0.575\", 0.574999988079071], 1], [1, [\"0.562\", 0.5619999766349792], 1], [1, [\"0.560\", 0.5600000023841858], 1], [1, [\"0.784\", 0.7839999794960022], 1], [1, [\"0.810\", 0.8100000023841858], 1], [1, [\"0.630\", 0.6299999952316284], 1], [1, [\"0.656\", 0.656000018119812], 1], [1, [\"0.772\", 0.7720000147819519], 1], [1, [\"0.642\", 0.6420000195503235], 1], [1, [\"0.469\", 0.4690000116825104], 0], [1, [\"0.708\", 0.7080000042915344], 1], [1, [\"0.492\", 0.492000013589859], 0], [1, [\"0.710\", 0.7099999785423279], 1], [1, [\"0.767\", 0.7670000195503235], 1], [1, [\"0.331\", 0.3310000002384186], 0], [1, [\"0.463\", 0.46299999952316284], 0], [1, [\"0.525\", 0.5249999761581421], 1], [1, [\"0.550\", 0.550000011920929], 1], [1, [\"0.669\", 0.6690000295639038], 1], [1, [\"0.363\", 0.3630000054836273], 0], [1, [\"0.804\", 0.8040000200271606], 1], [1, [\"0.740\", 0.7400000095367432], 1], [1, [\"0.553\", 0.5529999732971191], 1], [1, [\"0.673\", 0.6729999780654907], 1], [1, [\"0.590\", 0.5899999737739563], 1], [1, [\"0.693\", 0.6930000185966492], 1], [1, [\"0.298\", 0.2980000078678131], 0], [1, [\"0.825\", 0.824999988079071], 1], [1, [\"0.840\", 0.8399999737739563], 1], [1, [\"0.523\", 0.5230000019073486], 1], [1, [\"0.584\", 0.5839999914169312], 1], [1, [\"0.642\", 0.6420000195503235], 1], [1, [\"0.525\", 0.5249999761581421], 1], [1, [\"0.646\", 0.6460000276565552], 1], [1, [\"0.808\", 0.8080000281333923], 1], [1, [\"0.584\", 0.5839999914169312], 1], [1, [\"0.818\", 0.8180000185966492], 1], [1, [\"0.481\", 0.48100000619888306], 0], [1, [\"0.808\", 0.8080000281333923], 1], [1, [\"0.831\", 0.8309999704360962], 1], [1, [\"0.772\", 0.7720000147819519], 1], [1, [\"0.506\", 0.5059999823570251], 1], [1, [\"0.786\", 0.7860000133514404], 1], [1, [\"0.679\", 0.6790000200271606], 1], [1, [\"0.705\", 0.7049999833106995], 1], [1, [\"0.634\", 0.6340000033378601], 1], [1, [\"0.745\", 0.7450000047683716], 1], [1, [\"0.766\", 0.765999972820282], 1], [1, [\"0.478\", 0.4779999852180481], 0], [1, [\"0.865\", 0.8650000095367432], 1], [1, [\"0.854\", 0.8539999723434448], 1], [1, [\"0.821\", 0.8209999799728394], 1], [1, [\"0.797\", 0.796999990940094], 1], [1, [\"0.550\", 0.550000011920929], 1], [1, [\"0.295\", 0.29499998688697815], 0], [1, [\"0.385\", 0.38499999046325684], 0], [1, [\"0.751\", 0.7509999871253967], 1], [1, [\"0.708\", 0.7080000042915344], 1], [1, [\"0.856\", 0.8560000061988831], 1], [1, [\"0.500\", 0.5], 1], [1, [\"0.768\", 0.7680000066757202], 1], [1, [\"0.707\", 0.7070000171661377], 1], [1, [\"0.794\", 0.7940000295639038], 1], [1, [\"0.636\", 0.6359999775886536], 1], [1, [\"0.385\", 0.38499999046325684], 0], [1, [\"0.738\", 0.7379999756813049], 1], [1, [\"0.604\", 0.6039999723434448], 1], [1, [\"0.584\", 0.5839999914169312], 1], [1, [\"0.748\", 0.7480000257492065], 1], [1, [\"0.683\", 0.6830000281333923], 1], [1, [\"0.734\", 0.734000027179718], 1], [1, [\"0.718\", 0.7179999947547913], 1], [1, [\"0.751\", 0.7509999871253967], 1], [1, [\"0.567\", 0.5669999718666077], 1], [1, [\"0.655\", 0.6549999713897705], 1], [1, [\"0.407\", 0.40700000524520874], 0], [1, [\"0.423\", 0.4230000078678131], 0], [1, [\"0.228\", 0.2280000001192093], 0], [1, [\"0.834\", 0.8339999914169312], 1], [1, [\"0.457\", 0.4569999873638153], 0], [1, [\"0.713\", 0.7129999995231628], 1], [1, [\"0.316\", 0.3160000145435333], 0], [1, [\"0.731\", 0.7310000061988831], 1], [1, [\"0.850\", 0.8500000238418579], 1], [1, [\"0.762\", 0.7620000243186951], 1], [1, [\"0.899\", 0.8989999890327454], 1], [1, [\"0.773\", 0.7730000019073486], 1], [1, [\"0.794\", 0.7940000295639038], 1], [1, [\"0.751\", 0.7509999871253967], 1], [0, [\"0.425\", 0.42500001192092896], 0], [0, [\"0.484\", 0.48399999737739563], 0], [0, [\"0.371\", 0.3709999918937683], 0], [0, [\"0.522\", 0.5220000147819519], 1], [0, [\"0.548\", 0.5479999780654907], 1], [0, [\"0.598\", 0.5979999899864197], 1], [0, [\"0.101\", 0.10100000351667404], 0], [0, [\"0.386\", 0.38600000739097595], 0], [0, [\"0.515\", 0.5149999856948853], 1], [0, [\"0.205\", 0.20499999821186066], 0], [0, [\"0.282\", 0.28200000524520874], 0], [0, [\"0.351\", 0.35100001096725464], 0], [0, [\"0.208\", 0.20800000429153442], 0], [0, [\"0.193\", 0.19300000369548798], 0], [0, [\"0.343\", 0.34299999475479126], 0], [0, [\"0.338\", 0.33799999952316284], 0], [0, [\"0.338\", 0.33799999952316284], 0], [0, [\"0.622\", 0.621999979019165], 1], [0, [\"0.691\", 0.6909999847412109], 1], [0, [\"0.121\", 0.12099999934434891], 0], [0, [\"0.121\", 0.12099999934434891], 0], [0, [\"0.204\", 0.20399999618530273], 0], [0, [\"0.167\", 0.16699999570846558], 0], [0, [\"0.215\", 0.2150000035762787], 0], [0, [\"0.074\", 0.07400000095367432], 0], [0, [\"0.147\", 0.1469999998807907], 0], [0, [\"0.384\", 0.3840000033378601], 0], [0, [\"0.423\", 0.4230000078678131], 0], [0, [\"0.576\", 0.5759999752044678], 1], [0, [\"0.253\", 0.2529999911785126], 0], [0, [\"0.359\", 0.35899999737739563], 0], [0, [\"0.497\", 0.4970000088214874], 0], [0, [\"0.406\", 0.4059999883174896], 0], [0, [\"0.479\", 0.4790000021457672], 0], [0, [\"0.131\", 0.13099999725818634], 0], [0, [\"0.242\", 0.24199999868869781], 0], [0, [\"0.371\", 0.3709999918937683], 0], [0, [\"0.149\", 0.14900000393390656], 0], [0, [\"0.218\", 0.21799999475479126], 0], [0, [\"0.450\", 0.44999998807907104], 0], [0, [\"0.089\", 0.08900000154972076], 0], [0, [\"0.203\", 0.2029999941587448], 0], [0, [\"0.592\", 0.5920000076293945], 1], [0, [\"0.212\", 0.21199999749660492], 0], [0, [\"0.454\", 0.45399999618530273], 0], [0, [\"0.660\", 0.6600000262260437], 1], [0, [\"0.136\", 0.13600000739097595], 0], [0, [\"0.093\", 0.09300000220537186], 0], [0, [\"0.529\", 0.5289999842643738], 1], [0, [\"0.165\", 0.16500000655651093], 0], [0, [\"0.349\", 0.3490000069141388], 0], [0, [\"0.429\", 0.42899999022483826], 0], [0, [\"0.389\", 0.3889999985694885], 0], [0, [\"0.365\", 0.36500000953674316], 0], [0, [\"0.259\", 0.2590000033378601], 0], [0, [\"0.467\", 0.46700000762939453], 0], [0, [\"0.272\", 0.2720000147819519], 0], [0, [\"0.315\", 0.3149999976158142], 0], [0, [\"0.228\", 0.2280000001192093], 0], [0, [\"0.360\", 0.36000001430511475], 0], [0, [\"0.365\", 0.36500000953674316], 0], [0, [\"0.194\", 0.1940000057220459], 0], [0, [\"0.284\", 0.2840000092983246], 0], [0, [\"0.462\", 0.4620000123977661], 0], [0, [\"0.161\", 0.16099999845027924], 0], [0, [\"0.205\", 0.20499999821186066], 0], [0, [\"0.566\", 0.5659999847412109], 1], [0, [\"0.239\", 0.23899999260902405], 0], [0, [\"0.377\", 0.37700000405311584], 0], [0, [\"0.181\", 0.1809999942779541], 0], [0, [\"0.451\", 0.45100000500679016], 0], [0, [\"0.601\", 0.6010000109672546], 1], [0, [\"0.507\", 0.5070000290870667], 1], [0, [\"0.277\", 0.2770000100135803], 0], [0, [\"0.261\", 0.26100000739097595], 0], [0, [\"0.481\", 0.48100000619888306], 0], [0, [\"0.179\", 0.17900000512599945], 0], [0, [\"0.678\", 0.6779999732971191], 1], [0, [\"0.243\", 0.24300000071525574], 0], [0, [\"0.487\", 0.4869999885559082], 0], [0, [\"0.428\", 0.42800000309944153], 0], [0, [\"0.264\", 0.2639999985694885], 0], [0, [\"0.417\", 0.4169999957084656], 0], [0, [\"0.311\", 0.3109999895095825], 0], [0, [\"0.199\", 0.19900000095367432], 0], [0, [\"0.442\", 0.44200000166893005], 0], [0, [\"0.145\", 0.14499999582767487], 0], [0, [\"0.502\", 0.5019999742507935], 1], [0, [\"0.141\", 0.14100000262260437], 0], [0, [\"0.129\", 0.1289999932050705], 0], [0, [\"0.762\", 0.7620000243186951], 1], [0, [\"0.382\", 0.38199999928474426], 0], [0, [\"0.183\", 0.18299999833106995], 0], [0, [\"0.306\", 0.3059999942779541], 0], [0, [\"0.204\", 0.20399999618530273], 0], [0, [\"0.401\", 0.4009999930858612], 0], [0, [\"0.350\", 0.3499999940395355], 0], [0, [\"0.353\", 0.3529999852180481], 0], [0, [\"0.117\", 0.11699999868869781], 0], [0, [\"0.278\", 0.27799999713897705], 0]]",
+          "data_json": "[[1, [\"0.689\", 0.6890000104904175], 1], [1, [\"0.482\", 0.4819999933242798], 0], [1, [\"0.608\", 0.6079999804496765], 1], [1, [\"0.806\", 0.8059999942779541], 1], [1, [\"0.685\", 0.6850000023841858], 1], [1, [\"0.589\", 0.5889999866485596], 1], [1, [\"0.737\", 0.7369999885559082], 1], [1, [\"0.546\", 0.5460000038146973], 1], [1, [\"0.546\", 0.5460000038146973], 1], [1, [\"0.700\", 0.699999988079071], 1], [1, [\"0.588\", 0.5879999995231628], 1], [1, [\"0.579\", 0.5789999961853027], 1], [1, [\"0.594\", 0.593999981880188], 1], [1, [\"0.583\", 0.5830000042915344], 1], [1, [\"0.705\", 0.7049999833106995], 1], [1, [\"0.720\", 0.7200000286102295], 1], [1, [\"0.637\", 0.6370000243186951], 1], [1, [\"0.617\", 0.6169999837875366], 1], [1, [\"0.698\", 0.6980000138282776], 1], [1, [\"0.601\", 0.6010000109672546], 1], [1, [\"0.522\", 0.5220000147819519], 1], [1, [\"0.646\", 0.6460000276565552], 1], [1, [\"0.517\", 0.5170000195503235], 1], [1, [\"0.644\", 0.6439999938011169], 1], [1, [\"0.695\", 0.6949999928474426], 1], [1, [\"0.436\", 0.4359999895095825], 0], [1, [\"0.500\", 0.5], 1], [1, [\"0.546\", 0.5460000038146973], 1], [1, [\"0.563\", 0.5630000233650208], 1], [1, [\"0.641\", 0.640999972820282], 1], [1, [\"0.428\", 0.42800000309944153], 0], [1, [\"0.734\", 0.734000027179718], 1], [1, [\"0.685\", 0.6850000023841858], 1], [1, [\"0.528\", 0.527999997138977], 1], [1, [\"0.630\", 0.6299999952316284], 1], [1, [\"0.575\", 0.574999988079071], 1], [1, [\"0.623\", 0.6230000257492065], 1], [1, [\"0.416\", 0.41600000858306885], 0], [1, [\"0.736\", 0.7360000014305115], 1], [1, [\"0.775\", 0.7749999761581421], 1], [1, [\"0.556\", 0.5559999942779541], 1], [1, [\"0.593\", 0.5929999947547913], 1], [1, [\"0.622\", 0.621999979019165], 1], [1, [\"0.526\", 0.5260000228881836], 1], [1, [\"0.614\", 0.6140000224113464], 1], [1, [\"0.726\", 0.7260000109672546], 1], [1, [\"0.566\", 0.5659999847412109], 1], [1, [\"0.741\", 0.7409999966621399], 1], [1, [\"0.513\", 0.5130000114440918], 1], [1, [\"0.728\", 0.7279999852180481], 1], [1, [\"0.760\", 0.7599999904632568], 1], [1, [\"0.701\", 0.7009999752044678], 1], [1, [\"0.529\", 0.5289999842643738], 1], [1, [\"0.717\", 0.7170000076293945], 1], [1, [\"0.614\", 0.6140000224113464], 1], [1, [\"0.654\", 0.6539999842643738], 1], [1, [\"0.617\", 0.6169999837875366], 1], [1, [\"0.677\", 0.6769999861717224], 1], [1, [\"0.701\", 0.7009999752044678], 1], [1, [\"0.500\", 0.5], 0], [1, [\"0.795\", 0.7950000166893005], 1], [1, [\"0.772\", 0.7720000147819519], 1], [1, [\"0.734\", 0.734000027179718], 1], [1, [\"0.724\", 0.7239999771118164], 1], [1, [\"0.555\", 0.5550000071525574], 1], [1, [\"0.408\", 0.40799999237060547], 0], [1, [\"0.455\", 0.45500001311302185], 0], [1, [\"0.689\", 0.6890000104904175], 1], [1, [\"0.637\", 0.6370000243186951], 1], [1, [\"0.785\", 0.7850000262260437], 1], [1, [\"0.498\", 0.49799999594688416], 0], [1, [\"0.710\", 0.7099999785423279], 1], [1, [\"0.653\", 0.652999997138977], 1], [1, [\"0.710\", 0.7099999785423279], 1], [1, [\"0.596\", 0.5960000157356262], 1], [1, [\"0.481\", 0.48100000619888306], 0], [1, [\"0.670\", 0.6700000166893005], 1], [1, [\"0.602\", 0.6019999980926514], 1], [1, [\"0.577\", 0.5770000219345093], 1], [1, [\"0.677\", 0.6769999861717224], 1], [1, [\"0.623\", 0.6230000257492065], 1], [1, [\"0.663\", 0.6629999876022339], 1], [1, [\"0.663\", 0.6629999876022339], 1], [1, [\"0.661\", 0.6610000133514404], 1], [1, [\"0.544\", 0.5440000295639038], 1], [1, [\"0.624\", 0.6240000128746033], 1], [1, [\"0.493\", 0.49300000071525574], 0], [1, [\"0.490\", 0.49000000953674316], 0], [1, [\"0.384\", 0.3840000033378601], 0], [1, [\"0.751\", 0.7509999871253967], 1], [1, [\"0.500\", 0.5], 1], [1, [\"0.646\", 0.6460000276565552], 1], [1, [\"0.441\", 0.4410000145435333], 0], [1, [\"0.658\", 0.6579999923706055], 1], [1, [\"0.770\", 0.7699999809265137], 1], [1, [\"0.675\", 0.675000011920929], 1], [1, [\"0.837\", 0.8370000123977661], 1], [1, [\"0.705\", 0.7049999833106995], 1], [1, [\"0.717\", 0.7170000076293945], 1], [1, [\"0.687\", 0.6869999766349792], 1], [0, [\"0.486\", 0.4860000014305115], 0], [0, [\"0.528\", 0.527999997138977], 1], [0, [\"0.454\", 0.45399999618530273], 0], [0, [\"0.545\", 0.5450000166893005], 1], [0, [\"0.574\", 0.5740000009536743], 1], [0, [\"0.570\", 0.5699999928474426], 1], [0, [\"0.273\", 0.27300000190734863], 0], [0, [\"0.483\", 0.4830000102519989], 0], [0, [\"0.557\", 0.5569999814033508], 1], [0, [\"0.356\", 0.35600000619888306], 0], [0, [\"0.411\", 0.41100001335144043], 0], [0, [\"0.441\", 0.4410000145435333], 0], [0, [\"0.353\", 0.3529999852180481], 0], [0, [\"0.345\", 0.3449999988079071], 0], [0, [\"0.434\", 0.4339999854564667], 0], [0, [\"0.434\", 0.4339999854564667], 0], [0, [\"0.431\", 0.4309999942779541], 0], [0, [\"0.588\", 0.5879999995231628], 1], [0, [\"0.644\", 0.6439999938011169], 1], [0, [\"0.290\", 0.28999999165534973], 0], [0, [\"0.303\", 0.30300000309944153], 0], [0, [\"0.353\", 0.3529999852180481], 0], [0, [\"0.332\", 0.3319999873638153], 0], [0, [\"0.377\", 0.37700000405311584], 0], [0, [\"0.238\", 0.23800000548362732], 0], [0, [\"0.325\", 0.32499998807907104], 0], [0, [\"0.464\", 0.46399998664855957], 0], [0, [\"0.494\", 0.49399998784065247], 0], [0, [\"0.563\", 0.5630000233650208], 1], [0, [\"0.415\", 0.41499999165534973], 0], [0, [\"0.440\", 0.4399999976158142], 0], [0, [\"0.511\", 0.5109999775886536], 1], [0, [\"0.473\", 0.4729999899864197], 0], [0, [\"0.512\", 0.5120000243186951], 1], [0, [\"0.300\", 0.30000001192092896], 0], [0, [\"0.396\", 0.3959999978542328], 0], [0, [\"0.471\", 0.47099998593330383], 0], [0, [\"0.317\", 0.31700000166893005], 0], [0, [\"0.366\", 0.3659999966621399], 0], [0, [\"0.495\", 0.4950000047683716], 0], [0, [\"0.256\", 0.25600001215934753], 0], [0, [\"0.362\", 0.3619999885559082], 0], [0, [\"0.578\", 0.578000009059906], 1], [0, [\"0.352\", 0.35199999809265137], 0], [0, [\"0.517\", 0.5170000195503235], 1], [0, [\"0.638\", 0.6380000114440918], 1], [0, [\"0.303\", 0.30300000309944153], 0], [0, [\"0.264\", 0.2639999985694885], 0], [0, [\"0.530\", 0.5299999713897705], 1], [0, [\"0.337\", 0.3370000123977661], 0], [0, [\"0.456\", 0.4560000002384186], 0], [0, [\"0.512\", 0.5120000243186951], 1], [0, [\"0.457\", 0.4569999873638153], 0], [0, [\"0.443\", 0.4429999887943268], 0], [0, [\"0.377\", 0.37700000405311584], 0], [0, [\"0.492\", 0.492000013589859], 0], [0, [\"0.402\", 0.4020000100135803], 0], [0, [\"0.442\", 0.44200000166893005], 0], [0, [\"0.372\", 0.3720000088214874], 0], [0, [\"0.449\", 0.4490000009536743], 0], [0, [\"0.457\", 0.4569999873638153], 0], [0, [\"0.360\", 0.36000001430511475], 0], [0, [\"0.433\", 0.43299999833106995], 0], [0, [\"0.498\", 0.49799999594688416], 0], [0, [\"0.323\", 0.3230000138282776], 0], [0, [\"0.363\", 0.3630000054836273], 0], [0, [\"0.567\", 0.5669999718666077], 1], [0, [\"0.401\", 0.4009999930858612], 0], [0, [\"0.459\", 0.45899999141693115], 0], [0, [\"0.345\", 0.3449999988079071], 0], [0, [\"0.504\", 0.5040000081062317], 1], [0, [\"0.591\", 0.5910000205039978], 1], [0, [\"0.530\", 0.5299999713897705], 1], [0, [\"0.407\", 0.40700000524520874], 0], [0, [\"0.401\", 0.4009999930858612], 0], [0, [\"0.527\", 0.5270000100135803], 1], [0, [\"0.354\", 0.3540000021457672], 0], [0, [\"0.626\", 0.6259999871253967], 1], [0, [\"0.383\", 0.382999986410141], 0], [0, [\"0.515\", 0.5149999856948853], 1], [0, [\"0.506\", 0.5059999823570251], 1], [0, [\"0.386\", 0.38600000739097595], 0], [0, [\"0.486\", 0.4860000014305115], 0], [0, [\"0.427\", 0.4269999861717224], 0], [0, [\"0.360\", 0.36000001430511475], 0], [0, [\"0.503\", 0.503000020980835], 1], [0, [\"0.320\", 0.3199999928474426], 0], [0, [\"0.517\", 0.5170000195503235], 1], [0, [\"0.305\", 0.3050000071525574], 0], [0, [\"0.307\", 0.3070000112056732], 0], [0, [\"0.681\", 0.6809999942779541], 1], [0, [\"0.482\", 0.4819999933242798], 0], [0, [\"0.343\", 0.34299999475479126], 0], [0, [\"0.423\", 0.4230000078678131], 0], [0, [\"0.357\", 0.3569999933242798], 0], [0, [\"0.487\", 0.4869999885559082], 0], [0, [\"0.448\", 0.4480000138282776], 0], [0, [\"0.454\", 0.45399999618530273], 0], [0, [\"0.294\", 0.2939999997615814], 0], [0, [\"0.410\", 0.4099999964237213], 0]]",
           "keys_to_be_evaluated": [["columnDefs", 0, "render"]],
           "layout": {"bottomEnd": "paging", "bottomStart": "info", "topEnd": "search", "topStart": "pageLength"},
           "lengthMenu": [5, 10],
@@ -1263,7 +1272,7 @@ Grading the Exam: Model Metrics Summary</code></pre>
 </div>
 <div id="full-neural-network-pipeline-baseline-2" class="cell-output cell-output-display">
 <!--| quarto-html-table-processing: none -->
-<table id="itables_36c109b6_c9a7_4ce2_abbe_0c3dfe0b2c39">
+<table id="itables_08bbb072_4bd1_414b_a1de_57f9a4225017">
   <tbody>
     <tr>
       <td style="vertical-align:middle; text-align:left"><a href="https://mwouts.github.io/itables/"><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="64" viewbox="0 0 500 400" style="font-family: 'Droid Sans', sans-serif;">
@@ -1334,13 +1343,13 @@ Grading the Exam: Model Metrics Summary</code></pre>
         async function init() {
             const { ITable, jQuery: $ } = await window._itables_2_8_1;
 
-            document.querySelectorAll("#itables_36c109b6_c9a7_4ce2_abbe_0c3dfe0b2c39:not(.dataTable)").forEach(table => {
+            document.querySelectorAll("#itables_08bbb072_4bd1_414b_a1de_57f9a4225017:not(.dataTable)").forEach(table => {
                 if (!(table instanceof HTMLTableElement))
                     return;
 
                 let dt_args = {
           "classes": ["display", "nowrap", "compact"],
-          "data_json": "[[\"Actual Healthy\", \"TN = 84\", \"FP = 16\", \"TNR (Specificity): 84.00%\"], [\"Actual Parkinson's\", \"FN = 17\", \"TP = 83\", \"Recall (Sensitivity): 83.00%\"], [\"Column Marginals\", \"NPV: 83.17%\", \"Precision: 83.84%\", \"Overall Error Rate: 16.50%\"]]",
+          "data_json": "[[\"Actual Healthy\", \"TN = 74\", \"FP = 26\", \"TNR (Specificity): 74.00%\"], [\"Actual Parkinson's\", \"FN = 13\", \"TP = 87\", \"Recall (Sensitivity): 87.00%\"], [\"Column Marginals\", \"NPV: 85.06%\", \"Precision: 76.99%\", \"Overall Error Rate: 19.50%\"]]",
           "layout": {"bottomEnd": null, "bottomStart": null, "topEnd": null, "topStart": null},
           "order": [],
           "style": {"caption-side": "bottom", "margin": "auto", "table-layout": "auto", "width": "auto"},
@@ -1370,7 +1379,7 @@ Grading the Exam: Model Metrics Summary</code></pre>
 <div id="cell-visualize-weights-dynamic-sigmoid" class="cell" data-fig-height="7" data-fig-width="10" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<div class="code-copy-outer-scaffold"><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -1443,7 +1452,7 @@ Grading the Exam: Model Metrics Summary</code></pre>
 <span id="cb13-71"><a href="#cb13-71" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f"Dynamic Network Visualization (</span><span class="sc">{</span>n_hidden<span class="sc">}</span><span class="ss"> Linear Node)</span><span class="ch">\n</span><span class="ss">(Thick = Strong Weight | Blue = Positive | Red = Negative)"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
 <span id="cb13-72"><a href="#cb13-72" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'off'</span>)</span>
 <span id="cb13-73"><a href="#cb13-73" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb13-74"><a href="#cb13-74" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb13-74"><a href="#cb13-74" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1500,9 +1509,6 @@ Grading the Exam: Model Metrics Summary</code></pre>
 </div>
 </div>
 <hr>
-<p><strong>Yes, they absolutely can!</strong> In fact, this is often the best approach for high school students because it means they don’t have to install any software on their own computers. They can use Google Colab’s cloud servers to do both the coding and the document publishing.</p>
-<p>Here is exactly how they can write and render their final PDF directly inside their Google Colab notebook.</p>
-<hr>
 </section>
 </section>
 <section id="the-publishing-press-rendering-your-pdf-inside-colab" class="level2" data-number="9">
@@ -1511,13 +1517,13 @@ Grading the Exam: Model Metrics Summary</code></pre>
 <section id="step-1-add-your-header" class="level3" data-number="9.1">
 <h3 data-number="9.1" class="anchored" data-anchor-id="step-1-add-your-header"><span class="header-section-number">9.1</span> Step 1: Add Your Header</h3>
 <p>At the very top of your Colab notebook, create a new <strong>Text</strong> cell. It must be the very first block in your document. Add your “YAML Header”—the instructions for how the PDF should look:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<div class="code-copy-outer-scaffold"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Predicting Parkinson's Disease from Gut Microbiome Data"</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Your Name"</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span></span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">pdf-engine</span><span class="kw">:</span><span class="at"> typst</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="step-2-write-your-report" class="level3" data-number="9.2">
 <h3 data-number="9.2" class="anchored" data-anchor-id="step-2-write-your-report"><span class="header-section-number">9.2</span> Step 2: Write Your Report</h3>
@@ -1526,19 +1532,19 @@ Grading the Exam: Model Metrics Summary</code></pre>
 <section id="step-3-install-quarto-on-colab" class="level3" data-number="9.3">
 <h3 data-number="9.3" class="anchored" data-anchor-id="step-3-install-quarto-on-colab"><span class="header-section-number">9.3</span> Step 3: Install Quarto on Colab</h3>
 <p>When your code is running perfectly and your writing is finished, scroll to the very bottom of your notebook and create a new <strong>Code</strong> cell. Paste the following commands to install Quarto onto Colab’s temporary server:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">!wget</span> <span class="at">-q</span> https://github.com/quarto-dev/quarto-cli/releases/download/v1.4.553/quarto-1.4.553-linux-amd64.deb</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">!dpkg</span> <span class="at">-i</span> quarto-1.4.553-linux-amd64.deb</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">!wget</span> <span class="at">-q</span> https://github.com/quarto-dev/quarto-cli/releases/download/v1.4.553/quarto-1.4.553-linux-amd64.deb</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">!dpkg</span> <span class="at">-i</span> quarto-1.4.553-linux-amd64.deb</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><em>(Run the cell. It will take a few seconds to install).</em></p>
 </section>
 <section id="step-4-render-the-pdf" class="level3" data-number="9.4">
 <h3 data-number="9.4" class="anchored" data-anchor-id="step-4-render-the-pdf"><span class="header-section-number">9.4</span> Step 4: Render the PDF</h3>
 <p>Create another <strong>Code</strong> cell at the bottom. We need to tell Quarto to take your current notebook (which Colab usually saves temporarily as a file in its background folders) and render it into a PDF:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This saves the current state of your notebook</span></span>
+<div class="code-copy-outer-scaffold"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This saves the current state of your notebook</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">from</span> IPython.display import display, Javascript</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="ex">display</span><span class="er">(</span><span class="ex">Javascript</span><span class="er">(</span><span class="st">'IPython.notebook.save_checkpoint();'</span><span class="kw">))</span></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># This tells Quarto to render the default Colab notebook file</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="ex">!quarto</span> render /content/drive/MyDrive/Colab\ Notebooks/Your_Notebook_Name.ipynb <span class="at">--to</span> pdf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="ex">!quarto</span> render /content/drive/MyDrive/Colab\ Notebooks/Your_Notebook_Name.ipynb <span class="at">--to</span> pdf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><em>(Make sure to change <code>Your_Notebook_Name</code> to whatever you actually named your file in Google Drive!)</em></p>
 </section>
 <section id="step-5-download-the-result" class="level3" data-number="9.5">
@@ -1587,7 +1593,7 @@ Grading the Exam: Model Metrics Summary</code></pre>
 <section id="appendix-starter-template-for-your-report" class="level2" data-number="11">
 <h2 data-number="11" class="anchored" data-anchor-id="appendix-starter-template-for-your-report"><span class="header-section-number">11</span> Appendix: Starter Template for Your Report</h2>
 <p>Copy everything inside the box below, switch Posit Cloud to <strong>Source</strong> mode, paste it in, then flip back to <strong>Visual</strong> mode and start writing!</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<div class="code-copy-outer-scaffold"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Predicting Parkinson's Disease from Gut Microbiome Data"</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Your Names Here"</span></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
@@ -1606,13 +1612,13 @@ Grading the Exam: Model Metrics Summary</code></pre>
 <span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Insert your accuracy charts here. Remember to use the What, So What, Now What framework to explain them! --&gt;</span></span>
 <span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusion</span></span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Did the model successfully predict PD? What was the hardest part of building it, and what would you try next time? --&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Did the model successfully predict PD? What was the hardest part of building it, and what would you try next time? --&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <!-- -->
 
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"></section></div><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-abbott2001bowel" class="csl-entry" role="listitem">
 Abbott, Robert D., Helen Petrovitch, Lon R. White, et al. 2001. <span>“Frequency of Bowel Movements and the Future Risk of <span class="nocase">Parkinson’s</span> Disease.”</span> <em>Neurology</em> 57 (3): 456–62. <a href="https://doi.org/10.1212/WNL.57.3.456">https://doi.org/10.1212/WNL.57.3.456</a>.
 </div>
@@ -2090,7 +2096,7 @@ Svensson, Elisabeth, Erzsébet Horváth-Puhó, Reimar W. Thomsen, et al. 2015. <
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<div class="code-copy-outer-scaffold"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Employing Deep Learning to Predict Parkinson's Disease using Microbiome Data"</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Longhai Li"</span></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> last-modified</span></span>
@@ -2843,129 +2849,130 @@ Svensson, Elisabeth, Erzsébet Horváth-Puhó, Reimar W. Thomsen, et al. 2015. <
 <span id="cb18-775"><a href="#cb18-775" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb18-776"><a href="#cb18-776" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb18-777"><a href="#cb18-777" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-778"><a href="#cb18-778" aria-hidden="true" tabindex="-1"></a>**Yes, they absolutely can!** In fact, this is often the best approach for high school students because it means they don't have to install any software on their own computers. They can use Google Colab's cloud servers to do both the coding and the document publishing.</span>
+<span id="cb18-778"><a href="#cb18-778" aria-hidden="true" tabindex="-1"></a><span class="fu">## The Publishing Press: Rendering Your PDF Inside Colab</span></span>
 <span id="cb18-779"><a href="#cb18-779" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-780"><a href="#cb18-780" aria-hidden="true" tabindex="-1"></a>Here is exactly how they can write and render their final PDF directly inside their Google Colab notebook.</span>
+<span id="cb18-780"><a href="#cb18-780" aria-hidden="true" tabindex="-1"></a>You don't need to leave Google Colab to create your final PDF. You can tell Colab's servers to install Quarto, read your notebook, and generate the final manuscript right in the cloud.</span>
 <span id="cb18-781"><a href="#cb18-781" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-782"><a href="#cb18-782" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb18-782"><a href="#cb18-782" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 1: Add Your Header</span></span>
 <span id="cb18-783"><a href="#cb18-783" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-784"><a href="#cb18-784" aria-hidden="true" tabindex="-1"></a><span class="fu">## The Publishing Press: Rendering Your PDF Inside Colab</span></span>
+<span id="cb18-784"><a href="#cb18-784" aria-hidden="true" tabindex="-1"></a>At the very top of your Colab notebook, create a new **Text** cell. It must be the very first block in your document. Add your "YAML Header"—the instructions for how the PDF should look:</span>
 <span id="cb18-785"><a href="#cb18-785" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-786"><a href="#cb18-786" aria-hidden="true" tabindex="-1"></a>You don't need to leave Google Colab to create your final PDF. You can tell Colab's servers to install Quarto, read your notebook, and generate the final manuscript right in the cloud.</span>
-<span id="cb18-787"><a href="#cb18-787" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-788"><a href="#cb18-788" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 1: Add Your Header</span></span>
-<span id="cb18-789"><a href="#cb18-789" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-790"><a href="#cb18-790" aria-hidden="true" tabindex="-1"></a>At the very top of your Colab notebook, create a new **Text** cell. It must be the very first block in your document. Add your "YAML Header"—the instructions for how the PDF should look:</span>
-<span id="cb18-791"><a href="#cb18-791" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-792"><a href="#cb18-792" aria-hidden="true" tabindex="-1"></a><span class="in">```yaml</span></span>
+<span id="cb18-786"><a href="#cb18-786" aria-hidden="true" tabindex="-1"></a><span class="in">```yaml</span></span>
+<span id="cb18-787"><a href="#cb18-787" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb18-788"><a href="#cb18-788" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Predicting Parkinson's Disease from Gut Microbiome Data"</span></span>
+<span id="cb18-789"><a href="#cb18-789" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Your Name"</span></span>
+<span id="cb18-790"><a href="#cb18-790" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb18-791"><a href="#cb18-791" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span></span>
+<span id="cb18-792"><a href="#cb18-792" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">pdf-engine</span><span class="kw">:</span><span class="at"> typst</span></span>
 <span id="cb18-793"><a href="#cb18-793" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb18-794"><a href="#cb18-794" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Predicting Parkinson's Disease from Gut Microbiome Data"</span></span>
-<span id="cb18-795"><a href="#cb18-795" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Your Name"</span></span>
-<span id="cb18-796"><a href="#cb18-796" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb18-797"><a href="#cb18-797" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span></span>
-<span id="cb18-798"><a href="#cb18-798" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">pdf-engine</span><span class="kw">:</span><span class="at"> typst</span></span>
-<span id="cb18-799"><a href="#cb18-799" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb18-794"><a href="#cb18-794" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-795"><a href="#cb18-795" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-796"><a href="#cb18-796" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-797"><a href="#cb18-797" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 2: Write Your Report</span></span>
+<span id="cb18-798"><a href="#cb18-798" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-799"><a href="#cb18-799" aria-hidden="true" tabindex="-1"></a>Use standard Colab **Text** cells between your Python code blocks to write your actual report. Explain the biology, describe what your neural network is doing, and analyze the results.</span>
 <span id="cb18-800"><a href="#cb18-800" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-801"><a href="#cb18-801" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-801"><a href="#cb18-801" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 3: Install Quarto on Colab</span></span>
 <span id="cb18-802"><a href="#cb18-802" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-803"><a href="#cb18-803" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 2: Write Your Report</span></span>
+<span id="cb18-803"><a href="#cb18-803" aria-hidden="true" tabindex="-1"></a>When your code is running perfectly and your writing is finished, scroll to the very bottom of your notebook and create a new **Code** cell. Paste the following commands to install Quarto onto Colab's temporary server:</span>
 <span id="cb18-804"><a href="#cb18-804" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-805"><a href="#cb18-805" aria-hidden="true" tabindex="-1"></a>Use standard Colab **Text** cells between your Python code blocks to write your actual report. Explain the biology, describe what your neural network is doing, and analyze the results.</span>
-<span id="cb18-806"><a href="#cb18-806" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-807"><a href="#cb18-807" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 3: Install Quarto on Colab</span></span>
+<span id="cb18-805"><a href="#cb18-805" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb18-806"><a href="#cb18-806" aria-hidden="true" tabindex="-1"></a><span class="ex">!wget</span> <span class="at">-q</span> https://github.com/quarto-dev/quarto-cli/releases/download/v1.4.553/quarto-1.4.553-linux-amd64.deb</span>
+<span id="cb18-807"><a href="#cb18-807" aria-hidden="true" tabindex="-1"></a><span class="ex">!dpkg</span> <span class="at">-i</span> quarto-1.4.553-linux-amd64.deb</span>
 <span id="cb18-808"><a href="#cb18-808" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-809"><a href="#cb18-809" aria-hidden="true" tabindex="-1"></a>When your code is running perfectly and your writing is finished, scroll to the very bottom of your notebook and create a new **Code** cell. Paste the following commands to install Quarto onto Colab's temporary server:</span>
+<span id="cb18-809"><a href="#cb18-809" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-810"><a href="#cb18-810" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-811"><a href="#cb18-811" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb18-812"><a href="#cb18-812" aria-hidden="true" tabindex="-1"></a><span class="ex">!wget</span> <span class="at">-q</span> https://github.com/quarto-dev/quarto-cli/releases/download/v1.4.553/quarto-1.4.553-linux-amd64.deb</span>
-<span id="cb18-813"><a href="#cb18-813" aria-hidden="true" tabindex="-1"></a><span class="ex">!dpkg</span> <span class="at">-i</span> quarto-1.4.553-linux-amd64.deb</span>
+<span id="cb18-811"><a href="#cb18-811" aria-hidden="true" tabindex="-1"></a>*(Run the cell. It will take a few seconds to install).*</span>
+<span id="cb18-812"><a href="#cb18-812" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-813"><a href="#cb18-813" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 4: Render the PDF</span></span>
 <span id="cb18-814"><a href="#cb18-814" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-815"><a href="#cb18-815" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-815"><a href="#cb18-815" aria-hidden="true" tabindex="-1"></a>Create another **Code** cell at the bottom. We need to tell Quarto to take your current notebook (which Colab usually saves temporarily as a file in its background folders) and render it into a PDF:</span>
 <span id="cb18-816"><a href="#cb18-816" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-817"><a href="#cb18-817" aria-hidden="true" tabindex="-1"></a>*(Run the cell. It will take a few seconds to install).*</span>
-<span id="cb18-818"><a href="#cb18-818" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-819"><a href="#cb18-819" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 4: Render the PDF</span></span>
-<span id="cb18-820"><a href="#cb18-820" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-821"><a href="#cb18-821" aria-hidden="true" tabindex="-1"></a>Create another **Code** cell at the bottom. We need to tell Quarto to take your current notebook (which Colab usually saves temporarily as a file in its background folders) and render it into a PDF:</span>
-<span id="cb18-822"><a href="#cb18-822" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-823"><a href="#cb18-823" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb18-824"><a href="#cb18-824" aria-hidden="true" tabindex="-1"></a><span class="co"># This saves the current state of your notebook</span></span>
-<span id="cb18-825"><a href="#cb18-825" aria-hidden="true" tabindex="-1"></a><span class="ex">from</span> IPython.display import display, Javascript</span>
-<span id="cb18-826"><a href="#cb18-826" aria-hidden="true" tabindex="-1"></a><span class="ex">display</span><span class="er">(</span><span class="ex">Javascript</span><span class="er">(</span><span class="st">'IPython.notebook.save_checkpoint();'</span><span class="kw">))</span></span>
-<span id="cb18-827"><a href="#cb18-827" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-828"><a href="#cb18-828" aria-hidden="true" tabindex="-1"></a><span class="co"># This tells Quarto to render the default Colab notebook file</span></span>
-<span id="cb18-829"><a href="#cb18-829" aria-hidden="true" tabindex="-1"></a><span class="ex">!quarto</span> render /content/drive/MyDrive/Colab\ Notebooks/Your_Notebook_Name.ipynb <span class="at">--to</span> pdf</span>
+<span id="cb18-817"><a href="#cb18-817" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb18-818"><a href="#cb18-818" aria-hidden="true" tabindex="-1"></a><span class="co"># This saves the current state of your notebook</span></span>
+<span id="cb18-819"><a href="#cb18-819" aria-hidden="true" tabindex="-1"></a><span class="ex">from</span> IPython.display import display, Javascript</span>
+<span id="cb18-820"><a href="#cb18-820" aria-hidden="true" tabindex="-1"></a><span class="ex">display</span><span class="er">(</span><span class="ex">Javascript</span><span class="er">(</span><span class="st">'IPython.notebook.save_checkpoint();'</span><span class="kw">))</span></span>
+<span id="cb18-821"><a href="#cb18-821" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-822"><a href="#cb18-822" aria-hidden="true" tabindex="-1"></a><span class="co"># This tells Quarto to render the default Colab notebook file</span></span>
+<span id="cb18-823"><a href="#cb18-823" aria-hidden="true" tabindex="-1"></a><span class="ex">!quarto</span> render /content/drive/MyDrive/Colab\ Notebooks/Your_Notebook_Name.ipynb <span class="at">--to</span> pdf</span>
+<span id="cb18-824"><a href="#cb18-824" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-825"><a href="#cb18-825" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-826"><a href="#cb18-826" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-827"><a href="#cb18-827" aria-hidden="true" tabindex="-1"></a>*(Make sure to change `Your_Notebook_Name` to whatever you actually named your file in Google Drive!)*</span>
+<span id="cb18-828"><a href="#cb18-828" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-829"><a href="#cb18-829" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 5: Download the Result</span></span>
 <span id="cb18-830"><a href="#cb18-830" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-831"><a href="#cb18-831" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-831"><a href="#cb18-831" aria-hidden="true" tabindex="-1"></a>Once the rendering cell finishes running, click the **Folder icon** on the far left menu of your Colab screen. You will see a list of files. Find your newly generated PDF, click the three dots next to it, and select **Download**.</span>
 <span id="cb18-832"><a href="#cb18-832" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-833"><a href="#cb18-833" aria-hidden="true" tabindex="-1"></a>*(Make sure to change `Your_Notebook_Name` to whatever you actually named your file in Google Drive!)*</span>
+<span id="cb18-833"><a href="#cb18-833" aria-hidden="true" tabindex="-1"></a>You now have a polished, competition-ready manuscript without ever leaving your browser!</span>
 <span id="cb18-834"><a href="#cb18-834" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-835"><a href="#cb18-835" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step 5: Download the Result</span></span>
+<span id="cb18-835"><a href="#cb18-835" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb18-836"><a href="#cb18-836" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-837"><a href="#cb18-837" aria-hidden="true" tabindex="-1"></a>Once the rendering cell finishes running, click the **Folder icon** on the far left menu of your Colab screen. You will see a list of files. Find your newly generated PDF, click the three dots next to it, and select **Download**.</span>
+<span id="cb18-837"><a href="#cb18-837" aria-hidden="true" tabindex="-1"></a><span class="fu">## Plans and Goals</span></span>
 <span id="cb18-838"><a href="#cb18-838" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-839"><a href="#cb18-839" aria-hidden="true" tabindex="-1"></a>You now have a polished, competition-ready manuscript without ever leaving your browser!</span>
+<span id="cb18-839"><a href="#cb18-839" aria-hidden="true" tabindex="-1"></a>To ensure this summer research project is both manageable and highly competitive for the upcoming science fair season, the work is divided into four distinct phases. Each phase builds a core competency in data science and computational biology, leading to a complete, reproducible scientific manuscript.</span>
 <span id="cb18-840"><a href="#cb18-840" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-841"><a href="#cb18-841" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb18-841"><a href="#cb18-841" aria-hidden="true" tabindex="-1"></a><span class="fu">###  Data Collection and Microbiome Pipeline</span></span>
 <span id="cb18-842"><a href="#cb18-842" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-843"><a href="#cb18-843" aria-hidden="true" tabindex="-1"></a><span class="fu">## Plans and Goals</span></span>
-<span id="cb18-844"><a href="#cb18-844" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-845"><a href="#cb18-845" aria-hidden="true" tabindex="-1"></a>To ensure this summer research project is both manageable and highly competitive for the upcoming science fair season, the work is divided into four distinct phases. Each phase builds a core competency in data science and computational biology, leading to a complete, reproducible scientific manuscript.</span>
-<span id="cb18-846"><a href="#cb18-846" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-847"><a href="#cb18-847" aria-hidden="true" tabindex="-1"></a><span class="fu">###  Data Collection and Microbiome Pipeline</span></span>
-<span id="cb18-848"><a href="#cb18-848" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-849"><a href="#cb18-849" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**The Mission:** Access and clean public gut microbiome datasets containing taxonomic profiles of individuals with and without Parkinson's Disease (PD).</span>
-<span id="cb18-850"><a href="#cb18-850" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**The Action:** Follow the provided Google Colab framework to process the raw abundance tables. You will handle tasks like normalizing data, filtering out low-abundance features, and ensuring taxonomic columns (such as unassigned operational taxonomic units) are properly structured for machine learning.</span>
-<span id="cb18-851"><a href="#cb18-851" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-852"><a href="#cb18-852" aria-hidden="true" tabindex="-1"></a><span class="fu">###  Neural Network Development and Optimization</span></span>
-<span id="cb18-853"><a href="#cb18-853" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-854"><a href="#cb18-854" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**The Mission:** Build and train a custom neural network architecture capable of detecting subtle bacterial signatures associated with PD.</span>
-<span id="cb18-855"><a href="#cb18-855" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**The Action:** Program a multi-layer perceptron (MLP) in Python using PyTorch or TensorFlow. You will optimize the network's predictive accuracy by adjusting parameters, evaluating performance metrics like AUC-ROC (Area Under the Receiver Operating Characteristic curve), and using cross-validation to prevent overfitting.</span>
-<span id="cb18-856"><a href="#cb18-856" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-857"><a href="#cb18-857" aria-hidden="true" tabindex="-1"></a><span class="fu">###  Reproducible Reporting with Quarto</span></span>
-<span id="cb18-858"><a href="#cb18-858" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-859"><a href="#cb18-859" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**The Mission:** Move beyond messy code notebooks and compile the entire project into a professional, reproducible scientific document.</span>
-<span id="cb18-860"><a href="#cb18-860" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**The Action:** Develop a dynamic Quarto document (<span class="in">`.qmd`</span>) using a clean typesetting template. This document will seamlessly integrate your explanatory text, background biology, live Python code blocks, and automatically generated evaluation graphics into a cohesive report fit for judges.</span>
-<span id="cb18-861"><a href="#cb18-861" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-862"><a href="#cb18-862" aria-hidden="true" tabindex="-1"></a><span class="fu">###  Competition Strategy and Registration</span></span>
+<span id="cb18-843"><a href="#cb18-843" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**The Mission:** Access and clean public gut microbiome datasets containing taxonomic profiles of individuals with and without Parkinson's Disease (PD).</span>
+<span id="cb18-844"><a href="#cb18-844" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**The Action:** Follow the provided Google Colab framework to process the raw abundance tables. You will handle tasks like normalizing data, filtering out low-abundance features, and ensuring taxonomic columns (such as unassigned operational taxonomic units) are properly structured for machine learning.</span>
+<span id="cb18-845"><a href="#cb18-845" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-846"><a href="#cb18-846" aria-hidden="true" tabindex="-1"></a><span class="fu">###  Neural Network Development and Optimization</span></span>
+<span id="cb18-847"><a href="#cb18-847" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-848"><a href="#cb18-848" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**The Mission:** Build and train a custom neural network architecture capable of detecting subtle bacterial signatures associated with PD.</span>
+<span id="cb18-849"><a href="#cb18-849" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**The Action:** Program a multi-layer perceptron (MLP) in Python using PyTorch or TensorFlow. You will optimize the network's predictive accuracy by adjusting parameters, evaluating performance metrics like AUC-ROC (Area Under the Receiver Operating Characteristic curve), and using cross-validation to prevent overfitting.</span>
+<span id="cb18-850"><a href="#cb18-850" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-851"><a href="#cb18-851" aria-hidden="true" tabindex="-1"></a><span class="fu">###  Reproducible Reporting with Quarto</span></span>
+<span id="cb18-852"><a href="#cb18-852" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-853"><a href="#cb18-853" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**The Mission:** Move beyond messy code notebooks and compile the entire project into a professional, reproducible scientific document.</span>
+<span id="cb18-854"><a href="#cb18-854" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**The Action:** Develop a dynamic Quarto document (<span class="in">`.qmd`</span>) using a clean typesetting template. This document will seamlessly integrate your explanatory text, background biology, live Python code blocks, and automatically generated evaluation graphics into a cohesive report fit for judges.</span>
+<span id="cb18-855"><a href="#cb18-855" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-856"><a href="#cb18-856" aria-hidden="true" tabindex="-1"></a><span class="fu">###  Competition Strategy and Registration</span></span>
+<span id="cb18-857"><a href="#cb18-857" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-858"><a href="#cb18-858" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**The Mission:** Share your breakthroughs with the scientific community by entering provincial and national youth science competitions.</span>
+<span id="cb18-859"><a href="#cb18-859" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**The Action:** Use the finalized Quarto manuscript to prepare submissions for targeted data and biotechnology fairs:</span>
+<span id="cb18-860"><a href="#cb18-860" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**STEM Fellowship Big Data Challenge:** Prepare a digital poster and data-centric report tailored to this open-source AI challenge. Learn more and register at <span class="co">[</span><span class="ot">stemfellowship.org/programs/hsbdc</span><span class="co">](https://www.stemfellowship.org/programs/hsbdc)</span>.</span>
+<span id="cb18-861"><a href="#cb18-861" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Sanofi Biogenius Canada:** Submit a formal biotech-focused project proposal to enter the regional competition track. You can read up on their project requirements and application process at <span class="co">[</span><span class="ot">biogenius.ca</span><span class="co">](https://biogenius.ca/)</span>.</span>
+<span id="cb18-862"><a href="#cb18-862" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Canada-Wide Science Fair (CWSF) &amp; Regional Qualifying:** To reach the national stage, you must first compete and qualify locally. You can enter the <span class="co">[</span><span class="ot">Saskatoon Regional Science Fair</span><span class="co">](https://region.youthscience.ca/saskatoon/)</span> which normally takes place in late March or early April, and acts as the stepping stone to the national <span class="co">[</span><span class="ot">Youth Science Canada</span><span class="co">](https://youthscience.ca/)</span> competition.</span>
 <span id="cb18-863"><a href="#cb18-863" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-864"><a href="#cb18-864" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**The Mission:** Share your breakthroughs with the scientific community by entering provincial and national youth science competitions.</span>
-<span id="cb18-865"><a href="#cb18-865" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**The Action:** Use the finalized Quarto manuscript to prepare submissions for targeted data and biotechnology fairs:</span>
-<span id="cb18-866"><a href="#cb18-866" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**STEM Fellowship Big Data Challenge:** Prepare a digital poster and data-centric report tailored to this open-source AI challenge. Learn more and register at <span class="co">[</span><span class="ot">stemfellowship.org/programs/hsbdc</span><span class="co">](https://www.stemfellowship.org/programs/hsbdc)</span>.</span>
-<span id="cb18-867"><a href="#cb18-867" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Sanofi Biogenius Canada:** Submit a formal biotech-focused project proposal to enter the regional competition track. You can read up on their project requirements and application process at <span class="co">[</span><span class="ot">biogenius.ca</span><span class="co">](https://biogenius.ca/)</span>.</span>
-<span id="cb18-868"><a href="#cb18-868" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Canada-Wide Science Fair (CWSF) &amp; Regional Qualifying:** To reach the national stage, you must first compete and qualify locally. You can enter the <span class="co">[</span><span class="ot">Saskatoon Regional Science Fair</span><span class="co">](https://region.youthscience.ca/saskatoon/)</span> which normally takes place in late March or early April, and acts as the stepping stone to the national <span class="co">[</span><span class="ot">Youth Science Canada</span><span class="co">](https://youthscience.ca/)</span> competition.</span>
+<span id="cb18-864"><a href="#cb18-864" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb18-865"><a href="#cb18-865" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-866"><a href="#cb18-866" aria-hidden="true" tabindex="-1"></a><span class="fu">## Appendix: Starter Template for Your Report</span></span>
+<span id="cb18-867"><a href="#cb18-867" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-868"><a href="#cb18-868" aria-hidden="true" tabindex="-1"></a>Copy everything inside the box below, switch Posit Cloud to **Source** mode, paste it in, then flip back to **Visual** mode and start writing!</span>
 <span id="cb18-869"><a href="#cb18-869" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-870"><a href="#cb18-870" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb18-871"><a href="#cb18-871" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-872"><a href="#cb18-872" aria-hidden="true" tabindex="-1"></a><span class="fu">## Appendix: Starter Template for Your Report</span></span>
-<span id="cb18-873"><a href="#cb18-873" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-874"><a href="#cb18-874" aria-hidden="true" tabindex="-1"></a>Copy everything inside the box below, switch Posit Cloud to **Source** mode, paste it in, then flip back to **Visual** mode and start writing!</span>
-<span id="cb18-875"><a href="#cb18-875" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-876"><a href="#cb18-876" aria-hidden="true" tabindex="-1"></a><span class="in">```markdown</span></span>
-<span id="cb18-877"><a href="#cb18-877" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb18-878"><a href="#cb18-878" aria-hidden="true" tabindex="-1"></a>title: "Predicting Parkinson's Disease from Gut Microbiome Data"</span>
-<span id="cb18-879"><a href="#cb18-879" aria-hidden="true" tabindex="-1"></a>author: "Your Names Here"</span>
-<span id="cb18-880"><a href="#cb18-880" aria-hidden="true" tabindex="-1"></a>format: html</span>
-<span id="cb18-881"><a href="#cb18-881" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb18-870"><a href="#cb18-870" aria-hidden="true" tabindex="-1"></a><span class="in">```markdown</span></span>
+<span id="cb18-871"><a href="#cb18-871" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb18-872"><a href="#cb18-872" aria-hidden="true" tabindex="-1"></a>title: "Predicting Parkinson's Disease from Gut Microbiome Data"</span>
+<span id="cb18-873"><a href="#cb18-873" aria-hidden="true" tabindex="-1"></a>author: "Your Names Here"</span>
+<span id="cb18-874"><a href="#cb18-874" aria-hidden="true" tabindex="-1"></a>format: html</span>
+<span id="cb18-875"><a href="#cb18-875" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb18-876"><a href="#cb18-876" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-877"><a href="#cb18-877" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introduction</span></span>
+<span id="cb18-878"><a href="#cb18-878" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Write 2-3 sentences explaining what Parkinson's Disease is and why the bacteria in our gut might act as a clue to diagnosing it. --&gt;</span></span>
+<span id="cb18-879"><a href="#cb18-879" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-880"><a href="#cb18-880" aria-hidden="true" tabindex="-1"></a><span class="fu">## The Dataset</span></span>
+<span id="cb18-881"><a href="#cb18-881" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Explain where the data came from. Insert a small table here showing how many patients vs. healthy controls are in our spreadsheet. --&gt;</span></span>
 <span id="cb18-882"><a href="#cb18-882" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-883"><a href="#cb18-883" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introduction</span></span>
-<span id="cb18-884"><a href="#cb18-884" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Write 2-3 sentences explaining what Parkinson's Disease is and why the bacteria in our gut might act as a clue to diagnosing it. --&gt;</span></span>
+<span id="cb18-883"><a href="#cb18-883" aria-hidden="true" tabindex="-1"></a><span class="fu">## Our Neural Network Model</span></span>
+<span id="cb18-884"><a href="#cb18-884" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Insert an image of your model architecture or summary here. Explain how many layers you chose for your "detective agency" and why. --&gt;</span></span>
 <span id="cb18-885"><a href="#cb18-885" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-886"><a href="#cb18-886" aria-hidden="true" tabindex="-1"></a><span class="fu">## The Dataset</span></span>
-<span id="cb18-887"><a href="#cb18-887" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Explain where the data came from. Insert a small table here showing how many patients vs. healthy controls are in our spreadsheet. --&gt;</span></span>
+<span id="cb18-886"><a href="#cb18-886" aria-hidden="true" tabindex="-1"></a><span class="fu">## Results</span></span>
+<span id="cb18-887"><a href="#cb18-887" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Insert your accuracy charts here. Remember to use the What, So What, Now What framework to explain them! --&gt;</span></span>
 <span id="cb18-888"><a href="#cb18-888" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-889"><a href="#cb18-889" aria-hidden="true" tabindex="-1"></a><span class="fu">## Our Neural Network Model</span></span>
-<span id="cb18-890"><a href="#cb18-890" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Insert an image of your model architecture or summary here. Explain how many layers you chose for your "detective agency" and why. --&gt;</span></span>
-<span id="cb18-891"><a href="#cb18-891" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-892"><a href="#cb18-892" aria-hidden="true" tabindex="-1"></a><span class="fu">## Results</span></span>
-<span id="cb18-893"><a href="#cb18-893" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Insert your accuracy charts here. Remember to use the What, So What, Now What framework to explain them! --&gt;</span></span>
-<span id="cb18-894"><a href="#cb18-894" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-895"><a href="#cb18-895" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusion</span></span>
-<span id="cb18-896"><a href="#cb18-896" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Did the model successfully predict PD? What was the hardest part of building it, and what would you try next time? --&gt;</span></span>
-<span id="cb18-897"><a href="#cb18-897" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb18-889"><a href="#cb18-889" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusion</span></span>
+<span id="cb18-890"><a href="#cb18-890" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Did the model successfully predict PD? What was the hardest part of building it, and what would you try next time? --&gt;</span></span>
+<span id="cb18-891"><a href="#cb18-891" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
+
+
+
+
+
+  
+ <!-- /content -->
 
 
 

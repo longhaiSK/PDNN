@@ -15,6 +15,7 @@
         "    toc: true\n",
         "    toc-depth: 2\n",
         "    theme: cosmo\n",
+        "    code-tools: true\n",
         "    number-sections: true\n",
         "    fig-format: svg\n",
         "    fig-dpi: 300\n",
@@ -27,6 +28,7 @@
         "            text-align: justify;\n",
         "          }\n",
         "        </style>\n",
+        "  ipynb: default\n",
         "jupyter: python3\n",
         "bibliography: refs.bib\n",
         "---\n",
@@ -40,7 +42,7 @@
         "\n",
         "Never touched biology or code before? Perfect — that's exactly who this guide is written for. We'll take the science, the data, the programming, and the final write-up one bite at a time, and you'll be surprised how far you get."
       ],
-      "id": "0614bbc4"
+      "id": "68575d4f"
     },
     {
       "cell_type": "code",
@@ -85,6 +87,13 @@
       "source": [
         "---\n",
         "\n",
+        "## 📥 Access this Document Interactive Notebook\n",
+        "\n",
+        "You can download the raw code for this project or run it directly in your browser using Google Colab.\n",
+        "\n",
+        "[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/longhaiSK/PDNN/blob/main/index.ipynb)\n",
+        "\n",
+        "[Download the .ipynb File](index.ipynb)\n",
         "\n",
         "## The Biology: What is the Microbiome and Parkinson's Disease?\n",
         "\n",
@@ -134,7 +143,7 @@
         "\n",
         "**Data Generating Function**"
       ],
-      "id": "9534883b"
+      "id": "c8829072"
     },
     {
       "cell_type": "code",
@@ -200,7 +209,7 @@
         "    \n",
         "    return X, y"
       ],
-      "id": "06148096",
+      "id": "6f647638",
       "execution_count": null,
       "outputs": []
     },
@@ -265,7 +274,7 @@
         "\n",
         "Let's prove it with a **boxplot**. Quick decoder: the box holds the middle chunk of patients, the line inside is the typical value, and the whiskers stretch out toward the extremes."
       ],
-      "id": "e96016ee"
+      "id": "a9f953f8"
     },
     {
       "cell_type": "code",
@@ -299,7 +308,7 @@
         "\n",
         "To make a fair comparison, we have to cancel out the scoop-size problem. The fix is simple but powerful: instead of raw counts, we ask *\"what fraction of this patient's gut was this bacteria?\"* We divide each bacteria count by that patient's `Total_Reads` to turn it into a **proportion** — a slice of their personal microbiome."
       ],
-      "id": "ddaa05a0"
+      "id": "c4ed8a8a"
     },
     {
       "cell_type": "code",
@@ -334,7 +343,7 @@
       "source": [
         "Now the numbers are finally comparable. But here's the humbling part: even with clean data, could a human doctor eyeball this spreadsheet and tell sick from healthy? Let's find out."
       ],
-      "id": "7bca2b12"
+      "id": "560a88e2"
     },
     {
       "cell_type": "code",
@@ -371,7 +380,7 @@
         "\n",
         "Let's test that idea. What if we stop staring at bacteria one at a time and start adding them up in **pairs**?"
       ],
-      "id": "197194cf"
+      "id": "7b4c87ab"
     },
     {
       "cell_type": "code",
@@ -423,7 +432,7 @@
         "\n",
         "Let's fit it to all three pairs and see what pops out."
       ],
-      "id": "2ad04db0"
+      "id": "ba9a4fbd"
     },
     {
       "cell_type": "code",
@@ -600,7 +609,7 @@
         "\n",
         "Let's fire up the data generator. We need patients, and since recruiting 100 actual humans and sequencing their gut microbiomes takes years of effort and entirely too much grant funding, we will just conjure them out of thin air using NumPy."
       ],
-      "id": "90c48af8"
+      "id": "803ab71a"
     },
     {
       "cell_type": "code",
@@ -634,7 +643,7 @@
         "\n",
         "Let's see if this stripped-down detective can solve the case. More importantly, let's strictly grade its final exam by expanding our metrics to include **Precision** (how often it is right when it calls a positive) and the **True Negative Rate / Specificity** (how well it clears the truly healthy patients)."
       ],
-      "id": "08cbd9f2"
+      "id": "ded97443"
     },
     {
       "cell_type": "code",
@@ -742,7 +751,7 @@
         "\n",
         "If our model fell for the compositional data trap (which, spoiler alert, it almost certainly did), this dynamic graph is going to expose the crime immediately."
       ],
-      "id": "21fdeb70"
+      "id": "6a3847d0"
     },
     {
       "cell_type": "code",
@@ -879,22 +888,62 @@
         ":::\n",
         "---\n",
         "\n",
-        "## The Writing Desk: Creating Your Report in Posit Cloud\n",
+        "## The Publishing Press: Rendering Your PDF Inside Colab\n",
         "\n",
-        "Colab is a beast at crunching numbers, but honestly it's clumsy for writing a clean, professional report. So we split the job in two: **crunch in Colab, write in Posit Cloud.**\n",
+        "You don't need to leave Google Colab to create your final PDF. You can tell Colab's servers to install Quarto, read your notebook, and generate the final manuscript right in the cloud.\n",
         "\n",
-        "Posit Cloud runs **Quarto** — a system that lets you write in a \"Visual Editor\" (basically Google Docs or Word) while it quietly turns your words into a polished science paper behind the scenes.\n",
+        "### Step 1: Add Your Header\n",
         "\n",
-        "### Step-by-Step Writing Setup\n",
+        "At the very top of your Colab notebook, create a new **Text** cell. It must be the very first block in your document. Add your \"YAML Header\"—the instructions for how the PDF should look:\n",
         "\n",
-        "1. Go to [Posit Cloud](https://posit.cloud/) and sign up for a free account.\n",
-        "2. Click **New Project** > **New RStudio Project**. \n",
+        "```yaml\n",
+        "---\n",
+        "title: \"Predicting Parkinson's Disease from Gut Microbiome Data\"\n",
+        "author: \"Your Name\"\n",
+        "format:\n",
+        "  pdf:\n",
+        "    pdf-engine: typst\n",
+        "---\n",
         "\n",
-        "3. Go to **File** > **New File** > **Quarto Document...** Give it a title and add your names.\n",
-        "4. **Crucial step:** Up in the top-left corner, click the **Visual** button. This flips you from code-view into a clean word processor!\n",
+        "```\n",
         "\n",
-        "5. Bring in your graphs: save your accuracy charts from Colab as image files (e.g. `.png`), download them, and upload them into the **Files** pane in Posit Cloud. Drop them into your text with the Image icon.\n",
-        "6. Hit the **Render** button (the blue arrow up top) to generate your final web page or PDF.\n",
+        "### Step 2: Write Your Report\n",
+        "\n",
+        "Use standard Colab **Text** cells between your Python code blocks to write your actual report. Explain the biology, describe what your neural network is doing, and analyze the results.\n",
+        "\n",
+        "### Step 3: Install Quarto on Colab\n",
+        "\n",
+        "When your code is running perfectly and your writing is finished, scroll to the very bottom of your notebook and create a new **Code** cell. Paste the following commands to install Quarto onto Colab's temporary server:\n",
+        "\n",
+        "```bash\n",
+        "!wget -q https://github.com/quarto-dev/quarto-cli/releases/download/v1.4.553/quarto-1.4.553-linux-amd64.deb\n",
+        "!dpkg -i quarto-1.4.553-linux-amd64.deb\n",
+        "\n",
+        "```\n",
+        "\n",
+        "*(Run the cell. It will take a few seconds to install).*\n",
+        "\n",
+        "### Step 4: Render the PDF\n",
+        "\n",
+        "Create another **Code** cell at the bottom. We need to tell Quarto to take your current notebook (which Colab usually saves temporarily as a file in its background folders) and render it into a PDF:\n",
+        "\n",
+        "```bash\n",
+        "# This saves the current state of your notebook\n",
+        "from IPython.display import display, Javascript\n",
+        "display(Javascript('IPython.notebook.save_checkpoint();'))\n",
+        "\n",
+        "# This tells Quarto to render the default Colab notebook file\n",
+        "!quarto render /content/drive/MyDrive/Colab\\ Notebooks/Your_Notebook_Name.ipynb --to pdf\n",
+        "\n",
+        "```\n",
+        "\n",
+        "*(Make sure to change `Your_Notebook_Name` to whatever you actually named your file in Google Drive!)*\n",
+        "\n",
+        "### Step 5: Download the Result\n",
+        "\n",
+        "Once the rendering cell finishes running, click the **Folder icon** on the far left menu of your Colab screen. You will see a list of files. Find your newly generated PDF, click the three dots next to it, and select **Download**.\n",
+        "\n",
+        "You now have a polished, competition-ready manuscript without ever leaving your browser!\n",
         "\n",
         "---\n",
         "\n",
@@ -902,22 +951,22 @@
         "\n",
         "To ensure this summer research project is both manageable and highly competitive for the upcoming science fair season, the work is divided into four distinct phases. Each phase builds a core competency in data science and computational biology, leading to a complete, reproducible scientific manuscript.\n",
         "\n",
-        "### 1. Data Collection and Microbiome Pipeline\n",
+        "###  Data Collection and Microbiome Pipeline\n",
         "\n",
         "* **The Mission:** Access and clean public gut microbiome datasets containing taxonomic profiles of individuals with and without Parkinson's Disease (PD).\n",
         "* **The Action:** Follow the provided Google Colab framework to process the raw abundance tables. You will handle tasks like normalizing data, filtering out low-abundance features, and ensuring taxonomic columns (such as unassigned operational taxonomic units) are properly structured for machine learning.\n",
         "\n",
-        "### 2. Neural Network Development and Optimization\n",
+        "###  Neural Network Development and Optimization\n",
         "\n",
         "* **The Mission:** Build and train a custom neural network architecture capable of detecting subtle bacterial signatures associated with PD.\n",
         "* **The Action:** Program a multi-layer perceptron (MLP) in Python using PyTorch or TensorFlow. You will optimize the network's predictive accuracy by adjusting parameters, evaluating performance metrics like AUC-ROC (Area Under the Receiver Operating Characteristic curve), and using cross-validation to prevent overfitting.\n",
         "\n",
-        "### 3. Reproducible Reporting with Quarto\n",
+        "###  Reproducible Reporting with Quarto\n",
         "\n",
         "* **The Mission:** Move beyond messy code notebooks and compile the entire project into a professional, reproducible scientific document.\n",
         "* **The Action:** Develop a dynamic Quarto document (`.qmd`) using a clean typesetting template. This document will seamlessly integrate your explanatory text, background biology, live Python code blocks, and automatically generated evaluation graphics into a cohesive report fit for judges.\n",
         "\n",
-        "### 4. Competition Strategy and Registration\n",
+        "###  Competition Strategy and Registration\n",
         "\n",
         "* **The Mission:** Share your breakthroughs with the scientific community by entering provincial and national youth science competitions.\n",
         "* **The Action:** Use the finalized Quarto manuscript to prepare submissions for targeted data and biotechnology fairs:\n",
@@ -954,7 +1003,7 @@
         "<!-- Did the model successfully predict PD? What was the hardest part of building it, and what would you try next time? -->\n",
         "```"
       ],
-      "id": "0c4213dc"
+      "id": "61a25a59"
     }
   ],
   "metadata": {
