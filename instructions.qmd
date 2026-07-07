@@ -1,6 +1,7 @@
 ---
-title: "Project Guide: Predicting Parkinson's Disease using Microbiome Data"
-author: "Project Instructions"
+title: "Employing Deep Learning to Predict Parkinson's Disease using Microbiome Data"
+author: "Longhai Li"
+date: last-modified
 format: 
   html:
     code-fold: true
@@ -8,40 +9,53 @@ format:
     toc-depth: 2
     theme: cosmo
     number-sections: true
+    fig-format: svg
+    fig-dpi: 300
+    fig-responsive: true
 jupyter: python3
+
 ---
 ## Welcome to the Project!
 
-In this project, your team of three will work at the intersection of biology and artificial intelligence. Your goal is to train a computer program to predict whether a person has Parkinson's Disease (PD) just by looking at the bacteria living in their stomach.
+Here's your mission for the summer: teach a computer to look at the bacteria living inside someone's gut and guess whether that person has Parkinson's Disease (PD). No blood test, no brain scan — just bacteria.
 
-If you don't know anything about biology or coding yet---don't worry! This guide will break down the science, the data, the coding, and how to write up your final report.
+Sounds like science fiction? It's real, cutting-edge research, and by the end of this project *you will have built it yourself.*
+
+Never touched biology or code before? Perfect — that's exactly who this guide is written for. We'll take the science, the data, the programming, and the final write-up one bite at a time, and you'll be surprised how far you get.
 
 ---
 
-## 1. The Biology: What is the Microbiome?
+## The Biology: What is the Microbiome?
 
-Imagine your gut is a bustling city. The "citizens" of this city are trillions of tiny microorganisms, mostly bacteria. We call this community the **gut microbiome**. 
+Picture your gut as a crowded, buzzing city. The "citizens" are *trillions* of tiny microorganisms — mostly bacteria — all living, eating, and elbowing each other for space inside you right now. Scientists call this hidden community your **gut microbiome**.
 
-In a healthy person, there is a good, peaceful balance of different bacterial families. But researchers have discovered that in people with Parkinson's Disease (a condition that affects the brain and nervous system), the population of this gut city changes. Some "good" bacteria families disappear, and other families multiply rapidly. 
+In a healthy person, the microbial city runs in balance: lots of different bacterial families, all keeping one another in check. But in people with **Parkinson's Disease** — a condition that attacks the brain and messes with movement — the population of the gut city shifts. Some "good" families crash. Others explode. The whole neighborhood gets rearranged.
 
-When scientists sequence DNA from stool samples, they are basically doing a census of this city. The data you will be looking at is actually just a giant spreadsheet:
+Here's the wild part, and the reason this project even exists: **your gut and your brain are constantly talking to each other.** They're wired together through nerves (especially one long one called the *vagus nerve*), plus a stream of chemical and immune signals. Scientists call this two-way phone line the **gut–brain axis**. In Parkinson's, many researchers now suspect the trouble may actually *start down in the gut, years before* the brain symptoms ever appear. That's why the bacteria in someone's stomach can act like an early-warning signal for a *brain* disease — and it's what makes your prediction model possible.
+
+![The **gut–brain axis**: signals travel in both directions between the trillions of microbes in your gut and your brain, partly along the vagus nerve. In Parkinson's disease, this two-way connection appears to get disrupted — sometimes starting in the gut long before the brain. *(Image: Wikimedia Commons, CC BY 4.0. Feel free to swap in your own favorite diagram.)*](https://commons.wikimedia.org/wiki/Special:FilePath/Gut-brain_axis_overview.jpg){#fig-gutbrain fig-alt="Diagram of the gut-brain axis showing bidirectional communication between the gut microbiome and the brain" width="70%"}
+
+So how do scientists actually *see* these bacteria? They can't line them up and count them by hand. Instead, they take a stool sample and sequence the DNA inside it — basically running a **census** of the gut city. What comes back is a giant spreadsheet:
+
 * Every **row** is a different patient.
 * Every **column** is a different type of bacteria.
-* The **numbers** in the cells show exactly how many of that specific bacteria were found in that patient's gut.
+* Each **number** is how many of that specific bacteria showed up in that patient's gut.
+
+Your job is to find the hidden pattern buried in that spreadsheet — the one no human eye can catch, but a machine can.
 
 ---
 
-## 2. The Data: The Journey from Raw Counts to Hidden Patterns
+## The Data: From Messy Counts to Hidden Patterns
 
-When scientists run a DNA sequencer to do a "census" of the gut, it doesn't count every single bacteria perfectly. It grabs a random sample. We call the total number of bacteria successfully counted in a sample the **Total Reads**. 
+Here's a catch nobody warns you about. When that DNA sequencer runs its census, it doesn't count *every* bacterium — that would be impossible. It grabs a random scoop and counts what's in the scoop. The total number of bacteria it manages to count in one sample is called the **Total Reads**.
 
-Because every stool sample is a little different, the sequencer might capture 40,000 bacteria for Patient 1, but only 15,000 for Patient 8. 
+And the scoop is never the same size twice. The machine might catch 40,000 bacteria in Patient 1's sample but only 15,000 in Patient 8's — same gut, wildly different totals, purely because of how much got scooped.
 
-Let's generate a realistic synthetic dataset of 100 patients (50 with Parkinson's, 50 Healthy). To show you how complex this gets, we will look at **6 different bacterial families**. 
+This messiness is the first real boss you'll have to beat. Let's build a fake-but-realistic dataset of 100 patients (50 with Parkinson's, 50 healthy) and watch the problem show up with our own eyes. To keep things readable, we'll track just **6 bacterial families**.
 
 ### Step 1: The Raw Data
 
-First, we will generate the raw counts and take a look at what comes straight out of the sequencing machine. 
+First, let's generate the raw counts — the messy numbers straight off the machine, before anyone cleans them up.
 
 ```{python}
 #| label: generate-raw-data
@@ -101,9 +115,9 @@ df_raw = pd.DataFrame({
 show(df_raw, classes="display", lengthMenu=[5, 10], scrollX=True)
 ```
 
-If we give these raw numbers to our computer, it will get confused. Because the Parkinson's samples happened to have larger `Total_Reads` (total sequencing depth), their raw bacteria counts look really high across the board! 
+If you hand these raw numbers straight to a computer, it'll be fooled — and honestly, so would you. In our data, the Parkinson's samples just happened to get scooped more deeply (bigger Total Reads), so *every single* bacteria count looks sky-high for them. It's a trap: the numbers look different, but only because of scoop size, not biology.
 
-Let's look at a **boxplot** of this raw data. A boxplot shows the spread of the data—the box is where most patients fall, and the lines show the extremes.
+Let's prove it with a **boxplot**. Quick decoder: the box holds the middle chunk of patients, the line inside is the typical value, and the whiskers stretch out toward the extremes.
 
 ```{python}
 #| label: plot-raw-boxplot
@@ -122,9 +136,9 @@ plt.ylabel("Raw Bacteria Count")
 plt.show()
 ```
 
-### Step 2: Converting to Proportions
+### Step 2: Level the Playing Field with Proportions
 
-To make it a fair comparison, we must mathematically correct the data. We convert the raw counts into **proportions** (percentages) by dividing each bacteria count by the `Total_Reads` for that specific patient. 
+To make a fair comparison, we have to cancel out the scoop-size problem. The fix is simple but powerful: instead of raw counts, we ask *"what fraction of this patient's gut was this bacteria?"* We divide each bacteria count by that patient's `Total_Reads` to turn it into a **proportion** — a slice of their personal microbiome.
 
 ```{python}
 #| label: calculate-proportions
@@ -140,7 +154,7 @@ df_view = df_prop[["Patient_ID", "Diagnosis"] + cols].round(3)
 show(df_view, classes="display", lengthMenu=[5, 10], scrollX=True)
 ```
 
-Now the data is mathematically sound. But if a human doctor looks at this spreadsheet, can they spot the difference between the sick and healthy patients? Let's check the boxplot of our new proportions.
+Now the numbers are finally comparable. But here's the humbling part: even with clean data, could a human doctor eyeball this spreadsheet and tell sick from healthy? Let's find out.
 
 ```{python}
 #| label: plot-prop-boxplot
@@ -158,13 +172,13 @@ plt.ylabel("Proportion of Microbiome")
 plt.show()
 ```
 
-Look at the boxes for *Bifidobacterium* and *Lactobacillus*. The red and green boxes completely overlap! A doctor looking at a patient with 10% *Bifidobacterium* wouldn't know which group they belong to, because healthy and sick people can both have 10%. 
+Look closely at *Bifidobacterium* and *Lactobacillus* — the red and green boxes practically sit on top of each other. If a patient showed up with 10% *Bifidobacterium*, you'd be stuck: healthy people have that, and so do sick people. One bacteria at a time, the signal is basically invisible. Frustrating, right? Hang on — this is exactly where it gets good.
 
 ### Step 3: Revealing the Hidden Pattern
 
-Biological data is messy. Bacteria in the gut interact with each other—they compete for food and space. Sometimes, looking at one bacteria alone tells you nothing. 
+Real biology is sneaky. Bacteria don't live alone — they fight over food and territory, so what really matters is often the *relationship between* them, not any single one on its own. One bacteria can tell you nothing, while two of them *together* can tell you everything.
 
-What happens if we combine these bacterial families into pairs? Let's add them together to create 3 new combined columns.
+Let's test that idea. What if we stop staring at bacteria one at a time and start adding them up in **pairs**?
 
 ```{python}
 #| label: plot-combined-boxplot
@@ -189,19 +203,21 @@ plt.xticks(ticks=[0, 1, 2], labels=["Pair 1\n(Bifido+Lacto)", "Pair 2\n(Bact+Pre
 plt.show()
 ```
 
-## 3. The Tech: What is a Predictive Model?
+Boom. Look at **Pair 1**: the red and green boxes suddenly pull apart — Parkinson's patients sit low, healthy patients sit high, with barely any overlap. The signal was hiding in the *combination* the whole time. Pairs 2 and 3? Still a jumbled mess — those are decoys we planted on purpose. Figuring out which combinations carry the signal (and which are traps) is the entire game.
 
-If we give you a spreadsheet with hundreds of rows of patients and thousands of columns of bacteria, your human brain cannot easily spot the pattern. It's too much information. 
+## The Tech: What is a Predictive Model?
 
-This is where **Machine Learning** comes in. Instead of a human trying to figure out the rules, we let a computer figure it out through trial and error. 
+We got lucky above: with only 6 bacteria, we could hunt for the winning pair by hand. But a real gut has *thousands* of bacterial families. Nobody can eyeball a spreadsheet that wide and spot the magic combinations — your brain would melt trying.
 
-### Using a Predictive Model to Describe the Separation
+This is the moment **Machine Learning** kicks in. Instead of a human guessing the rules, we hand the whole messy spreadsheet to a computer and let it discover the pattern through trial and error: test, fail, adjust, repeat, and slowly get smarter.
 
-Before we jump into complex networks, let's look at a simpler predictive model called **Logistic Regression**. 
+### Warm-Up: Teaching a Model to Draw the Line
 
-In our previous step, we discovered that *Pair 1* (Bifidobacterium + Lactobacillus) was a great separator. How do we turn that separation into a mathematical prediction? We map the diagnosis to numbers: **Healthy = 0** and **Parkinson's = 1**. Then, we ask the computer to draw a smooth curve (an "S-curve") that connects the two.
+Before we build a full brain-like network, let's meet its simpler cousin, **Logistic Regression**. It's the perfect warm-up.
 
-Let's use Python to fit a Logistic Regression model to our 3 pairs and plot the results.
+We already found that *Pair 1* (*Bifidobacterium* + *Lactobacillus*) splits the groups nicely. Now we want to turn that split into an actual *prediction*. Step one: swap the labels for numbers — **Healthy = 0** and **Parkinson's = 1**. Step two: ask the computer to draw one smooth **S-shaped curve** that slides from 0 up to 1 and marks exactly where the two groups divide.
+
+Let's fit it to all three pairs and see what pops out.
 
 ```{python}
 #| label: plot-logistic-regression
@@ -225,7 +241,8 @@ for ax, pair, title in zip(axes, pairs, titles):
     X = df_prop[[pair]].values
     
     # Fit the Logistic Regression model
-    model = LogisticRegression()
+    # C=1000 removes the default penalty so we get a sharp S-curve
+    model = LogisticRegression(C=1000)
     model.fit(X, y)
     
     # Create smooth line for the S-curve
@@ -250,17 +267,48 @@ plt.tight_layout()
 plt.show()
 ```
 
-**Understanding the Model:** Look at the black line in the first chart. It tells us exactly how to predict the disease. If a new patient walks in with a Pair 1 proportion of 0.15, the black line is at `1`, predicting they have Parkinson's. If they have a proportion of 0.35, the curve drops down to `0`, predicting they are Healthy. 
+**Reading the charts:** that black S-curve is the model's whole brain in one line. In the first chart, a new patient with a Pair 1 value of 0.15 lands where the curve sits near **1** → the model calls it Parkinson's. A patient at 0.35 lands where the curve has dropped to **0** → Healthy. It's a genuine prediction machine.
 
-For Pairs 2 and 3, the black line is flat. The model is saying, *"This data is useless, it doesn't help me predict anything."*
+Now check Pairs 2 and 3: the black line is nearly flat. That flatness is the model shrugging: *"This tells me nothing — I can't predict anything from here."* A flat curve is how the model calls out a decoy.
+
+### The Mathematics Behind the S-Curve
+
+Want the actual trick that bends a bacteria score into that smooth curve? It's one famous formula: the **Logistic Function** (a.k.a. the *Sigmoid*). Don't let the symbols scare you — we're about to take it apart piece by piece:
+
+$$
+P(Y = 1 \mid z) = \frac{1}{1 + e^{-z}}
+$$
+
+*(Curious how we typed these fancy equations? Crack open the raw `.qmd` file for this project on GitHub and steal the code — that's exactly what it's there for!)*
+
+#### Breaking Down the Equation
+
+Learn these pieces and you'll be able to explain the whole thing in your final report like a pro:
+
+* **$P(Y = 1 \mid z)$**: reads as *"the chance the diagnosis ($Y$) is Parkinson's ($1$), given the patient's combined pattern score ($z$)."*
+* **$e$**: Euler's number, a famous constant roughly equal to $2.71828$ — it's math royalty, just like $\pi$ is roughly $3.14159$.
+* **$z$**: the "secret recipe," a single score the model cooks up for each patient. For our Pair 1 example, the computer builds it with a simple straight-line equation:
+
+$$
+z = \beta_0 + \beta_1 \cdot (\text{Bifidobacterium} + \text{Lactobacillus})
+$$
+
+#### How the Math Controls the Curve
+
+The computer's entire job while learning is to hunt down the two best numbers: **$\beta_0$** (a baseline nudge) and **$\beta_1$** (how much weight, or importance, to give the bacteria). Once it locks those in:
+
+* Healthy gut → high combined proportion → $z$ is a big **positive** number. Plug a big positive into $\frac{1}{1 + e^{-z}}$ and the answer squishes down toward **$0$ (Healthy)**.
+* Parkinson's gut → low proportion → $z$ is a big **negative** number → the fraction flips and the answer climbs up toward **$1$ (Parkinson's)**.
+
+As $z$ glides from negative to positive, the formula *automatically* traces that perfect "S." Nobody draws it by hand — the math does it for you.
 
 ### Why We Need Neural Networks
 
-Logistic Regression is great, but notice that **we** had to manually combine *Bifidobacterium* and *Lactobacillus* to create Pair 1. We had to do the hard work of finding the pattern. 
+Logistic Regression is slick, but did you catch the cheat? *We* were the ones who combined *Bifidobacterium* and *Lactobacillus* into Pair 1. A human did the detective work of finding the pattern first.
 
-In reality, the gut has thousands of bacteria ($x_1, x_2, x_3 \dots$). We don't know which ones to add together. We want to find some hidden, combined features (let's call them $z_1, z_2 \dots$) that are highly predictive of the final diagnosis ($y$). 
+That's fine with 6 bacteria. But a real gut has *thousands* ($x_1, x_2, x_3 \dots$), and nobody knows in advance which ones to add, subtract, or mix together. We want the computer to discover the winning combinations — let's call them $z_1, z_2 \dots$ — completely on its own.
 
-Instead of humans guessing the formulas, we build a **Neural Network**. We let machine learning find the mathematical functions $z_j = f_j(x)$ entirely on its own.
+That's the whole point of a **Neural Network**: instead of humans guessing the recipes, we let the machine learn the functions $z_j = f_j(x)$ by itself.
 
 Think of a Neural Network like a detective agency with several floors (called **Layers**):
 
@@ -313,44 +361,67 @@ graph LR
     style OutputLayer color:#000000, fill:none, stroke:#999
 ```
 
-**How does it learn to find $z$?** We show the network hundreds of examples where we *already know* the answer. It makes a guess. If it guesses wrong, it automatically tweaks its own internal math so it can guess better the next time. We call this **training** the model.
+### So What Are These Hidden Patterns ($z$), Really?
 
-## 3. The Data
+Back in our Pair 1 example, we built the pattern the lazy way — just add two bacteria together equally: $z = x_1 + x_2$.
 
-Because formatting raw DNA sequences is complex, we have already done the messy spreadsheet cleanup for you.
+A Neural Network is way craftier than that. It builds complex "recipes" called **weighted sums**. It doesn't just add; it *multiplies* some bacteria up and *subtracts* others down to capture real biology:
 
-* **Core Dataset:** A preprocessed dataset is available in the `datasets` directory of this GitHub repository: [PDNN GitHub Repo](https://github.com/longhaiSK/PDNN).
+* **Multiplication (Weights):** Not all bacteria matter equally. If *Bifidobacterium* is a massive health signal and *Lactobacillus* is only a minor one, the network multiplies them by different "weights" (importance scores). 
+  $$z_1 = 5.0 \cdot (\text{Bifido}) + 0.2 \cdot (\text{Lacto})$$
+* **Subtraction (Negative Weights):** Bacteria are constantly at war in the gut. If a "bad" bacteria overgrows and wipes out the "good" ones, the network learns to penalize it with subtraction. 
+  $$z_2 = 2.0 \cdot (\text{Lacto}) - 4.5 \cdot (\text{Bad Pathogen})$$
+The network can whip up dozens of these $z$ formulas at once, mixing and matching all 3,000 bacteria with positive weights, negative weights, and fractions to map out the entire ecosystem of the gut!
 
-* **Data Collection Task (Student A):** One team member should take the lead on gathering additional data to test. Follow the exact steps outlined in this [Google Colab Data Notebook](https://colab.research.google.com/drive/170dd6Qv-IgYyj4_WxvSOlmS8N5wtNGgo#scrollTo=3V9zVKkpWlQe). Additional instructions are located in the repository's "More Datasets" directory.
+**But how does it find the perfect weights for $z$?** We never type those numbers in ourselves — that's the whole magic. We feed the network hundreds of patients whose answers we *already know*. It starts with totally random weights, makes a guess, and checks how badly it missed. Then it nudges its own internal math a hair (a $2.0$ becomes a $2.1$, a plus flips to a minus) so the next guess lands a little closer. Repeat that thousands of times and the network teaches *itself*. That whole loop is called **training** the model — and soon you'll be running it.
 
 ---
 
-## 4. The Lab Bench: Computing in Google Colab
+## Collection of Microbiome Data Related To Parkinson
 
-You will build your Neural Network using a tool called **TensorFlow** inside **Google Colab**. Colab is a free, cloud-based workspace that runs right in your web browser.
+Turning raw DNA sequences into a clean spreadsheet is genuinely tedious work — so we've already handled the messy part for you.
+
+* **Core Dataset:** A preprocessed dataset is ready to go in the `datasets` directory of this GitHub repository: [PDNN GitHub Repo](https://github.com/longhaiSK/PDNN).
+
+* **Data Collection Task (Student A):** One team member should take the lead on tracking down extra data to test the model on. Follow the exact steps in this [Google Colab Data Notebook](https://colab.research.google.com/drive/170dd6Qv-IgYyj4_WxvSOlmS8N5wtNGgo#scrollTo=3V9zVKkpWlQe). More instructions live in the repository's "More Datasets" directory.
+
+---
+
+## The Lab Bench: Computing in Google Colab
+
+You'll build your Neural Network with a tool called **TensorFlow**, running inside **Google Colab** — a free coding lab that lives right in your web browser. Nothing to install, and no fancy computer required.
 
 ### Setting Up Colab
 
 1. Go to [Google Colab](https://colab.research.google.com/) and create a new notebook.
-2. Make your code run faster by turning on the GPU: Go to `Runtime` > `Change runtime type` > select `GPU` under Hardware accelerator.
+2. Make your code run way faster by switching on the GPU: `Runtime` > `Change runtime type` > pick `GPU` under Hardware accelerator.
 
 ::: {.callout-tip}
 
-## Helpful Tutorials for Beginners
-If you have never coded a Neural Network before, don't panic. Run through these beginner tutorials directly in Colab before starting your main project. They walk you through the exact code you will need:
+## Essential Tutorials & Resources
+Never used Colab or coded a Neural Network before? Don't panic — the internet is packed with awesome, interactive guides. We highly recommend clicking through these before you start writing your own code:
 
-* [TensorFlow 2 Quickstart for Beginners](https://colab.research.google.com/github/tensorflow/docs/blob/master/site/en/tutorials/quickstart/beginner.ipynb)
-* [Basic Classification with Keras](https://colab.research.google.com/github/tensorflow/docs/blob/master/site/en/tutorials/keras/classification.ipynb) 
+**Getting to Know Google Colab:**
 
+* [Welcome to Colaboratory](https://colab.research.google.com/notebooks/intro.ipynb): The official quick-start guide to how text and code blocks work together in a notebook.
+* [Markdown Guide for Colab](https://colab.research.google.com/notebooks/markdown_guide.ipynb): Learn how to format your text, add headers, and make your notebook look like a real scientific report.
+
+**Learning TensorFlow & Deep Learning:**
+
+* [TensorFlow 2 Quickstart for Beginners](https://colab.research.google.com/github/tensorflow/docs/blob/master/site/en/tutorials/quickstart/beginner.ipynb): The classic "Hello World" of Deep Learning.
+* [Basic Classification with Keras](https://colab.research.google.com/github/tensorflow/docs/blob/master/site/en/tutorials/keras/classification.ipynb): A fantastic intro to building layers, training a model, and making predictions.
+* [Classify Structured Data](https://colab.research.google.com/github/tensorflow/docs/blob/master/site/en/tutorials/structured_data/preprocessing_layers.ipynb): *Highly recommended!* This one shows you how to train a network on a plain spreadsheet (CSV data) — exactly the kind of data you'll be using for the microbiome project!
+
+**Conceptual Deep-Dive:**
+* [Google's Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course): Want to go deeper into the math and theory behind the code? This free course is the gold standard.
 :::
-
 ---
 
-## 5. The Writing Desk: Creating Your Report in Posit Cloud
+## The Writing Desk: Creating Your Report in Posit Cloud
 
-Google Colab is fantastic for running heavy math calculations, but it is terrible for writing clean, professional reports. For that, we split our workflow: **Compute in Colab, Write in Posit Cloud.** 
+Colab is a beast at crunching numbers, but honestly it's clumsy for writing a clean, professional report. So we split the job in two: **crunch in Colab, write in Posit Cloud.**
 
-Posit Cloud supports **Quarto**---a system that lets you write using a "Visual Editor" (just like Google Docs or Microsoft Word) while it handles making it look like a professional science paper in the background.
+Posit Cloud runs **Quarto** — a system that lets you write in a "Visual Editor" (basically Google Docs or Word) while it quietly turns your words into a polished science paper behind the scenes.
 
 ### Step-by-Step Writing Setup
 
@@ -358,28 +429,17 @@ Posit Cloud supports **Quarto**---a system that lets you write using a "Visual E
 2. Click **New Project** > **New RStudio Project**. 
 
 3. Go to **File** > **New File** > **Quarto Document...** Give it a title and add your names.
-4. **Crucial Step:** Look at the top left corner of your document and click the **Visual** button. This switches you from code-view to a clean word processor!
+4. **Crucial step:** Up in the top-left corner, click the **Visual** button. This flips you from code-view into a clean word processor!
 
-5. Transfer your graphs: Save your accuracy charts in Colab as image files (e.g., `.png`), download them, and upload them to the **Files** pane in Posit Cloud. Insert them into your text using the Image icon.
-6. Click the **Render** button (the blue arrow at the top) to generate your final web page or PDF.
+5. Bring in your graphs: save your accuracy charts from Colab as image files (e.g. `.png`), download them, and upload them into the **Files** pane in Posit Cloud. Drop them into your text with the Image icon.
+6. Hit the **Render** button (the blue arrow up top) to generate your final web page or PDF.
 
-::: {.callout-note}
-
-## Writing Tip: The "What, So What, Now What" Framework
-Whenever you add a chart or result to your report, explain it using these three steps so your reader understands *why* you included it:
-
-1. **What:** What are we looking at? *(e.g., "This graph shows our model's accuracy as it practiced over 50 rounds.")*
-2. **So What:** Why does this matter? *(e.g., "The accuracy stops improving around round 30, meaning the model stopped learning anything new.")*
-
-3. **Now What:** What did you do next? *(e.g., "Because it stopped learning, we changed the layers in our network to see if it would help...")*
-
-:::
 
 ---
 
 ## Appendix: Starter Template for Your Report
 
-Copy the text inside the box below, switch Posit Cloud to **Source** mode, paste it in, and then switch back to **Visual** mode to start writing!
+Copy everything inside the box below, switch Posit Cloud to **Source** mode, paste it in, then flip back to **Visual** mode and start writing!
 
 ```markdown
 ---
@@ -388,18 +448,18 @@ author: "Your Names Here"
 format: html
 ---
 
-## 1. Introduction
+## Introduction
 <!-- Write 2-3 sentences explaining what Parkinson's Disease is and why the bacteria in our gut might act as a clue to diagnosing it. -->
 
-## 2. The Dataset
+## The Dataset
 <!-- Explain where the data came from. Insert a small table here showing how many patients vs. healthy controls are in our spreadsheet. -->
 
-## 3. Our Neural Network Model
+## Our Neural Network Model
 <!-- Insert an image of your model architecture or summary here. Explain how many layers you chose for your "detective agency" and why. -->
 
-## 4. Results
+## Results
 <!-- Insert your accuracy charts here. Remember to use the What, So What, Now What framework to explain them! -->
 
-## 5. Conclusion
+## Conclusion
 <!-- Did the model successfully predict PD? What was the hardest part of building it, and what would you try next time? -->
 ```

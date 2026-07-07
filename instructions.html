@@ -6,9 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Project Instructions">
+<meta name="author" content="Longhai Li">
+<meta name="dcterms.date" content="2026-07-06">
 
-<title>Project Guide: Predicting Parkinson’s Disease using Microbiome Data</title>
+<title>Employing Deep Learning to Predict Parkinson’s Disease using Microbiome Data</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -121,12 +122,12 @@ window.Quarto = {
    
   <ul class="collapse">
   <li><a href="#welcome-to-the-project" id="toc-welcome-to-the-project" class="nav-link active" data-scroll-target="#welcome-to-the-project"><span class="header-section-number">1</span> Welcome to the Project!</a></li>
-  <li><a href="#the-biology-what-is-the-microbiome" id="toc-the-biology-what-is-the-microbiome" class="nav-link" data-scroll-target="#the-biology-what-is-the-microbiome"><span class="header-section-number">2</span> 1. The Biology: What is the Microbiome?</a></li>
-  <li><a href="#the-data-the-journey-from-raw-counts-to-hidden-patterns" id="toc-the-data-the-journey-from-raw-counts-to-hidden-patterns" class="nav-link" data-scroll-target="#the-data-the-journey-from-raw-counts-to-hidden-patterns"><span class="header-section-number">3</span> 2. The Data: The Journey from Raw Counts to Hidden Patterns</a></li>
-  <li><a href="#the-tech-what-is-a-predictive-model" id="toc-the-tech-what-is-a-predictive-model" class="nav-link" data-scroll-target="#the-tech-what-is-a-predictive-model"><span class="header-section-number">4</span> 3. The Tech: What is a Predictive Model?</a></li>
-  <li><a href="#the-data" id="toc-the-data" class="nav-link" data-scroll-target="#the-data"><span class="header-section-number">5</span> 3. The Data</a></li>
-  <li><a href="#the-lab-bench-computing-in-google-colab" id="toc-the-lab-bench-computing-in-google-colab" class="nav-link" data-scroll-target="#the-lab-bench-computing-in-google-colab"><span class="header-section-number">6</span> 4. The Lab Bench: Computing in Google Colab</a></li>
-  <li><a href="#the-writing-desk-creating-your-report-in-posit-cloud" id="toc-the-writing-desk-creating-your-report-in-posit-cloud" class="nav-link" data-scroll-target="#the-writing-desk-creating-your-report-in-posit-cloud"><span class="header-section-number">7</span> 5. The Writing Desk: Creating Your Report in Posit Cloud</a></li>
+  <li><a href="#the-biology-what-is-the-microbiome" id="toc-the-biology-what-is-the-microbiome" class="nav-link" data-scroll-target="#the-biology-what-is-the-microbiome"><span class="header-section-number">2</span> The Biology: What is the Microbiome?</a></li>
+  <li><a href="#the-data-from-messy-counts-to-hidden-patterns" id="toc-the-data-from-messy-counts-to-hidden-patterns" class="nav-link" data-scroll-target="#the-data-from-messy-counts-to-hidden-patterns"><span class="header-section-number">3</span> The Data: From Messy Counts to Hidden Patterns</a></li>
+  <li><a href="#the-tech-what-is-a-predictive-model" id="toc-the-tech-what-is-a-predictive-model" class="nav-link" data-scroll-target="#the-tech-what-is-a-predictive-model"><span class="header-section-number">4</span> The Tech: What is a Predictive Model?</a></li>
+  <li><a href="#collection-of-microbiome-data-related-to-parkinson" id="toc-collection-of-microbiome-data-related-to-parkinson" class="nav-link" data-scroll-target="#collection-of-microbiome-data-related-to-parkinson"><span class="header-section-number">5</span> Collection of Microbiome Data Related To Parkinson</a></li>
+  <li><a href="#the-lab-bench-computing-in-google-colab" id="toc-the-lab-bench-computing-in-google-colab" class="nav-link" data-scroll-target="#the-lab-bench-computing-in-google-colab"><span class="header-section-number">6</span> The Lab Bench: Computing in Google Colab</a></li>
+  <li><a href="#the-writing-desk-creating-your-report-in-posit-cloud" id="toc-the-writing-desk-creating-your-report-in-posit-cloud" class="nav-link" data-scroll-target="#the-writing-desk-creating-your-report-in-posit-cloud"><span class="header-section-number">7</span> The Writing Desk: Creating Your Report in Posit Cloud</a></li>
   <li><a href="#appendix-starter-template-for-your-report" id="toc-appendix-starter-template-for-your-report" class="nav-link" data-scroll-target="#appendix-starter-template-for-your-report"><span class="header-section-number">8</span> Appendix: Starter Template for Your Report</a></li>
   </ul>
 </nav>
@@ -135,7 +136,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Project Guide: Predicting Parkinson’s Disease using Microbiome Data</h1>
+<h1 class="title">Employing Deep Learning to Predict Parkinson’s Disease using Microbiome Data</h1>
 </div>
 
 
@@ -145,10 +146,16 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Project Instructions </p>
+             <p>Longhai Li </p>
           </div>
   </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 6, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -160,25 +167,43 @@ window.Quarto = {
 
 <section id="welcome-to-the-project" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="welcome-to-the-project"><span class="header-section-number">1</span> Welcome to the Project!</h2>
-<p>In this project, your team of three will work at the intersection of biology and artificial intelligence. Your goal is to train a computer program to predict whether a person has Parkinson’s Disease (PD) just by looking at the bacteria living in their stomach.</p>
-<p>If you don’t know anything about biology or coding yet—don’t worry! This guide will break down the science, the data, the coding, and how to write up your final report.</p>
+<p>Here’s your mission for the summer: teach a computer to look at the bacteria living inside someone’s gut and guess whether that person has Parkinson’s Disease (PD). No blood test, no brain scan — just bacteria.</p>
+<p>Sounds like science fiction? It’s real, cutting-edge research, and by the end of this project <em>you will have built it yourself.</em></p>
+<p>Never touched biology or code before? Perfect — that’s exactly who this guide is written for. We’ll take the science, the data, the programming, and the final write-up one bite at a time, and you’ll be surprised how far you get.</p>
 <hr>
 </section>
 <section id="the-biology-what-is-the-microbiome" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="the-biology-what-is-the-microbiome"><span class="header-section-number">2</span> 1. The Biology: What is the Microbiome?</h2>
-<p>Imagine your gut is a bustling city. The “citizens” of this city are trillions of tiny microorganisms, mostly bacteria. We call this community the <strong>gut microbiome</strong>.</p>
-<p>In a healthy person, there is a good, peaceful balance of different bacterial families. But researchers have discovered that in people with Parkinson’s Disease (a condition that affects the brain and nervous system), the population of this gut city changes. Some “good” bacteria families disappear, and other families multiply rapidly.</p>
-<p>When scientists sequence DNA from stool samples, they are basically doing a census of this city. The data you will be looking at is actually just a giant spreadsheet: * Every <strong>row</strong> is a different patient. * Every <strong>column</strong> is a different type of bacteria. * The <strong>numbers</strong> in the cells show exactly how many of that specific bacteria were found in that patient’s gut.</p>
+<h2 data-number="2" class="anchored" data-anchor-id="the-biology-what-is-the-microbiome"><span class="header-section-number">2</span> The Biology: What is the Microbiome?</h2>
+<p>Picture your gut as a crowded, buzzing city. The “citizens” are <em>trillions</em> of tiny microorganisms — mostly bacteria — all living, eating, and elbowing each other for space inside you right now. Scientists call this hidden community your <strong>gut microbiome</strong>.</p>
+<p>In a healthy person, the microbial city runs in balance: lots of different bacterial families, all keeping one another in check. But in people with <strong>Parkinson’s Disease</strong> — a condition that attacks the brain and messes with movement — the population of the gut city shifts. Some “good” families crash. Others explode. The whole neighborhood gets rearranged.</p>
+<p>Here’s the wild part, and the reason this project even exists: <strong>your gut and your brain are constantly talking to each other.</strong> They’re wired together through nerves (especially one long one called the <em>vagus nerve</em>), plus a stream of chemical and immune signals. Scientists call this two-way phone line the <strong>gut–brain axis</strong>. In Parkinson’s, many researchers now suspect the trouble may actually <em>start down in the gut, years before</em> the brain symptoms ever appear. That’s why the bacteria in someone’s stomach can act like an early-warning signal for a <em>brain</em> disease — and it’s what makes your prediction model possible.</p>
+<div id="fig-gutbrain" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Diagram of the gut-brain axis showing bidirectional communication between the gut microbiome and the brain">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gutbrain-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Gut-brain_axis_overview.jpg" class="img-fluid figure-img" style="width:70.0%" alt="Diagram of the gut-brain axis showing bidirectional communication between the gut microbiome and the brain">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gutbrain-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: The <strong>gut–brain axis</strong>: signals travel in both directions between the trillions of microbes in your gut and your brain, partly along the vagus nerve. In Parkinson’s disease, this two-way connection appears to get disrupted — sometimes starting in the gut long before the brain. <em>(Image: Wikimedia Commons, CC BY 4.0. Feel free to swap in your own favorite diagram.)</em>
+</figcaption>
+</figure>
+</div>
+<p>So how do scientists actually <em>see</em> these bacteria? They can’t line them up and count them by hand. Instead, they take a stool sample and sequence the DNA inside it — basically running a <strong>census</strong> of the gut city. What comes back is a giant spreadsheet:</p>
+<ul>
+<li>Every <strong>row</strong> is a different patient.</li>
+<li>Every <strong>column</strong> is a different type of bacteria.</li>
+<li>Each <strong>number</strong> is how many of that specific bacteria showed up in that patient’s gut.</li>
+</ul>
+<p>Your job is to find the hidden pattern buried in that spreadsheet — the one no human eye can catch, but a machine can.</p>
 <hr>
 </section>
-<section id="the-data-the-journey-from-raw-counts-to-hidden-patterns" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="the-data-the-journey-from-raw-counts-to-hidden-patterns"><span class="header-section-number">3</span> 2. The Data: The Journey from Raw Counts to Hidden Patterns</h2>
-<p>When scientists run a DNA sequencer to do a “census” of the gut, it doesn’t count every single bacteria perfectly. It grabs a random sample. We call the total number of bacteria successfully counted in a sample the <strong>Total Reads</strong>.</p>
-<p>Because every stool sample is a little different, the sequencer might capture 40,000 bacteria for Patient 1, but only 15,000 for Patient 8.</p>
-<p>Let’s generate a realistic synthetic dataset of 100 patients (50 with Parkinson’s, 50 Healthy). To show you how complex this gets, we will look at <strong>6 different bacterial families</strong>.</p>
+<section id="the-data-from-messy-counts-to-hidden-patterns" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="the-data-from-messy-counts-to-hidden-patterns"><span class="header-section-number">3</span> The Data: From Messy Counts to Hidden Patterns</h2>
+<p>Here’s a catch nobody warns you about. When that DNA sequencer runs its census, it doesn’t count <em>every</em> bacterium — that would be impossible. It grabs a random scoop and counts what’s in the scoop. The total number of bacteria it manages to count in one sample is called the <strong>Total Reads</strong>.</p>
+<p>And the scoop is never the same size twice. The machine might catch 40,000 bacteria in Patient 1’s sample but only 15,000 in Patient 8’s — same gut, wildly different totals, purely because of how much got scooped.</p>
+<p>This messiness is the first real boss you’ll have to beat. Let’s build a fake-but-realistic dataset of 100 patients (50 with Parkinson’s, 50 healthy) and watch the problem show up with our own eyes. To keep things readable, we’ll track just <strong>6 bacterial families</strong>.</p>
 <section id="step-1-the-raw-data" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="step-1-the-raw-data"><span class="header-section-number">3.1</span> Step 1: The Raw Data</h3>
-<p>First, we will generate the raw counts and take a look at what comes straight out of the sequencing machine.</p>
+<p>First, let’s generate the raw counts — the messy numbers straight off the machine, before anyone cleans them up.</p>
 <div id="generate-raw-data" class="cell" data-message="false" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
@@ -332,7 +357,7 @@ This is the <code>init_notebook_mode</code> cell from ITables v2.8.1<br>
 </div>
 <div id="generate-raw-data-3" class="cell-output cell-output-display">
 <!--| quarto-html-table-processing: none -->
-<table id="itables_791d0a29_df31_42c8_9190_9706868cf5b7">
+<table id="itables_66f85e42_d9f4_4f48_833f_0a28391e0030">
   <tbody>
     <tr>
       <td style="vertical-align:middle; text-align:left"><a href="https://mwouts.github.io/itables/"><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="64" viewbox="0 0 500 400" style="font-family: 'Droid Sans', sans-serif;">
@@ -403,7 +428,7 @@ This is the <code>init_notebook_mode</code> cell from ITables v2.8.1<br>
         async function init() {
             const { ITable, jQuery: $ } = await window._itables_2_8_1;
 
-            document.querySelectorAll("#itables_791d0a29_df31_42c8_9190_9706868cf5b7:not(.dataTable)").forEach(table => {
+            document.querySelectorAll("#itables_66f85e42_d9f4_4f48_833f_0a28391e0030:not(.dataTable)").forEach(table => {
                 if (!(table instanceof HTMLTableElement))
                     return;
 
@@ -433,8 +458,8 @@ This is the <code>init_notebook_mode</code> cell from ITables v2.8.1<br>
 </script>
 </div>
 </div>
-<p>If we give these raw numbers to our computer, it will get confused. Because the Parkinson’s samples happened to have larger <code>Total_Reads</code> (total sequencing depth), their raw bacteria counts look really high across the board!</p>
-<p>Let’s look at a <strong>boxplot</strong> of this raw data. A boxplot shows the spread of the data—the box is where most patients fall, and the lines show the extremes.</p>
+<p>If you hand these raw numbers straight to a computer, it’ll be fooled — and honestly, so would you. In our data, the Parkinson’s samples just happened to get scooped more deeply (bigger Total Reads), so <em>every single</em> bacteria count looks sky-high for them. It’s a trap: the numbers look different, but only because of scoop size, not biology.</p>
+<p>Let’s prove it with a <strong>boxplot</strong>. Quick decoder: the box holds the middle chunk of patients, the line inside is the typical value, and the whiskers stretch out toward the extremes.</p>
 <div id="cell-plot-raw-boxplot" class="cell" data-fig-height="5" data-fig-width="10" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
@@ -451,15 +476,15 @@ This is the <code>init_notebook_mode</code> cell from ITables v2.8.1<br>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="instructions_files/figure-html/plot-raw-boxplot-output-1.png" id="plot-raw-boxplot" width="982" height="449" class="figure-img"></p>
+<p><img src="instructions_files/figure-html/plot-raw-boxplot-output-1.svg" id="plot-raw-boxplot" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="step-2-converting-to-proportions" class="level3" data-number="3.2">
-<h3 data-number="3.2" class="anchored" data-anchor-id="step-2-converting-to-proportions"><span class="header-section-number">3.2</span> Step 2: Converting to Proportions</h3>
-<p>To make it a fair comparison, we must mathematically correct the data. We convert the raw counts into <strong>proportions</strong> (percentages) by dividing each bacteria count by the <code>Total_Reads</code> for that specific patient.</p>
+<section id="step-2-level-the-playing-field-with-proportions" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="step-2-level-the-playing-field-with-proportions"><span class="header-section-number">3.2</span> Step 2: Level the Playing Field with Proportions</h3>
+<p>To make a fair comparison, we have to cancel out the scoop-size problem. The fix is simple but powerful: instead of raw counts, we ask <em>“what fraction of this patient’s gut was this bacteria?”</em> We divide each bacteria count by that patient’s <code>Total_Reads</code> to turn it into a <strong>proportion</strong> — a slice of their personal microbiome.</p>
 <div id="cell-calculate-proportions" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
@@ -474,7 +499,7 @@ This is the <code>init_notebook_mode</code> cell from ITables v2.8.1<br>
 </details>
 <div id="calculate-proportions" class="cell-output cell-output-display">
 <!--| quarto-html-table-processing: none -->
-<table id="itables_842ff6a3_1ca5_48b4_9e63_3a20c73159ce">
+<table id="itables_b8883175_cb96_48be_9cdc_444e1a93f3b6">
   <tbody>
     <tr>
       <td style="vertical-align:middle; text-align:left"><a href="https://mwouts.github.io/itables/"><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="64" viewbox="0 0 500 400" style="font-family: 'Droid Sans', sans-serif;">
@@ -545,7 +570,7 @@ This is the <code>init_notebook_mode</code> cell from ITables v2.8.1<br>
         async function init() {
             const { ITable, jQuery: $ } = await window._itables_2_8_1;
 
-            document.querySelectorAll("#itables_842ff6a3_1ca5_48b4_9e63_3a20c73159ce:not(.dataTable)").forEach(table => {
+            document.querySelectorAll("#itables_b8883175_cb96_48be_9cdc_444e1a93f3b6:not(.dataTable)").forEach(table => {
                 if (!(table instanceof HTMLTableElement))
                     return;
 
@@ -577,7 +602,7 @@ This is the <code>init_notebook_mode</code> cell from ITables v2.8.1<br>
 </script>
 </div>
 </div>
-<p>Now the data is mathematically sound. But if a human doctor looks at this spreadsheet, can they spot the difference between the sick and healthy patients? Let’s check the boxplot of our new proportions.</p>
+<p>Now the numbers are finally comparable. But here’s the humbling part: even with clean data, could a human doctor eyeball this spreadsheet and tell sick from healthy? Let’s find out.</p>
 <div id="cell-plot-prop-boxplot" class="cell" data-fig-height="5" data-fig-width="10" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
@@ -593,17 +618,17 @@ This is the <code>init_notebook_mode</code> cell from ITables v2.8.1<br>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="instructions_files/figure-html/plot-prop-boxplot-output-1.png" id="plot-prop-boxplot" width="969" height="449" class="figure-img"></p>
+<p><img src="instructions_files/figure-html/plot-prop-boxplot-output-1.svg" id="plot-prop-boxplot" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Look at the boxes for <em>Bifidobacterium</em> and <em>Lactobacillus</em>. The red and green boxes completely overlap! A doctor looking at a patient with 10% <em>Bifidobacterium</em> wouldn’t know which group they belong to, because healthy and sick people can both have 10%.</p>
+<p>Look closely at <em>Bifidobacterium</em> and <em>Lactobacillus</em> — the red and green boxes practically sit on top of each other. If a patient showed up with 10% <em>Bifidobacterium</em>, you’d be stuck: healthy people have that, and so do sick people. One bacteria at a time, the signal is basically invisible. Frustrating, right? Hang on — this is exactly where it gets good.</p>
 </section>
 <section id="step-3-revealing-the-hidden-pattern" class="level3" data-number="3.3">
 <h3 data-number="3.3" class="anchored" data-anchor-id="step-3-revealing-the-hidden-pattern"><span class="header-section-number">3.3</span> Step 3: Revealing the Hidden Pattern</h3>
-<p>Biological data is messy. Bacteria in the gut interact with each other—they compete for food and space. Sometimes, looking at one bacteria alone tells you nothing.</p>
-<p>What happens if we combine these bacterial families into pairs? Let’s add them together to create 3 new combined columns.</p>
+<p>Real biology is sneaky. Bacteria don’t live alone — they fight over food and territory, so what really matters is often the <em>relationship between</em> them, not any single one on its own. One bacteria can tell you nothing, while two of them <em>together</em> can tell you everything.</p>
+<p>Let’s test that idea. What if we stop staring at bacteria one at a time and start adding them up in <strong>pairs</strong>?</p>
 <div id="cell-plot-combined-boxplot" class="cell" data-fig-height="5" data-fig-width="10" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
@@ -626,22 +651,23 @@ This is the <code>init_notebook_mode</code> cell from ITables v2.8.1<br>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="instructions_files/figure-html/plot-combined-boxplot-output-1.png" id="plot-combined-boxplot" width="821" height="464" class="figure-img"></p>
+<p><img src="instructions_files/figure-html/plot-combined-boxplot-output-1.svg" id="plot-combined-boxplot" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
+<p>Boom. Look at <strong>Pair 1</strong>: the red and green boxes suddenly pull apart — Parkinson’s patients sit low, healthy patients sit high, with barely any overlap. The signal was hiding in the <em>combination</em> the whole time. Pairs 2 and 3? Still a jumbled mess — those are decoys we planted on purpose. Figuring out which combinations carry the signal (and which are traps) is the entire game.</p>
 </section>
 </section>
 <section id="the-tech-what-is-a-predictive-model" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="the-tech-what-is-a-predictive-model"><span class="header-section-number">4</span> 3. The Tech: What is a Predictive Model?</h2>
-<p>If we give you a spreadsheet with hundreds of rows of patients and thousands of columns of bacteria, your human brain cannot easily spot the pattern. It’s too much information.</p>
-<p>This is where <strong>Machine Learning</strong> comes in. Instead of a human trying to figure out the rules, we let a computer figure it out through trial and error.</p>
-<section id="using-a-predictive-model-to-describe-the-separation" class="level3" data-number="4.1">
-<h3 data-number="4.1" class="anchored" data-anchor-id="using-a-predictive-model-to-describe-the-separation"><span class="header-section-number">4.1</span> Using a Predictive Model to Describe the Separation</h3>
-<p>Before we jump into complex networks, let’s look at a simpler predictive model called <strong>Logistic Regression</strong>.</p>
-<p>In our previous step, we discovered that <em>Pair 1</em> (Bifidobacterium + Lactobacillus) was a great separator. How do we turn that separation into a mathematical prediction? We map the diagnosis to numbers: <strong>Healthy = 0</strong> and <strong>Parkinson’s = 1</strong>. Then, we ask the computer to draw a smooth curve (an “S-curve”) that connects the two.</p>
-<p>Let’s use Python to fit a Logistic Regression model to our 3 pairs and plot the results.</p>
+<h2 data-number="4" class="anchored" data-anchor-id="the-tech-what-is-a-predictive-model"><span class="header-section-number">4</span> The Tech: What is a Predictive Model?</h2>
+<p>We got lucky above: with only 6 bacteria, we could hunt for the winning pair by hand. But a real gut has <em>thousands</em> of bacterial families. Nobody can eyeball a spreadsheet that wide and spot the magic combinations — your brain would melt trying.</p>
+<p>This is the moment <strong>Machine Learning</strong> kicks in. Instead of a human guessing the rules, we hand the whole messy spreadsheet to a computer and let it discover the pattern through trial and error: test, fail, adjust, repeat, and slowly get smarter.</p>
+<section id="warm-up-teaching-a-model-to-draw-the-line" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="warm-up-teaching-a-model-to-draw-the-line"><span class="header-section-number">4.1</span> Warm-Up: Teaching a Model to Draw the Line</h3>
+<p>Before we build a full brain-like network, let’s meet its simpler cousin, <strong>Logistic Regression</strong>. It’s the perfect warm-up.</p>
+<p>We already found that <em>Pair 1</em> (<em>Bifidobacterium</em> + <em>Lactobacillus</em>) splits the groups nicely. Now we want to turn that split into an actual <em>prediction</em>. Step one: swap the labels for numbers — <strong>Healthy = 0</strong> and <strong>Parkinson’s = 1</strong>. Step two: ask the computer to draw one smooth <strong>S-shaped curve</strong> that slides from 0 up to 1 and marks exactly where the two groups divide.</p>
+<p>Let’s fit it to all three pairs and see what pops out.</p>
 <div id="cell-plot-logistic-regression" class="cell" data-fig-height="5" data-fig-width="15" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
@@ -661,46 +687,76 @@ This is the <code>init_notebook_mode</code> cell from ITables v2.8.1<br>
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> df_prop[[pair]].values</span>
 <span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fit the Logistic Regression model</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> LogisticRegression()</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    model.fit(X, y)</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create smooth line for the S-curve</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    X_test <span class="op">=</span> np.linspace(X.<span class="bu">min</span>(), X.<span class="bu">max</span>(), <span class="dv">300</span>).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    y_prob <span class="op">=</span> model.predict_proba(X_test)[:, <span class="dv">1</span>] <span class="co"># Probability of being PD (Class 1)</span></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Scatter plot of actual patients</span></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    ax.scatter(X[y<span class="op">==</span><span class="dv">0</span>], y[y<span class="op">==</span><span class="dv">0</span>], color<span class="op">=</span><span class="st">'#2ecc71'</span>, label<span class="op">=</span><span class="st">"Actual Healthy (0)"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    ax.scatter(X[y<span class="op">==</span><span class="dv">1</span>], y[y<span class="op">==</span><span class="dv">1</span>], color<span class="op">=</span><span class="st">'#e74c3c'</span>, label<span class="op">=</span><span class="st">"Actual PD (1)"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot the regression curve</span></span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    ax.plot(X_test, y_prob, color<span class="op">=</span><span class="st">'black'</span>, linewidth<span class="op">=</span><span class="dv">3</span>, label<span class="op">=</span><span class="st">"Logistic Prediction Curve"</span>)</span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    ax.set_title(title)</span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="st">"Combined Proportion"</span>)</span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">"Probability of Parkinson's"</span>)</span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>    ax.set_yticks([<span class="dv">0</span>, <span class="fl">0.5</span>, <span class="fl">1.0</span>])</span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>    ax.set_yticklabels([<span class="st">'0 (Healthy)'</span>, <span class="st">'0.5'</span>, <span class="st">'1 (PD)'</span>])</span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>    ax.legend()</span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># C=1000 removes the default penalty so we get a sharp S-curve</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> LogisticRegression(C<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    model.fit(X, y)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create smooth line for the S-curve</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    X_test <span class="op">=</span> np.linspace(X.<span class="bu">min</span>(), X.<span class="bu">max</span>(), <span class="dv">300</span>).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    y_prob <span class="op">=</span> model.predict_proba(X_test)[:, <span class="dv">1</span>] <span class="co"># Probability of being PD (Class 1)</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Scatter plot of actual patients</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    ax.scatter(X[y<span class="op">==</span><span class="dv">0</span>], y[y<span class="op">==</span><span class="dv">0</span>], color<span class="op">=</span><span class="st">'#2ecc71'</span>, label<span class="op">=</span><span class="st">"Actual Healthy (0)"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    ax.scatter(X[y<span class="op">==</span><span class="dv">1</span>], y[y<span class="op">==</span><span class="dv">1</span>], color<span class="op">=</span><span class="st">'#e74c3c'</span>, label<span class="op">=</span><span class="st">"Actual PD (1)"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot the regression curve</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    ax.plot(X_test, y_prob, color<span class="op">=</span><span class="st">'black'</span>, linewidth<span class="op">=</span><span class="dv">3</span>, label<span class="op">=</span><span class="st">"Logistic Prediction Curve"</span>)</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    ax.set_title(title)</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="st">"Combined Proportion"</span>)</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">"Probability of Parkinson's"</span>)</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>    ax.set_yticks([<span class="dv">0</span>, <span class="fl">0.5</span>, <span class="fl">1.0</span>])</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>    ax.set_yticklabels([<span class="st">'0 (Healthy)'</span>, <span class="st">'0.5'</span>, <span class="st">'1 (PD)'</span>])</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>    ax.legend()</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="instructions_files/figure-html/plot-logistic-regression-output-1.png" id="plot-logistic-regression" width="1430" height="470" class="figure-img"></p>
+<p><img src="instructions_files/figure-html/plot-logistic-regression-output-1.svg" id="plot-logistic-regression" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<p><strong>Understanding the Model:</strong> Look at the black line in the first chart. It tells us exactly how to predict the disease. If a new patient walks in with a Pair 1 proportion of 0.15, the black line is at <code>1</code>, predicting they have Parkinson’s. If they have a proportion of 0.35, the curve drops down to <code>0</code>, predicting they are Healthy.</p>
-<p>For Pairs 2 and 3, the black line is flat. The model is saying, <em>“This data is useless, it doesn’t help me predict anything.”</em></p>
+<p><strong>Reading the charts:</strong> that black S-curve is the model’s whole brain in one line. In the first chart, a new patient with a Pair 1 value of 0.15 lands where the curve sits near <strong>1</strong> → the model calls it Parkinson’s. A patient at 0.35 lands where the curve has dropped to <strong>0</strong> → Healthy. It’s a genuine prediction machine.</p>
+<p>Now check Pairs 2 and 3: the black line is nearly flat. That flatness is the model shrugging: <em>“This tells me nothing — I can’t predict anything from here.”</em> A flat curve is how the model calls out a decoy.</p>
 </section>
-<section id="why-we-need-neural-networks" class="level3" data-number="4.2">
-<h3 data-number="4.2" class="anchored" data-anchor-id="why-we-need-neural-networks"><span class="header-section-number">4.2</span> Why We Need Neural Networks</h3>
-<p>Logistic Regression is great, but notice that <strong>we</strong> had to manually combine <em>Bifidobacterium</em> and <em>Lactobacillus</em> to create Pair 1. We had to do the hard work of finding the pattern.</p>
-<p>In reality, the gut has thousands of bacteria (<span class="math inline">\(x_1, x_2, x_3 \dots\)</span>). We don’t know which ones to add together. We want to find some hidden, combined features (let’s call them <span class="math inline">\(z_1, z_2 \dots\)</span>) that are highly predictive of the final diagnosis (<span class="math inline">\(y\)</span>).</p>
-<p>Instead of humans guessing the formulas, we build a <strong>Neural Network</strong>. We let machine learning find the mathematical functions <span class="math inline">\(z_j = f_j(x)\)</span> entirely on its own.</p>
+<section id="the-mathematics-behind-the-s-curve" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="the-mathematics-behind-the-s-curve"><span class="header-section-number">4.2</span> The Mathematics Behind the S-Curve</h3>
+<p>Want the actual trick that bends a bacteria score into that smooth curve? It’s one famous formula: the <strong>Logistic Function</strong> (a.k.a. the <em>Sigmoid</em>). Don’t let the symbols scare you — we’re about to take it apart piece by piece:</p>
+<p><span class="math display">\[
+P(Y = 1 \mid z) = \frac{1}{1 + e^{-z}}
+\]</span></p>
+<p><em>(Curious how we typed these fancy equations? Crack open the raw <code>.qmd</code> file for this project on GitHub and steal the code — that’s exactly what it’s there for!)</em></p>
+<section id="breaking-down-the-equation" class="level4" data-number="4.2.1">
+<h4 data-number="4.2.1" class="anchored" data-anchor-id="breaking-down-the-equation"><span class="header-section-number">4.2.1</span> Breaking Down the Equation</h4>
+<p>Learn these pieces and you’ll be able to explain the whole thing in your final report like a pro:</p>
+<ul>
+<li><strong><span class="math inline">\(P(Y = 1 \mid z)\)</span></strong>: reads as <em>“the chance the diagnosis (<span class="math inline">\(Y\)</span>) is Parkinson’s (<span class="math inline">\(1\)</span>), given the patient’s combined pattern score (<span class="math inline">\(z\)</span>).”</em></li>
+<li><strong><span class="math inline">\(e\)</span></strong>: Euler’s number, a famous constant roughly equal to <span class="math inline">\(2.71828\)</span> — it’s math royalty, just like <span class="math inline">\(\pi\)</span> is roughly <span class="math inline">\(3.14159\)</span>.</li>
+<li><strong><span class="math inline">\(z\)</span></strong>: the “secret recipe,” a single score the model cooks up for each patient. For our Pair 1 example, the computer builds it with a simple straight-line equation:</li>
+</ul>
+<p><span class="math display">\[
+z = \beta_0 + \beta_1 \cdot (\text{Bifidobacterium} + \text{Lactobacillus})
+\]</span></p>
+</section>
+<section id="how-the-math-controls-the-curve" class="level4" data-number="4.2.2">
+<h4 data-number="4.2.2" class="anchored" data-anchor-id="how-the-math-controls-the-curve"><span class="header-section-number">4.2.2</span> How the Math Controls the Curve</h4>
+<p>The computer’s entire job while learning is to hunt down the two best numbers: <strong><span class="math inline">\(\beta_0\)</span></strong> (a baseline nudge) and <strong><span class="math inline">\(\beta_1\)</span></strong> (how much weight, or importance, to give the bacteria). Once it locks those in:</p>
+<ul>
+<li>Healthy gut → high combined proportion → <span class="math inline">\(z\)</span> is a big <strong>positive</strong> number. Plug a big positive into <span class="math inline">\(\frac{1}{1 + e^{-z}}\)</span> and the answer squishes down toward <strong><span class="math inline">\(0\)</span> (Healthy)</strong>.</li>
+<li>Parkinson’s gut → low proportion → <span class="math inline">\(z\)</span> is a big <strong>negative</strong> number → the fraction flips and the answer climbs up toward <strong><span class="math inline">\(1\)</span> (Parkinson’s)</strong>.</li>
+</ul>
+<p>As <span class="math inline">\(z\)</span> glides from negative to positive, the formula <em>automatically</em> traces that perfect “S.” Nobody draws it by hand — the math does it for you.</p>
+</section>
+</section>
+<section id="why-we-need-neural-networks" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="why-we-need-neural-networks"><span class="header-section-number">4.3</span> Why We Need Neural Networks</h3>
+<p>Logistic Regression is slick, but did you catch the cheat? <em>We</em> were the ones who combined <em>Bifidobacterium</em> and <em>Lactobacillus</em> into Pair 1. A human did the detective work of finding the pattern first.</p>
+<p>That’s fine with 6 bacteria. But a real gut has <em>thousands</em> (<span class="math inline">\(x_1, x_2, x_3 \dots\)</span>), and nobody knows in advance which ones to add, subtract, or mix together. We want the computer to discover the winning combinations — let’s call them <span class="math inline">\(z_1, z_2 \dots\)</span> — completely on its own.</p>
+<p>That’s the whole point of a <strong>Neural Network</strong>: instead of humans guessing the recipes, we let the machine learn the functions <span class="math inline">\(z_j = f_j(x)\)</span> by itself.</p>
 <p>Think of a Neural Network like a detective agency with several floors (called <strong>Layers</strong>):</p>
 <ol type="1">
 <li><strong>The First Layer (Input, <span class="math inline">\(x\)</span>):</strong> Looks at the raw spreadsheet numbers for a patient (thousands of individual bacteria).</li>
@@ -759,26 +815,36 @@ This is the <code>init_notebook_mode</code> cell from ITables v2.8.1<br>
 </div>
 </div>
 </div>
-<p><strong>How does it learn to find <span class="math inline">\(z\)</span>?</strong> We show the network hundreds of examples where we <em>already know</em> the answer. It makes a guess. If it guesses wrong, it automatically tweaks its own internal math so it can guess better the next time. We call this <strong>training</strong> the model.</p>
 </section>
-</section>
-<section id="the-data" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="the-data"><span class="header-section-number">5</span> 3. The Data</h2>
-<p>Because formatting raw DNA sequences is complex, we have already done the messy spreadsheet cleanup for you.</p>
+<section id="so-what-are-these-hidden-patterns-z-really" class="level3" data-number="4.4">
+<h3 data-number="4.4" class="anchored" data-anchor-id="so-what-are-these-hidden-patterns-z-really"><span class="header-section-number">4.4</span> So What Are These Hidden Patterns (<span class="math inline">\(z\)</span>), Really?</h3>
+<p>Back in our Pair 1 example, we built the pattern the lazy way — just add two bacteria together equally: <span class="math inline">\(z = x_1 + x_2\)</span>.</p>
+<p>A Neural Network is way craftier than that. It builds complex “recipes” called <strong>weighted sums</strong>. It doesn’t just add; it <em>multiplies</em> some bacteria up and <em>subtracts</em> others down to capture real biology:</p>
 <ul>
-<li><p><strong>Core Dataset:</strong> A preprocessed dataset is available in the <code>datasets</code> directory of this GitHub repository: <a href="https://github.com/longhaiSK/PDNN">PDNN GitHub Repo</a>.</p></li>
-<li><p><strong>Data Collection Task (Student A):</strong> One team member should take the lead on gathering additional data to test. Follow the exact steps outlined in this <a href="https://colab.research.google.com/drive/170dd6Qv-IgYyj4_WxvSOlmS8N5wtNGgo#scrollTo=3V9zVKkpWlQe">Google Colab Data Notebook</a>. Additional instructions are located in the repository’s “More Datasets” directory.</p></li>
+<li><strong>Multiplication (Weights):</strong> Not all bacteria matter equally. If <em>Bifidobacterium</em> is a massive health signal and <em>Lactobacillus</em> is only a minor one, the network multiplies them by different “weights” (importance scores). <span class="math display">\[z_1 = 5.0 \cdot (\text{Bifido}) + 0.2 \cdot (\text{Lacto})\]</span></li>
+<li><strong>Subtraction (Negative Weights):</strong> Bacteria are constantly at war in the gut. If a “bad” bacteria overgrows and wipes out the “good” ones, the network learns to penalize it with subtraction. <span class="math display">\[z_2 = 2.0 \cdot (\text{Lacto}) - 4.5 \cdot (\text{Bad Pathogen})\]</span> The network can whip up dozens of these <span class="math inline">\(z\)</span> formulas at once, mixing and matching all 3,000 bacteria with positive weights, negative weights, and fractions to map out the entire ecosystem of the gut!</li>
+</ul>
+<p><strong>But how does it find the perfect weights for <span class="math inline">\(z\)</span>?</strong> We never type those numbers in ourselves — that’s the whole magic. We feed the network hundreds of patients whose answers we <em>already know</em>. It starts with totally random weights, makes a guess, and checks how badly it missed. Then it nudges its own internal math a hair (a <span class="math inline">\(2.0\)</span> becomes a <span class="math inline">\(2.1\)</span>, a plus flips to a minus) so the next guess lands a little closer. Repeat that thousands of times and the network teaches <em>itself</em>. That whole loop is called <strong>training</strong> the model — and soon you’ll be running it.</p>
+<hr>
+</section>
+</section>
+<section id="collection-of-microbiome-data-related-to-parkinson" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="collection-of-microbiome-data-related-to-parkinson"><span class="header-section-number">5</span> Collection of Microbiome Data Related To Parkinson</h2>
+<p>Turning raw DNA sequences into a clean spreadsheet is genuinely tedious work — so we’ve already handled the messy part for you.</p>
+<ul>
+<li><p><strong>Core Dataset:</strong> A preprocessed dataset is ready to go in the <code>datasets</code> directory of this GitHub repository: <a href="https://github.com/longhaiSK/PDNN">PDNN GitHub Repo</a>.</p></li>
+<li><p><strong>Data Collection Task (Student A):</strong> One team member should take the lead on tracking down extra data to test the model on. Follow the exact steps in this <a href="https://colab.research.google.com/drive/170dd6Qv-IgYyj4_WxvSOlmS8N5wtNGgo#scrollTo=3V9zVKkpWlQe">Google Colab Data Notebook</a>. More instructions live in the repository’s “More Datasets” directory.</p></li>
 </ul>
 <hr>
 </section>
 <section id="the-lab-bench-computing-in-google-colab" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="the-lab-bench-computing-in-google-colab"><span class="header-section-number">6</span> 4. The Lab Bench: Computing in Google Colab</h2>
-<p>You will build your Neural Network using a tool called <strong>TensorFlow</strong> inside <strong>Google Colab</strong>. Colab is a free, cloud-based workspace that runs right in your web browser.</p>
+<h2 data-number="6" class="anchored" data-anchor-id="the-lab-bench-computing-in-google-colab"><span class="header-section-number">6</span> The Lab Bench: Computing in Google Colab</h2>
+<p>You’ll build your Neural Network with a tool called <strong>TensorFlow</strong>, running inside <strong>Google Colab</strong> — a free coding lab that lives right in your web browser. Nothing to install, and no fancy computer required.</p>
 <section id="setting-up-colab" class="level3" data-number="6.1">
 <h3 data-number="6.1" class="anchored" data-anchor-id="setting-up-colab"><span class="header-section-number">6.1</span> Setting Up Colab</h3>
 <ol type="1">
 <li>Go to <a href="https://colab.research.google.com/">Google Colab</a> and create a new notebook.</li>
-<li>Make your code run faster by turning on the GPU: Go to <code>Runtime</code> &gt; <code>Change runtime type</code> &gt; select <code>GPU</code> under Hardware accelerator.</li>
+<li>Make your code run way faster by switching on the GPU: <code>Runtime</code> &gt; <code>Change runtime type</code> &gt; pick <code>GPU</code> under Hardware accelerator.</li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -786,77 +852,67 @@ This is the <code>init_notebook_mode</code> cell from ITables v2.8.1<br>
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Helpful Tutorials for Beginners
+<span class="screen-reader-only">Tip</span>Essential Tutorials &amp; Resources
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If you have never coded a Neural Network before, don’t panic. Run through these beginner tutorials directly in Colab before starting your main project. They walk you through the exact code you will need:</p>
+<p>Never used Colab or coded a Neural Network before? Don’t panic — the internet is packed with awesome, interactive guides. We highly recommend clicking through these before you start writing your own code:</p>
+<p><strong>Getting to Know Google Colab:</strong></p>
 <ul>
-<li><a href="https://colab.research.google.com/github/tensorflow/docs/blob/master/site/en/tutorials/quickstart/beginner.ipynb">TensorFlow 2 Quickstart for Beginners</a></li>
-<li><a href="https://colab.research.google.com/github/tensorflow/docs/blob/master/site/en/tutorials/keras/classification.ipynb">Basic Classification with Keras</a></li>
+<li><a href="https://colab.research.google.com/notebooks/intro.ipynb">Welcome to Colaboratory</a>: The official quick-start guide to how text and code blocks work together in a notebook.</li>
+<li><a href="https://colab.research.google.com/notebooks/markdown_guide.ipynb">Markdown Guide for Colab</a>: Learn how to format your text, add headers, and make your notebook look like a real scientific report.</li>
 </ul>
+<p><strong>Learning TensorFlow &amp; Deep Learning:</strong></p>
+<ul>
+<li><a href="https://colab.research.google.com/github/tensorflow/docs/blob/master/site/en/tutorials/quickstart/beginner.ipynb">TensorFlow 2 Quickstart for Beginners</a>: The classic “Hello World” of Deep Learning.</li>
+<li><a href="https://colab.research.google.com/github/tensorflow/docs/blob/master/site/en/tutorials/keras/classification.ipynb">Basic Classification with Keras</a>: A fantastic intro to building layers, training a model, and making predictions.</li>
+<li><a href="https://colab.research.google.com/github/tensorflow/docs/blob/master/site/en/tutorials/structured_data/preprocessing_layers.ipynb">Classify Structured Data</a>: <em>Highly recommended!</em> This one shows you how to train a network on a plain spreadsheet (CSV data) — exactly the kind of data you’ll be using for the microbiome project!</li>
+</ul>
+<p><strong>Conceptual Deep-Dive:</strong> * <a href="https://developers.google.com/machine-learning/crash-course">Google’s Machine Learning Crash Course</a>: Want to go deeper into the math and theory behind the code? This free course is the gold standard.</p>
 </div>
 </div>
 <hr>
 </section>
 </section>
 <section id="the-writing-desk-creating-your-report-in-posit-cloud" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="the-writing-desk-creating-your-report-in-posit-cloud"><span class="header-section-number">7</span> 5. The Writing Desk: Creating Your Report in Posit Cloud</h2>
-<p>Google Colab is fantastic for running heavy math calculations, but it is terrible for writing clean, professional reports. For that, we split our workflow: <strong>Compute in Colab, Write in Posit Cloud.</strong></p>
-<p>Posit Cloud supports <strong>Quarto</strong>—a system that lets you write using a “Visual Editor” (just like Google Docs or Microsoft Word) while it handles making it look like a professional science paper in the background.</p>
+<h2 data-number="7" class="anchored" data-anchor-id="the-writing-desk-creating-your-report-in-posit-cloud"><span class="header-section-number">7</span> The Writing Desk: Creating Your Report in Posit Cloud</h2>
+<p>Colab is a beast at crunching numbers, but honestly it’s clumsy for writing a clean, professional report. So we split the job in two: <strong>crunch in Colab, write in Posit Cloud.</strong></p>
+<p>Posit Cloud runs <strong>Quarto</strong> — a system that lets you write in a “Visual Editor” (basically Google Docs or Word) while it quietly turns your words into a polished science paper behind the scenes.</p>
 <section id="step-by-step-writing-setup" class="level3" data-number="7.1">
 <h3 data-number="7.1" class="anchored" data-anchor-id="step-by-step-writing-setup"><span class="header-section-number">7.1</span> Step-by-Step Writing Setup</h3>
 <ol type="1">
 <li><p>Go to <a href="https://posit.cloud/">Posit Cloud</a> and sign up for a free account.</p></li>
 <li><p>Click <strong>New Project</strong> &gt; <strong>New RStudio Project</strong>.</p></li>
 <li><p>Go to <strong>File</strong> &gt; <strong>New File</strong> &gt; <strong>Quarto Document…</strong> Give it a title and add your names.</p></li>
-<li><p><strong>Crucial Step:</strong> Look at the top left corner of your document and click the <strong>Visual</strong> button. This switches you from code-view to a clean word processor!</p></li>
-<li><p>Transfer your graphs: Save your accuracy charts in Colab as image files (e.g., <code>.png</code>), download them, and upload them to the <strong>Files</strong> pane in Posit Cloud. Insert them into your text using the Image icon.</p></li>
-<li><p>Click the <strong>Render</strong> button (the blue arrow at the top) to generate your final web page or PDF.</p></li>
+<li><p><strong>Crucial step:</strong> Up in the top-left corner, click the <strong>Visual</strong> button. This flips you from code-view into a clean word processor!</p></li>
+<li><p>Bring in your graphs: save your accuracy charts from Colab as image files (e.g.&nbsp;<code>.png</code>), download them, and upload them into the <strong>Files</strong> pane in Posit Cloud. Drop them into your text with the Image icon.</p></li>
+<li><p>Hit the <strong>Render</strong> button (the blue arrow up top) to generate your final web page or PDF.</p></li>
 </ol>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Writing Tip: The “What, So What, Now What” Framework
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Whenever you add a chart or result to your report, explain it using these three steps so your reader understands <em>why</em> you included it:</p>
-<ol type="1">
-<li><p><strong>What:</strong> What are we looking at? <em>(e.g., “This graph shows our model’s accuracy as it practiced over 50 rounds.”)</em></p></li>
-<li><p><strong>So What:</strong> Why does this matter? <em>(e.g., “The accuracy stops improving around round 30, meaning the model stopped learning anything new.”)</em></p></li>
-<li><p><strong>Now What:</strong> What did you do next? <em>(e.g., “Because it stopped learning, we changed the layers in our network to see if it would help…”)</em></p></li>
-</ol>
-</div>
-</div>
 <hr>
 </section>
 </section>
 <section id="appendix-starter-template-for-your-report" class="level2" data-number="8">
 <h2 data-number="8" class="anchored" data-anchor-id="appendix-starter-template-for-your-report"><span class="header-section-number">8</span> Appendix: Starter Template for Your Report</h2>
-<p>Copy the text inside the box below, switch Posit Cloud to <strong>Source</strong> mode, paste it in, and then switch back to <strong>Visual</strong> mode to start writing!</p>
+<p>Copy everything inside the box below, switch Posit Cloud to <strong>Source</strong> mode, paste it in, then flip back to <strong>Visual</strong> mode and start writing!</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Predicting Parkinson's Disease from Gut Microbiome Data"</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Your Names Here"</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1. Introduction</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introduction</span></span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Write 2-3 sentences explaining what Parkinson's Disease is and why the bacteria in our gut might act as a clue to diagnosing it. --&gt;</span></span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## 2. The Dataset</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## The Dataset</span></span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Explain where the data came from. Insert a small table here showing how many patients vs. healthy controls are in our spreadsheet. --&gt;</span></span>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## 3. Our Neural Network Model</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Our Neural Network Model</span></span>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Insert an image of your model architecture or summary here. Explain how many layers you chose for your "detective agency" and why. --&gt;</span></span>
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="fu">## 4. Results</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="fu">## Results</span></span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Insert your accuracy charts here. Remember to use the What, So What, Now What framework to explain them! --&gt;</span></span>
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="fu">## 5. Conclusion</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusion</span></span>
 <span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Did the model successfully predict PD? What was the hardest part of building it, and what would you try next time? --&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 
