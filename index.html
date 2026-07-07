@@ -60,7 +60,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="index_files/libs/clipboard/clipboard.min.js"></script>
@@ -281,27 +300,26 @@ This is the <code>init_notebook_mode</code> cell from ITables v2.8.1<br>
 <section id="the-biology-what-is-the-microbiome-and-parkinsons-disease" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="the-biology-what-is-the-microbiome-and-parkinsons-disease"><span class="header-section-number">2</span> The Biology: What is the Microbiome and Parkinson’s Disease?</h2>
 <p>Picture your gut as a crowded, buzzing city. The “citizens” are <em>trillions</em> of tiny microorganisms — mostly bacteria — all living, eating, and elbowing each other for space inside you right now. Scientists call this hidden community your <strong>gut microbiome</strong>.</p>
-<p>In a healthy person, the microbial city runs in balance: lots of different bacterial families, all keeping one another in check. But in people with <strong>Parkinson’s Disease</strong>, the population of the gut city shifts. Some “good” families crash. Others explode. The whole neighborhood gets rearranged.</p>
-<section id="what-actually-happens-in-parkinsons-disease" class="level3" data-number="2.1">
-<h3 data-number="2.1" class="anchored" data-anchor-id="what-actually-happens-in-parkinsons-disease"><span class="header-section-number">2.1</span> What Actually Happens in Parkinson’s Disease?</h3>
-<p>To understand why this gut connection is so revolutionary, we need to look closer at what Parkinson’s actually does to the body. Historically, PD has been known as a <em>movement</em> disorder. It happens when the brain slowly loses a specific group of cells in an area called the substantia nigra.</p>
-<p>These cells have one main job: producing <strong>dopamine</strong>. Think of dopamine as the “oil” in your brain’s engine. It acts as a chemical messenger that keeps your movements smooth, coordinated, and automatic. As those cells die off and dopamine levels drop, the engine starts to stutter. This is what causes the hallmark symptoms most people associate with PD: tremors, stiff muscles, famously slow movements, and trouble with balance.</p>
-</section>
-<section id="the-invisible-alarms-and-the-braak-hypothesis" class="level3" data-number="2.2">
-<h3 data-number="2.2" class="anchored" data-anchor-id="the-invisible-alarms-and-the-braak-hypothesis"><span class="header-section-number">2.2</span> The “Invisible” Alarms and the Braak Hypothesis</h3>
-<p>But here is the twist that makes the microbiome project so vital: those famous movement issues are actually <strong>late-stage alarms</strong>. By the time a patient’s hand first shakes, they have already lost roughly 60% to 80% of their dopamine-producing cells.</p>
-<p>Long before that happens, patients often experience a constellation of “invisible” non-motor symptoms. These include losing their sense of smell, vivid sleep disorders, and—importantly for our project—<strong>severe, chronic constipation</strong>. In fact, gastrointestinal issues can show up <em>a decade or more</em> before the brain symptoms.</p>
-<p>So, what is actually killing the dopamine cells? The prime suspect is a protein called <strong>alpha-synuclein</strong>. In healthy brains, this protein is harmless. But in Parkinson’s, it misfolds and clumps together into toxic roadblocks that choke the brain cells to death. In 2003, a neuroanatomist named Heiko Braak proposed a radical idea: what if these toxic protein clumps don’t start in the brain at all?</p>
-</section>
-<section id="the-gutbrain-axis" class="level3" data-number="2.3">
-<h3 data-number="2.3" class="anchored" data-anchor-id="the-gutbrain-axis"><span class="header-section-number">2.3</span> The Gut–Brain Axis</h3>
-<p>What if they form down in the gut—perhaps triggered by an out-of-balance bacterial city—and literally “crawl” up into the brain?</p>
-<p>This brings us to the wild part, and the reason this project even exists: <strong>your gut and your brain are constantly talking to each other.</strong> They’re wired together through nerves (especially one long one called the <em>vagus nerve</em>), plus a stream of chemical and immune signals. Scientists call this two-way phone line the <strong>gut–brain axis</strong>.</p>
-<p>If the <strong>Braak hypothesis</strong> is right, the gut isn’t just a bystander in Parkinson’s; it might be Ground Zero. That’s why the bacteria in someone’s stomach can act like an early-warning signal for a <em>brain</em> disease — and it’s what makes your prediction model possible.</p>
-<p>{#fig-gutbrain fig-alt=“Diagram of the gut-brain axis showing bidirectional communication between the gut microbiome and the brain” width=“70%”}</p>
-</section>
-<section id="finding-the-hidden-pattern" class="level3" data-number="2.4">
-<h3 data-number="2.4" class="anchored" data-anchor-id="finding-the-hidden-pattern"><span class="header-section-number">2.4</span> Finding the Hidden Pattern</h3>
+<p>In a healthy person, the microbial city runs in balance: lots of different bacterial families, all keeping one another in check. But in people with <strong>Parkinson’s Disease</strong>, the population of the gut city shifts. Some “good” families crash. Others explode. The whole neighborhood gets rearranged <span class="citation" data-cites="scheperjans2015gut">(<a href="#ref-scheperjans2015gut" role="doc-biblioref">Scheperjans et al. 2015</a>)</span>.</p>
+<p>Here’s the wild part, and the reason this project even exists: <strong>your gut and your brain are constantly talking to each other.</strong> They’re wired together through nerves (especially one long one called the <em>vagus nerve</em>), plus a stream of chemical and immune signals. Scientists call this two-way phone line the <strong>gut–brain axis</strong>. In Parkinson’s, many researchers now suspect the trouble may actually <em>start down in the gut, years before</em> the brain symptoms ever appear. That’s why the bacteria in someone’s stomach can act like an early-warning signal for a <em>brain</em> disease — and it’s what makes your prediction model possible.</p>
+<div id="fig-gutbrain" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Diagram of the gut-brain axis showing bidirectional communication between the gut microbiome and the brain">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gutbrain-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Gut-brain_axis_overview.jpg" class="img-fluid figure-img" style="width:70.0%" alt="Diagram of the gut-brain axis showing bidirectional communication between the gut microbiome and the brain">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gutbrain-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: The <strong>gut–brain axis</strong>: signals travel in both directions between the trillions of microbes in your gut and your brain, partly along the vagus nerve. In Parkinson’s disease, this two-way connection appears to get disrupted — sometimes starting in the gut long before the brain. <em>(Image: Wikimedia Commons, CC BY 4.0. Feel free to swap in your own favorite diagram.)</em>
+</figcaption>
+</figure>
+</div>
+<section id="four-clues-that-flipped-the-script" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="four-clues-that-flipped-the-script"><span class="header-section-number">2.1</span> Four clues that flipped the script</h3>
+<p>For a long time, Parkinson’s was seen as a purely <em>brain</em> disease. Then a handful of strange discoveries dragged the spotlight down to the gut. Here are four of them.</p>
+<p><strong>1. The warning comes from the wrong end.</strong> Long before the first tremor, most people with Parkinson’s have stubborn <strong>constipation</strong> — it shows up in the large majority of patients <span class="citation" data-cites="fasano2015gi">(<a href="#ref-fasano2015gi" role="doc-biblioref">Fasano et al. 2015</a>)</span>, and often appears <em>many years, sometimes more than a decade,</em> ahead of any movement problems. In one long-running study, men with the least frequent bowel movements went on to develop Parkinson’s at several times the rate of others, sometimes a decade or more later <span class="citation" data-cites="abbott2001bowel">(<a href="#ref-abbott2001bowel" role="doc-biblioref">Abbott et al. 2001</a>)</span>. A brain disease announcing itself through the digestive system was one of the first big hints that the story starts somewhere unexpected.</p>
+<p><strong>2. Swap the bacteria, swap the symptoms.</strong> In a now-famous experiment, scientists bred mice genetically rigged to develop Parkinson’s-like problems. One group grew up with normal gut bacteria; the other was raised <em>completely germ-free</em>. The germ-free mice stayed remarkably healthy — same faulty genes, but almost no symptoms. Then the researchers took gut bacteria from <em>human</em> Parkinson’s patients and transferred them into the mice… and the symptoms came roaring back. Bacteria from healthy people did nothing <span class="citation" data-cites="sampson2016gut">(<a href="#ref-sampson2016gut" role="doc-biblioref">Sampson et al. 2016</a>)</span>. The bugs weren’t just <em>along for the ride</em> — in mice, at least, they seemed to be <em>driving</em>.</p>
+<p><strong>3. Cutting the phone line.</strong> Remember the vagus nerve, the gut–brain “phone line”? Decades ago, surgeons sometimes cut it to treat stomach ulcers. When scientists went back and checked those patients years later, some found they were <em>less</em> likely to develop Parkinson’s — as if snipping the wire had blocked a message from reaching the brain <span class="citation" data-cites="svensson2015vagotomy">(<a href="#ref-svensson2015vagotomy" role="doc-biblioref">Svensson et al. 2015</a>)</span>. (Not every study agrees, and researchers are still arguing about it <span class="citation" data-cites="liu2017vagotomy">(<a href="#ref-liu2017vagotomy" role="doc-biblioref">Liu et al. 2017</a>)</span> — which is exactly how real science works.)</p>
+<p><strong>4. The bugs even eat the medicine.</strong> The main drug for Parkinson’s, <em>levodopa</em>, has to travel through the gut to reach the brain. But certain gut bacteria grab it and break it down <em>first</em> — like a package thief on the porch. That means two patients on the exact same dose can get very different results, depending on who’s living in their gut <span class="citation" data-cites="mainirekdal2019levodopa">(<a href="#ref-mainirekdal2019levodopa" role="doc-biblioref">Maini Rekdal et al. 2019</a>)</span>.</p>
+<p>Tying the thread together: many scientists think a misshapen protein called <strong>alpha-synuclein</strong> is the “bad message” itself. It can misfold down in the gut, clump together, and spread <em>upward</em> along the vagus nerve in a chain reaction, seeding the same damage in the brain <span class="citation" data-cites="braak2003routes">(<a href="#ref-braak2003routes" role="doc-biblioref">Braak et al. 2003</a>)</span>. If that idea is right, the gut isn’t just a <em>mirror</em> of the disease — it might be where the disease is <em>born</em>. This is still a leading hypothesis, not settled fact, and testing it is one of the hottest questions in the field.</p>
 <p>So how do scientists actually <em>see</em> these bacteria? They can’t line them up and count them by hand. Instead, they take a stool sample and sequence the DNA inside it — basically running a <strong>census</strong> of the gut city. What comes back is a giant spreadsheet:</p>
 <ul>
 <li>Every <strong>row</strong> is a different patient.</li>
@@ -321,7 +339,7 @@ This is the <code>init_notebook_mode</code> cell from ITables v2.8.1<br>
 <h3 data-number="3.1" class="anchored" data-anchor-id="step-1-a-synthesized-raw-data"><span class="header-section-number">3.1</span> Step 1: A Synthesized Raw Data</h3>
 <p>First, let’s generate the raw counts — the messy numbers straight off the machine, before anyone cleans them up.</p>
 <p><strong>Data Generating Function</strong></p>
-<div id="02fa84c8" class="cell" data-execution_count="2">
+<div id="b41fc020" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -526,7 +544,7 @@ This is the <code>init_notebook_mode</code> cell from ITables v2.8.1<br>
 </div>
 <div id="generate-raw-data-3" class="cell-output cell-output-display">
 <!--| quarto-html-table-processing: none -->
-<table id="itables_b18b641e_da9d_4c60_a2ae_bac7d762c19d">
+<table id="itables_80435999_715d_406d_b61a_5447910ae9b7">
   <tbody>
     <tr>
       <td style="vertical-align:middle; text-align:left"><a href="https://mwouts.github.io/itables/"><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="64" viewbox="0 0 500 400" style="font-family: 'Droid Sans', sans-serif;">
@@ -597,7 +615,7 @@ This is the <code>init_notebook_mode</code> cell from ITables v2.8.1<br>
         async function init() {
             const { ITable, jQuery: $ } = await window._itables_2_8_1;
 
-            document.querySelectorAll("#itables_b18b641e_da9d_4c60_a2ae_bac7d762c19d:not(.dataTable)").forEach(table => {
+            document.querySelectorAll("#itables_80435999_715d_406d_b61a_5447910ae9b7:not(.dataTable)").forEach(table => {
                 if (!(table instanceof HTMLTableElement))
                     return;
 
@@ -677,7 +695,7 @@ This is the <code>init_notebook_mode</code> cell from ITables v2.8.1<br>
 </details>
 <div id="calculate-proportions" class="cell-output cell-output-display">
 <!--| quarto-html-table-processing: none -->
-<table id="itables_c336aa97_ba3e_44da_8579_1902370a6926">
+<table id="itables_55f553bb_66cd_49b8_a8da_a3ac8397c532">
   <tbody>
     <tr>
       <td style="vertical-align:middle; text-align:left"><a href="https://mwouts.github.io/itables/"><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="64" viewbox="0 0 500 400" style="font-family: 'Droid Sans', sans-serif;">
@@ -748,7 +766,7 @@ This is the <code>init_notebook_mode</code> cell from ITables v2.8.1<br>
         async function init() {
             const { ITable, jQuery: $ } = await window._itables_2_8_1;
 
-            document.querySelectorAll("#itables_c336aa97_ba3e_44da_8579_1902370a6926:not(.dataTable)").forEach(table => {
+            document.querySelectorAll("#itables_55f553bb_66cd_49b8_a8da_a3ac8397c532:not(.dataTable)").forEach(table => {
                 if (!(table instanceof HTMLTableElement))
                     return;
 
@@ -1124,7 +1142,7 @@ The Final Exam: Individual Patient Predictions</code></pre>
 </div>
 <div id="full-neural-network-pipeline-baseline-1" class="cell-output cell-output-display">
 <!--| quarto-html-table-processing: none -->
-<table id="itables_a7def5f7_3a88_43a3_81b6_896d0bf5aad0">
+<table id="itables_3f68d1e7_58a3_4ca2_a86f_91d9430f4707">
   <tbody>
     <tr>
       <td style="vertical-align:middle; text-align:left"><a href="https://mwouts.github.io/itables/"><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="64" viewbox="0 0 500 400" style="font-family: 'Droid Sans', sans-serif;">
@@ -1195,14 +1213,14 @@ The Final Exam: Individual Patient Predictions</code></pre>
         async function init() {
             const { ITable, jQuery: $ } = await window._itables_2_8_1;
 
-            document.querySelectorAll("#itables_a7def5f7_3a88_43a3_81b6_896d0bf5aad0:not(.dataTable)").forEach(table => {
+            document.querySelectorAll("#itables_3f68d1e7_58a3_4ca2_a86f_91d9430f4707:not(.dataTable)").forEach(table => {
                 if (!(table instanceof HTMLTableElement))
                     return;
 
                 let dt_args = {
           "classes": ["display", "compact"],
           "columnDefs": [{"render": "function (data, type, row, meta) { return type === 'sort' || type === 'type' ? data[1] : data[0]; }", "targets": [1]}],
-          "data_json": "[[1, [\"0.720\", 0.7200000286102295], 1], [1, [\"0.461\", 0.460999995470047], 0], [1, [\"0.600\", 0.6000000238418579], 1], [1, [\"0.802\", 0.8019999861717224], 1], [1, [\"0.698\", 0.6980000138282776], 1], [1, [\"0.626\", 0.6259999871253967], 1], [1, [\"0.763\", 0.7630000114440918], 1], [1, [\"0.517\", 0.5170000195503235], 1], [1, [\"0.580\", 0.5799999833106995], 1], [1, [\"0.723\", 0.7229999899864197], 1], [1, [\"0.573\", 0.5730000138282776], 1], [1, [\"0.550\", 0.550000011920929], 1], [1, [\"0.526\", 0.5260000228881836], 1], [1, [\"0.531\", 0.531000018119812], 1], [1, [\"0.727\", 0.7269999980926514], 1], [1, [\"0.753\", 0.753000020980835], 1], [1, [\"0.575\", 0.574999988079071], 1], [1, [\"0.610\", 0.6100000143051147], 1], [1, [\"0.708\", 0.7080000042915344], 1], [1, [\"0.604\", 0.6039999723434448], 1], [1, [\"0.465\", 0.4650000035762787], 0], [1, [\"0.660\", 0.6600000262260437], 1], [1, [\"0.497\", 0.4970000088214874], 0], [1, [\"0.664\", 0.6639999747276306], 1], [1, [\"0.704\", 0.7039999961853027], 1], [1, [\"0.372\", 0.3720000088214874], 0], [1, [\"0.471\", 0.47099998593330383], 0], [1, [\"0.508\", 0.5080000162124634], 1], [1, [\"0.528\", 0.527999997138977], 1], [1, [\"0.616\", 0.6159999966621399], 1], [1, [\"0.412\", 0.41200000047683716], 0], [1, [\"0.735\", 0.7350000143051147], 1], [1, [\"0.676\", 0.6759999990463257], 1], [1, [\"0.557\", 0.5569999814033508], 1], [1, [\"0.629\", 0.6290000081062317], 1], [1, [\"0.561\", 0.5609999895095825], 1], [1, [\"0.656\", 0.656000018119812], 1], [1, [\"0.339\", 0.33899998664855957], 0], [1, [\"0.768\", 0.7680000066757202], 1], [1, [\"0.773\", 0.7730000019073486], 1], [1, [\"0.503\", 0.503000020980835], 1], [1, [\"0.550\", 0.550000011920929], 1], [1, [\"0.594\", 0.593999981880188], 1], [1, [\"0.524\", 0.5239999890327454], 1], [1, [\"0.611\", 0.6110000014305115], 1], [1, [\"0.745\", 0.7450000047683716], 1], [1, [\"0.568\", 0.5680000185966492], 1], [1, [\"0.751\", 0.7509999871253967], 1], [1, [\"0.480\", 0.47999998927116394], 0], [1, [\"0.746\", 0.7459999918937683], 1], [1, [\"0.766\", 0.765999972820282], 1], [1, [\"0.711\", 0.7110000252723694], 1], [1, [\"0.505\", 0.5049999952316284], 1], [1, [\"0.718\", 0.7179999947547913], 1], [1, [\"0.646\", 0.6460000276565552], 1], [1, [\"0.647\", 0.6470000147819519], 1], [1, [\"0.591\", 0.5910000205039978], 1], [1, [\"0.692\", 0.6919999718666077], 1], [1, [\"0.705\", 0.7049999833106995], 1], [1, [\"0.494\", 0.49399998784065247], 0], [1, [\"0.805\", 0.8050000071525574], 1], [1, [\"0.796\", 0.7960000038146973], 1], [1, [\"0.762\", 0.7620000243186951], 1], [1, [\"0.731\", 0.7310000061988831], 1], [1, [\"0.538\", 0.5379999876022339], 1], [1, [\"0.343\", 0.34299999475479126], 0], [1, [\"0.420\", 0.41999998688697815], 0], [1, [\"0.691\", 0.6909999847412109], 1], [1, [\"0.661\", 0.6610000133514404], 1], [1, [\"0.790\", 0.7900000214576721], 1], [1, [\"0.518\", 0.5180000066757202], 1], [1, [\"0.697\", 0.6970000267028809], 1], [1, [\"0.654\", 0.6539999842643738], 1], [1, [\"0.738\", 0.7379999756813049], 1], [1, [\"0.602\", 0.6019999980926514], 1], [1, [\"0.396\", 0.3959999978542328], 0], [1, [\"0.682\", 0.6819999814033508], 1], [1, [\"0.565\", 0.5649999976158142], 1], [1, [\"0.553\", 0.5529999732971191], 1], [1, [\"0.691\", 0.6909999847412109], 1], [1, [\"0.639\", 0.6389999985694885], 1], [1, [\"0.680\", 0.6800000071525574], 1], [1, [\"0.662\", 0.6620000004768372], 1], [1, [\"0.703\", 0.703000009059906], 1], [1, [\"0.562\", 0.5619999766349792], 1], [1, [\"0.608\", 0.6079999804496765], 1], [1, [\"0.417\", 0.4169999957084656], 0], [1, [\"0.442\", 0.44200000166893005], 0], [1, [\"0.274\", 0.27399998903274536], 0], [1, [\"0.769\", 0.7689999938011169], 1], [1, [\"0.465\", 0.4650000035762787], 0], [1, [\"0.665\", 0.6650000214576721], 1], [1, [\"0.339\", 0.33899998664855957], 0], [1, [\"0.686\", 0.6859999895095825], 1], [1, [\"0.789\", 0.7889999747276306], 1], [1, [\"0.713\", 0.7129999995231628], 1], [1, [\"0.845\", 0.8450000286102295], 1], [1, [\"0.711\", 0.7110000252723694], 1], [1, [\"0.733\", 0.7329999804496765], 1], [1, [\"0.687\", 0.6869999766349792], 1], [0, [\"0.444\", 0.4440000057220459], 0], [0, [\"0.482\", 0.4819999933242798], 0], [0, [\"0.400\", 0.4000000059604645], 0], [0, [\"0.508\", 0.5080000162124634], 1], [0, [\"0.512\", 0.5120000243186951], 1], [0, [\"0.577\", 0.5770000219345093], 1], [0, [\"0.139\", 0.13899999856948853], 0], [0, [\"0.392\", 0.3919999897480011], 0], [0, [\"0.497\", 0.4970000088214874], 0], [0, [\"0.261\", 0.26100000739097595], 0], [0, [\"0.329\", 0.32899999618530273], 0], [0, [\"0.386\", 0.38600000739097595], 0], [0, [\"0.264\", 0.2639999985694885], 0], [0, [\"0.246\", 0.2460000067949295], 0], [0, [\"0.387\", 0.3869999945163727], 0], [0, [\"0.382\", 0.38199999928474426], 0], [0, [\"0.372\", 0.3720000088214874], 0], [0, [\"0.595\", 0.5950000286102295], 1], [0, [\"0.635\", 0.6349999904632568], 1], [0, [\"0.168\", 0.1679999977350235], 0], [0, [\"0.160\", 0.1599999964237213], 0], [0, [\"0.259\", 0.2590000033378601], 0], [0, [\"0.218\", 0.21799999475479126], 0], [0, [\"0.260\", 0.25999999046325684], 0], [0, [\"0.101\", 0.10100000351667404], 0], [0, [\"0.192\", 0.19200000166893005], 0], [0, [\"0.408\", 0.40799999237060547], 0], [0, [\"0.437\", 0.43700000643730164], 0], [0, [\"0.558\", 0.5580000281333923], 1], [0, [\"0.284\", 0.2840000092983246], 0], [0, [\"0.395\", 0.39500001072883606], 0], [0, [\"0.509\", 0.5090000033378601], 1], [0, [\"0.432\", 0.4320000112056732], 0], [0, [\"0.490\", 0.49000000953674316], 0], [0, [\"0.179\", 0.17900000512599945], 0], [0, [\"0.278\", 0.27799999713897705], 0], [0, [\"0.388\", 0.3880000114440918], 0], [0, [\"0.197\", 0.19699999690055847], 0], [0, [\"0.274\", 0.27399998903274536], 0], [0, [\"0.459\", 0.45899999141693115], 0], [0, [\"0.124\", 0.12399999797344208], 0], [0, [\"0.249\", 0.24899999797344208], 0], [0, [\"0.567\", 0.5669999718666077], 1], [0, [\"0.274\", 0.27399998903274536], 0], [0, [\"0.451\", 0.45100000500679016], 0], [0, [\"0.607\", 0.6069999933242798], 1], [0, [\"0.187\", 0.18700000643730164], 0], [0, [\"0.127\", 0.12700000405311584], 0], [0, [\"0.523\", 0.5230000019073486], 1], [0, [\"0.213\", 0.21299999952316284], 0], [0, [\"0.378\", 0.3779999911785126], 0], [0, [\"0.430\", 0.4300000071525574], 0], [0, [\"0.418\", 0.4180000126361847], 0], [0, [\"0.408\", 0.40799999237060547], 0], [0, [\"0.317\", 0.31700000166893005], 0], [0, [\"0.482\", 0.4819999933242798], 0], [0, [\"0.318\", 0.3179999887943268], 0], [0, [\"0.342\", 0.34200000762939453], 0], [0, [\"0.281\", 0.2809999883174896], 0], [0, [\"0.391\", 0.39100000262260437], 0], [0, [\"0.396\", 0.3959999978542328], 0], [0, [\"0.238\", 0.23800000548362732], 0], [0, [\"0.310\", 0.3100000023841858], 0], [0, [\"0.472\", 0.47200000286102295], 0], [0, [\"0.215\", 0.2150000035762787], 0], [0, [\"0.248\", 0.24799999594688416], 0], [0, [\"0.546\", 0.5460000038146973], 1], [0, [\"0.274\", 0.27399998903274536], 0], [0, [\"0.404\", 0.40400001406669617], 0], [0, [\"0.230\", 0.23000000417232513], 0], [0, [\"0.461\", 0.460999995470047], 0], [0, [\"0.570\", 0.5699999928474426], 1], [0, [\"0.507\", 0.5070000290870667], 1], [0, [\"0.321\", 0.32100000977516174], 0], [0, [\"0.301\", 0.3009999990463257], 0], [0, [\"0.477\", 0.47699999809265137], 0], [0, [\"0.224\", 0.2240000069141388], 0], [0, [\"0.637\", 0.6370000243186951], 1], [0, [\"0.292\", 0.2919999957084656], 0], [0, [\"0.495\", 0.4950000047683716], 0], [0, [\"0.433\", 0.43299999833106995], 0], [0, [\"0.315\", 0.3149999976158142], 0], [0, [\"0.433\", 0.43299999833106995], 0], [0, [\"0.355\", 0.35499998927116394], 0], [0, [\"0.244\", 0.24400000274181366], 0], [0, [\"0.445\", 0.4449999928474426], 0], [0, [\"0.191\", 0.19099999964237213], 0], [0, [\"0.502\", 0.5019999742507935], 1], [0, [\"0.192\", 0.19200000166893005], 0], [0, [\"0.168\", 0.1679999977350235], 0], [0, [\"0.705\", 0.7049999833106995], 1], [0, [\"0.395\", 0.39500001072883606], 0], [0, [\"0.233\", 0.2329999953508377], 0], [0, [\"0.347\", 0.34700000286102295], 0], [0, [\"0.253\", 0.2529999911785126], 0], [0, [\"0.412\", 0.41200000047683716], 0], [0, [\"0.381\", 0.38100001215934753], 0], [0, [\"0.379\", 0.3790000081062317], 0], [0, [\"0.158\", 0.15800000727176666], 0], [0, [\"0.315\", 0.3149999976158142], 0]]",
+          "data_json": "[[1, [\"0.739\", 0.7390000224113464], 1], [1, [\"0.452\", 0.4519999921321869], 0], [1, [\"0.617\", 0.6169999837875366], 1], [1, [\"0.832\", 0.8320000171661377], 1], [1, [\"0.720\", 0.7200000286102295], 1], [1, [\"0.622\", 0.621999979019165], 1], [1, [\"0.784\", 0.7839999794960022], 1], [1, [\"0.532\", 0.5320000052452087], 1], [1, [\"0.578\", 0.578000009059906], 1], [1, [\"0.737\", 0.7369999885559082], 1], [1, [\"0.600\", 0.6000000238418579], 1], [1, [\"0.563\", 0.5630000233650208], 1], [1, [\"0.556\", 0.5559999942779541], 1], [1, [\"0.553\", 0.5529999732971191], 1], [1, [\"0.742\", 0.7419999837875366], 1], [1, [\"0.771\", 0.7710000276565552], 1], [1, [\"0.611\", 0.6110000014305115], 1], [1, [\"0.638\", 0.6380000114440918], 1], [1, [\"0.736\", 0.7360000014305115], 1], [1, [\"0.620\", 0.6200000047683716], 1], [1, [\"0.487\", 0.4869999885559082], 0], [1, [\"0.671\", 0.6710000038146973], 1], [1, [\"0.499\", 0.49900001287460327], 0], [1, [\"0.678\", 0.6779999732971191], 1], [1, [\"0.729\", 0.7289999723434448], 1], [1, [\"0.367\", 0.367000013589859], 0], [1, [\"0.478\", 0.4779999852180481], 0], [1, [\"0.529\", 0.5289999842643738], 1], [1, [\"0.557\", 0.5569999814033508], 1], [1, [\"0.639\", 0.6389999985694885], 1], [1, [\"0.394\", 0.39399999380111694], 0], [1, [\"0.764\", 0.7639999985694885], 1], [1, [\"0.708\", 0.7080000042915344], 1], [1, [\"0.545\", 0.5450000166893005], 1], [1, [\"0.647\", 0.6470000147819519], 1], [1, [\"0.581\", 0.5809999704360962], 1], [1, [\"0.656\", 0.656000018119812], 1], [1, [\"0.349\", 0.3490000069141388], 0], [1, [\"0.784\", 0.7839999794960022], 1], [1, [\"0.795\", 0.7950000166893005], 1], [1, [\"0.530\", 0.5299999713897705], 1], [1, [\"0.576\", 0.5759999752044678], 1], [1, [\"0.624\", 0.6240000128746033], 1], [1, [\"0.529\", 0.5289999842643738], 1], [1, [\"0.622\", 0.621999979019165], 1], [1, [\"0.764\", 0.7639999985694885], 1], [1, [\"0.572\", 0.5720000267028809], 1], [1, [\"0.776\", 0.7760000228881836], 1], [1, [\"0.495\", 0.4950000047683716], 0], [1, [\"0.771\", 0.7710000276565552], 1], [1, [\"0.789\", 0.7889999747276306], 1], [1, [\"0.733\", 0.7329999804496765], 1], [1, [\"0.508\", 0.5080000162124634], 1], [1, [\"0.743\", 0.7429999709129333], 1], [1, [\"0.644\", 0.6439999938011169], 1], [1, [\"0.675\", 0.675000011920929], 1], [1, [\"0.612\", 0.6119999885559082], 1], [1, [\"0.707\", 0.7070000171661377], 1], [1, [\"0.726\", 0.7260000109672546], 1], [1, [\"0.485\", 0.48500001430511475], 0], [1, [\"0.824\", 0.8240000009536743], 1], [1, [\"0.812\", 0.8119999766349792], 1], [1, [\"0.781\", 0.781000018119812], 1], [1, [\"0.758\", 0.7580000162124634], 1], [1, [\"0.545\", 0.5450000166893005], 1], [1, [\"0.340\", 0.3400000035762787], 0], [1, [\"0.414\", 0.414000004529953], 0], [1, [\"0.714\", 0.7139999866485596], 1], [1, [\"0.679\", 0.6790000200271606], 1], [1, [\"0.815\", 0.8149999976158142], 1], [1, [\"0.502\", 0.5019999742507935], 1], [1, [\"0.727\", 0.7269999980926514], 1], [1, [\"0.679\", 0.6790000200271606], 1], [1, [\"0.752\", 0.7519999742507935], 1], [1, [\"0.621\", 0.6209999918937683], 1], [1, [\"0.417\", 0.4169999957084656], 0], [1, [\"0.704\", 0.7039999961853027], 1], [1, [\"0.588\", 0.5879999995231628], 1], [1, [\"0.576\", 0.5759999752044678], 1], [1, [\"0.709\", 0.7089999914169312], 1], [1, [\"0.658\", 0.6579999923706055], 1], [1, [\"0.701\", 0.7009999752044678], 1], [1, [\"0.687\", 0.6869999766349792], 1], [1, [\"0.712\", 0.7120000123977661], 1], [1, [\"0.558\", 0.5580000281333923], 1], [1, [\"0.635\", 0.6349999904632568], 1], [1, [\"0.436\", 0.4359999895095825], 0], [1, [\"0.445\", 0.4449999928474426], 0], [1, [\"0.279\", 0.27900001406669617], 0], [1, [\"0.793\", 0.7929999828338623], 1], [1, [\"0.474\", 0.4740000069141388], 0], [1, [\"0.685\", 0.6850000023841858], 1], [1, [\"0.363\", 0.3630000054836273], 0], [1, [\"0.692\", 0.6919999718666077], 1], [1, [\"0.810\", 0.8100000023841858], 1], [1, [\"0.724\", 0.7239999771118164], 1], [1, [\"0.864\", 0.8640000224113464], 1], [1, [\"0.732\", 0.7319999933242798], 1], [1, [\"0.752\", 0.7519999742507935], 1], [1, [\"0.717\", 0.7170000076293945], 1], [0, [\"0.456\", 0.4560000002384186], 0], [0, [\"0.500\", 0.5], 0], [0, [\"0.414\", 0.414000004529953], 0], [0, [\"0.528\", 0.527999997138977], 1], [0, [\"0.554\", 0.5540000200271606], 1], [0, [\"0.593\", 0.5929999947547913], 1], [0, [\"0.141\", 0.14100000262260437], 0], [0, [\"0.425\", 0.42500001192092896], 0], [0, [\"0.526\", 0.5260000228881836], 1], [0, [\"0.257\", 0.25699999928474426], 0], [0, [\"0.332\", 0.3319999873638153], 0], [0, [\"0.395\", 0.39500001072883606], 0], [0, [\"0.266\", 0.26600000262260437], 0], [0, [\"0.250\", 0.25], 0], [0, [\"0.385\", 0.38499999046325684], 0], [0, [\"0.380\", 0.3799999952316284], 0], [0, [\"0.381\", 0.38100001215934753], 0], [0, [\"0.598\", 0.5979999899864197], 1], [0, [\"0.666\", 0.6660000085830688], 1], [0, [\"0.166\", 0.16599999368190765], 0], [0, [\"0.166\", 0.16599999368190765], 0], [0, [\"0.251\", 0.25099998712539673], 0], [0, [\"0.216\", 0.2160000056028366], 0], [0, [\"0.267\", 0.2669999897480011], 0], [0, [\"0.103\", 0.10300000011920929], 0], [0, [\"0.196\", 0.19599999487400055], 0], [0, [\"0.424\", 0.42399999499320984], 0], [0, [\"0.447\", 0.44699999690055847], 0], [0, [\"0.568\", 0.5680000185966492], 1], [0, [\"0.302\", 0.3019999861717224], 0], [0, [\"0.395\", 0.39500001072883606], 0], [0, [\"0.506\", 0.5059999823570251], 1], [0, [\"0.439\", 0.4390000104904175], 0], [0, [\"0.495\", 0.4950000047683716], 0], [0, [\"0.182\", 0.18199999630451202], 0], [0, [\"0.299\", 0.29899999499320984], 0], [0, [\"0.411\", 0.41100001335144043], 0], [0, [\"0.202\", 0.20200000703334808], 0], [0, [\"0.270\", 0.27000001072883606], 0], [0, [\"0.471\", 0.47099998593330383], 0], [0, [\"0.120\", 0.11999999731779099], 0], [0, [\"0.256\", 0.25600001215934753], 0], [0, [\"0.589\", 0.5889999866485596], 1], [0, [\"0.262\", 0.2619999945163727], 0], [0, [\"0.472\", 0.47200000286102295], 0], [0, [\"0.639\", 0.6389999985694885], 1], [0, [\"0.183\", 0.18299999833106995], 0], [0, [\"0.128\", 0.12800000607967377], 0], [0, [\"0.532\", 0.5320000052452087], 1], [0, [\"0.214\", 0.21400000154972076], 0], [0, [\"0.385\", 0.38499999046325684], 0], [0, [\"0.455\", 0.45500001311302185], 0], [0, [\"0.423\", 0.4230000078678131], 0], [0, [\"0.401\", 0.4009999930858612], 0], [0, [\"0.314\", 0.3140000104904175], 0], [0, [\"0.489\", 0.48899999260902405], 0], [0, [\"0.326\", 0.32600000500679016], 0], [0, [\"0.360\", 0.36000001430511475], 0], [0, [\"0.277\", 0.2770000100135803], 0], [0, [\"0.393\", 0.3930000066757202], 0], [0, [\"0.402\", 0.4020000100135803], 0], [0, [\"0.247\", 0.24699999392032623], 0], [0, [\"0.335\", 0.33500000834465027], 0], [0, [\"0.482\", 0.4819999933242798], 0], [0, [\"0.207\", 0.2070000022649765], 0], [0, [\"0.259\", 0.2590000033378601], 0], [0, [\"0.558\", 0.5580000281333923], 1], [0, [\"0.292\", 0.2919999957084656], 0], [0, [\"0.411\", 0.41100001335144043], 0], [0, [\"0.232\", 0.23199999332427979], 0], [0, [\"0.474\", 0.4740000069141388], 0], [0, [\"0.585\", 0.5849999785423279], 1], [0, [\"0.509\", 0.5090000033378601], 1], [0, [\"0.327\", 0.3269999921321869], 0], [0, [\"0.313\", 0.31299999356269836], 0], [0, [\"0.495\", 0.4950000047683716], 0], [0, [\"0.229\", 0.2290000021457672], 0], [0, [\"0.655\", 0.6549999713897705], 1], [0, [\"0.293\", 0.2930000126361847], 0], [0, [\"0.499\", 0.49900001287460327], 0], [0, [\"0.453\", 0.453000009059906], 0], [0, [\"0.316\", 0.3160000145435333], 0], [0, [\"0.443\", 0.4429999887943268], 0], [0, [\"0.356\", 0.35600000619888306], 0], [0, [\"0.256\", 0.25600001215934753], 0], [0, [\"0.466\", 0.4659999907016754], 0], [0, [\"0.192\", 0.19200000166893005], 0], [0, [\"0.512\", 0.5120000243186951], 1], [0, [\"0.187\", 0.18700000643730164], 0], [0, [\"0.175\", 0.17499999701976776], 0], [0, [\"0.723\", 0.7229999899864197], 1], [0, [\"0.410\", 0.4099999964237213], 0], [0, [\"0.235\", 0.23499999940395355], 0], [0, [\"0.353\", 0.3529999852180481], 0], [0, [\"0.256\", 0.25600001215934753], 0], [0, [\"0.430\", 0.4300000071525574], 0], [0, [\"0.397\", 0.3970000147819519], 0], [0, [\"0.395\", 0.39500001072883606], 0], [0, [\"0.158\", 0.15800000727176666], 0], [0, [\"0.331\", 0.3310000002384186], 0]]",
           "keys_to_be_evaluated": [["columnDefs", 0, "render"]],
           "layout": {"bottomEnd": "paging", "bottomStart": "info", "topEnd": "search", "topStart": "pageLength"},
           "lengthMenu": [5, 10],
@@ -1232,7 +1250,7 @@ Grading the Exam: Model Metrics Summary</code></pre>
 </div>
 <div id="full-neural-network-pipeline-baseline-2" class="cell-output cell-output-display">
 <!--| quarto-html-table-processing: none -->
-<table id="itables_f7a37b1c_b5e6_4812_a9f0_a791f03adcc1">
+<table id="itables_820367bb_01de_4358_841a_4f25849cb630">
   <tbody>
     <tr>
       <td style="vertical-align:middle; text-align:left"><a href="https://mwouts.github.io/itables/"><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="64" viewbox="0 0 500 400" style="font-family: 'Droid Sans', sans-serif;">
@@ -1303,13 +1321,13 @@ Grading the Exam: Model Metrics Summary</code></pre>
         async function init() {
             const { ITable, jQuery: $ } = await window._itables_2_8_1;
 
-            document.querySelectorAll("#itables_f7a37b1c_b5e6_4812_a9f0_a791f03adcc1:not(.dataTable)").forEach(table => {
+            document.querySelectorAll("#itables_820367bb_01de_4358_841a_4f25849cb630:not(.dataTable)").forEach(table => {
                 if (!(table instanceof HTMLTableElement))
                     return;
 
                 let dt_args = {
           "classes": ["display", "nowrap", "compact"],
-          "data_json": "[[\"Actual Healthy\", \"TN = 84\", \"FP = 16\", \"TNR (Specificity): 84.00%\"], [\"Actual Parkinson's\", \"FN = 17\", \"TP = 83\", \"Recall (Sensitivity): 83.00%\"], [\"Column Marginals\", \"NPV: 83.17%\", \"Precision: 83.84%\", \"Overall Error Rate: 16.50%\"]]",
+          "data_json": "[[\"Actual Healthy\", \"TN = 83\", \"FP = 17\", \"TNR (Specificity): 83.00%\"], [\"Actual Parkinson's\", \"FN = 17\", \"TP = 83\", \"Recall (Sensitivity): 83.00%\"], [\"Column Marginals\", \"NPV: 83.00%\", \"Precision: 83.00%\", \"Overall Error Rate: 17.00%\"]]",
           "layout": {"bottomEnd": null, "bottomStart": null, "topEnd": null, "topStart": null},
           "order": [],
           "style": {"caption-side": "bottom", "margin": "auto", "table-layout": "auto", "width": "auto"},
@@ -1511,9 +1529,35 @@ Grading the Exam: Model Metrics Summary</code></pre>
 <span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusion</span></span>
 <span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Did the model successfully predict PD? What was the hardest part of building it, and what would you try next time? --&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
 </section>
 
-</main>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-abbott2001bowel" class="csl-entry" role="listitem">
+Abbott, Robert D., Helen Petrovitch, Lon R. White, et al. 2001. <span>“Frequency of Bowel Movements and the Future Risk of <span class="nocase">Parkinson’s</span> Disease.”</span> <em>Neurology</em> 57 (3): 456–62. <a href="https://doi.org/10.1212/WNL.57.3.456">https://doi.org/10.1212/WNL.57.3.456</a>.
+</div>
+<div id="ref-braak2003routes" class="csl-entry" role="listitem">
+Braak, Heiko, Udo Rüb, W. P. Gai, and Kelly Del Tredici. 2003. <span>“Idiopathic <span class="nocase">Parkinson’s</span> Disease: Possible Routes by Which Vulnerable Neuronal Types May Be Subject to Neuroinvasion by an Unknown Pathogen.”</span> <em>Journal of Neural Transmission</em> 110 (5): 517–36.
+</div>
+<div id="ref-fasano2015gi" class="csl-entry" role="listitem">
+Fasano, Alberto, Naomi P. Visanji, Louis W. C. Liu, Anthony E. Lang, and Ronald F. Pfeiffer. 2015. <span>“Gastrointestinal Dysfunction in <span class="nocase">Parkinson’s</span> Disease.”</span> <em>The Lancet Neurology</em> 14 (6): 625–39.
+</div>
+<div id="ref-liu2017vagotomy" class="csl-entry" role="listitem">
+Liu, Bojing, Fang Fang, Nancy L. Pedersen, et al. 2017. <span>“Vagotomy and <span>Parkinson</span> Disease: A <span>Swedish</span> Register-Based Matched-Cohort Study.”</span> <em>Neurology</em> 88 (21): 1996–2002. <a href="https://doi.org/10.1212/WNL.0000000000003961">https://doi.org/10.1212/WNL.0000000000003961</a>.
+</div>
+<div id="ref-mainirekdal2019levodopa" class="csl-entry" role="listitem">
+Maini Rekdal, Vayu, Elizabeth N. Bess, Jordan E. Bisanz, Peter J. Turnbaugh, and Emily P. Balskus. 2019. <span>“Discovery and Inhibition of an Interspecies Gut Bacterial Pathway for Levodopa Metabolism.”</span> <em>Science</em> 364 (6445): eaau6323. <a href="https://doi.org/10.1126/science.aau6323">https://doi.org/10.1126/science.aau6323</a>.
+</div>
+<div id="ref-sampson2016gut" class="csl-entry" role="listitem">
+Sampson, Timothy R., Justine W. Debelius, Taren Thron, et al. 2016. <span>“Gut Microbiota Regulate Motor Deficits and Neuroinflammation in a Model of <span class="nocase">Parkinson’s</span> Disease.”</span> <em>Cell</em> 167 (6): 1469–80. <a href="https://doi.org/10.1016/j.cell.2016.11.018">https://doi.org/10.1016/j.cell.2016.11.018</a>.
+</div>
+<div id="ref-scheperjans2015gut" class="csl-entry" role="listitem">
+Scheperjans, Filip, Velma Aho, Pedro A. B. Pereira, et al. 2015. <span>“Gut Microbiota Are Related to <span class="nocase">Parkinson’s</span> Disease and Clinical Phenotype.”</span> <em>Movement Disorders</em> 30 (3): 350–58.
+</div>
+<div id="ref-svensson2015vagotomy" class="csl-entry" role="listitem">
+Svensson, Elisabeth, Erzsébet Horváth-Puhó, Reimar W. Thomsen, et al. 2015. <span>“Vagotomy and Subsequent Risk of <span class="nocase">Parkinson’s</span> Disease.”</span> <em>Annals of Neurology</em> 78 (4): 522–29. <a href="https://doi.org/10.1002/ana.24448">https://doi.org/10.1002/ana.24448</a>.
+</div>
+</div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {

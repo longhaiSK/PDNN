@@ -22,7 +22,7 @@ format:
           }
         </style>
 jupyter: python3
-
+bibliography: refs.bib
 ---
 
 
@@ -66,38 +66,29 @@ init_notebook_mode(all_interactive=True)
 ---
 
 
-
 ## The Biology: What is the Microbiome and Parkinson's Disease?
 
 Picture your gut as a crowded, buzzing city. The "citizens" are *trillions* of tiny microorganisms — mostly bacteria — all living, eating, and elbowing each other for space inside you right now. Scientists call this hidden community your **gut microbiome**.
 
-In a healthy person, the microbial city runs in balance: lots of different bacterial families, all keeping one another in check. But in people with **Parkinson's Disease**, the population of the gut city shifts. Some "good" families crash. Others explode. The whole neighborhood gets rearranged.
+In a healthy person, the microbial city runs in balance: lots of different bacterial families, all keeping one another in check. But in people with **Parkinson's Disease**, the population of the gut city shifts. Some "good" families crash. Others explode. The whole neighborhood gets rearranged [@scheperjans2015gut].
 
-### What Actually Happens in Parkinson's Disease?
+Here's the wild part, and the reason this project even exists: **your gut and your brain are constantly talking to each other.** They're wired together through nerves (especially one long one called the *vagus nerve*), plus a stream of chemical and immune signals. Scientists call this two-way phone line the **gut–brain axis**. In Parkinson's, many researchers now suspect the trouble may actually *start down in the gut, years before* the brain symptoms ever appear. That's why the bacteria in someone's stomach can act like an early-warning signal for a *brain* disease — and it's what makes your prediction model possible.
 
-To understand why this gut connection is so revolutionary, we need to look closer at what Parkinson's actually does to the body. Historically, PD has been known as a *movement* disorder. It happens when the brain slowly loses a specific group of cells in an area called the substantia nigra.
+![The **gut–brain axis**: signals travel in both directions between the trillions of microbes in your gut and your brain, partly along the vagus nerve. In Parkinson's disease, this two-way connection appears to get disrupted — sometimes starting in the gut long before the brain. *(Image: Wikimedia Commons, CC BY 4.0. Feel free to swap in your own favorite diagram.)*](https://commons.wikimedia.org/wiki/Special:FilePath/Gut-brain_axis_overview.jpg){#fig-gutbrain fig-alt="Diagram of the gut-brain axis showing bidirectional communication between the gut microbiome and the brain" width="70%"}
 
-These cells have one main job: producing **dopamine**. Think of dopamine as the "oil" in your brain's engine. It acts as a chemical messenger that keeps your movements smooth, coordinated, and automatic. As those cells die off and dopamine levels drop, the engine starts to stutter. This is what causes the hallmark symptoms most people associate with PD: tremors, stiff muscles, famously slow movements, and trouble with balance.
+### Four clues that flipped the script
 
-### The "Invisible" Alarms and the Braak Hypothesis
+For a long time, Parkinson's was seen as a purely *brain* disease. Then a handful of strange discoveries dragged the spotlight down to the gut. Here are four of them.
 
-But here is the twist that makes the microbiome project so vital: those famous movement issues are actually **late-stage alarms**. By the time a patient's hand first shakes, they have already lost roughly 60% to 80% of their dopamine-producing cells.
+**1. The warning comes from the wrong end.** Long before the first tremor, most people with Parkinson's have stubborn **constipation** — it shows up in the large majority of patients [@fasano2015gi], and often appears *many years, sometimes more than a decade,* ahead of any movement problems. In one long-running study, men with the least frequent bowel movements went on to develop Parkinson's at several times the rate of others, sometimes a decade or more later [@abbott2001bowel]. A brain disease announcing itself through the digestive system was one of the first big hints that the story starts somewhere unexpected.
 
-Long before that happens, patients often experience a constellation of "invisible" non-motor symptoms. These include losing their sense of smell, vivid sleep disorders, and—importantly for our project—**severe, chronic constipation**. In fact, gastrointestinal issues can show up *a decade or more* before the brain symptoms.
+**2. Swap the bacteria, swap the symptoms.** In a now-famous experiment, scientists bred mice genetically rigged to develop Parkinson's-like problems. One group grew up with normal gut bacteria; the other was raised *completely germ-free*. The germ-free mice stayed remarkably healthy — same faulty genes, but almost no symptoms. Then the researchers took gut bacteria from *human* Parkinson's patients and transferred them into the mice… and the symptoms came roaring back. Bacteria from healthy people did nothing [@sampson2016gut]. The bugs weren't just *along for the ride* — in mice, at least, they seemed to be *driving*.
 
-So, what is actually killing the dopamine cells? The prime suspect is a protein called **alpha-synuclein**. In healthy brains, this protein is harmless. But in Parkinson’s, it misfolds and clumps together into toxic roadblocks that choke the brain cells to death. In 2003, a neuroanatomist named Heiko Braak proposed a radical idea: what if these toxic protein clumps don't start in the brain at all?
+**3. Cutting the phone line.** Remember the vagus nerve, the gut–brain "phone line"? Decades ago, surgeons sometimes cut it to treat stomach ulcers. When scientists went back and checked those patients years later, some found they were *less* likely to develop Parkinson's — as if snipping the wire had blocked a message from reaching the brain [@svensson2015vagotomy]. (Not every study agrees, and researchers are still arguing about it [@liu2017vagotomy] — which is exactly how real science works.)
 
-### The Gut–Brain Axis
+**4. The bugs even eat the medicine.** The main drug for Parkinson's, *levodopa*, has to travel through the gut to reach the brain. But certain gut bacteria grab it and break it down *first* — like a package thief on the porch. That means two patients on the exact same dose can get very different results, depending on who's living in their gut [@mainirekdal2019levodopa].
 
-What if they form down in the gut—perhaps triggered by an out-of-balance bacterial city—and literally "crawl" up into the brain?
-
-This brings us to the wild part, and the reason this project even exists: **your gut and your brain are constantly talking to each other.** They're wired together through nerves (especially one long one called the *vagus nerve*), plus a stream of chemical and immune signals. Scientists call this two-way phone line the **gut–brain axis**.
-
-If the **Braak hypothesis** is right, the gut isn't just a bystander in Parkinson's; it might be Ground Zero. That’s why the bacteria in someone's stomach can act like an early-warning signal for a *brain* disease — and it's what makes your prediction model possible.
-
-{#fig-gutbrain fig-alt="Diagram of the gut-brain axis showing bidirectional communication between the gut microbiome and the brain" width="70%"}
-
-### Finding the Hidden Pattern
+Tying the thread together: many scientists think a misshapen protein called **alpha-synuclein** is the "bad message" itself. It can misfold down in the gut, clump together, and spread *upward* along the vagus nerve in a chain reaction, seeding the same damage in the brain [@braak2003routes]. If that idea is right, the gut isn't just a *mirror* of the disease — it might be where the disease is *born*. This is still a leading hypothesis, not settled fact, and testing it is one of the hottest questions in the field.
 
 So how do scientists actually *see* these bacteria? They can't line them up and count them by hand. Instead, they take a stool sample and sequence the DNA inside it — basically running a **census** of the gut city. What comes back is a giant spreadsheet:
 
