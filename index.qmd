@@ -9,6 +9,7 @@ format:
     toc: true
     toc-depth: 2
     theme: cosmo
+    code-tools: true
     number-sections: true
     fig-format: svg
     fig-dpi: 300
@@ -21,6 +22,7 @@ format:
             text-align: justify;
           }
         </style>
+  ipynb: default
 jupyter: python3
 bibliography: refs.bib
 ---
@@ -65,6 +67,13 @@ init_notebook_mode(all_interactive=True)
 ```
 ---
 
+## 📥 Access this Document Interactive Notebook
+
+You can download the raw code for this project or run it directly in your browser using Google Colab.
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/longhaiSK/PDNN/blob/main/your_notebook.ipynb)
+
+[Download the .ipynb File](index.ipynb)
 
 ## The Biology: What is the Microbiome and Parkinson's Disease?
 
@@ -742,23 +751,97 @@ Never used Colab or coded a Neural Network before? Don't panic — the internet 
 :::
 ---
 
-## The Writing Desk: Creating Your Report in Posit Cloud
+**Yes, they absolutely can!** In fact, this is often the best approach for high school students because it means they don't have to install any software on their own computers. They can use Google Colab's cloud servers to do both the coding and the document publishing.
 
-Colab is a beast at crunching numbers, but honestly it's clumsy for writing a clean, professional report. So we split the job in two: **crunch in Colab, write in Posit Cloud.**
+Here is exactly how they can write and render their final PDF directly inside their Google Colab notebook.
 
-Posit Cloud runs **Quarto** — a system that lets you write in a "Visual Editor" (basically Google Docs or Word) while it quietly turns your words into a polished science paper behind the scenes.
+---
 
-### Step-by-Step Writing Setup
+## The Publishing Press: Rendering Your PDF Inside Colab
 
-1. Go to [Posit Cloud](https://posit.cloud/) and sign up for a free account.
-2. Click **New Project** > **New RStudio Project**. 
+You don't need to leave Google Colab to create your final PDF. You can tell Colab's servers to install Quarto, read your notebook, and generate the final manuscript right in the cloud.
 
-3. Go to **File** > **New File** > **Quarto Document...** Give it a title and add your names.
-4. **Crucial step:** Up in the top-left corner, click the **Visual** button. This flips you from code-view into a clean word processor!
+### Step 1: Add Your Header
 
-5. Bring in your graphs: save your accuracy charts from Colab as image files (e.g. `.png`), download them, and upload them into the **Files** pane in Posit Cloud. Drop them into your text with the Image icon.
-6. Hit the **Render** button (the blue arrow up top) to generate your final web page or PDF.
+At the very top of your Colab notebook, create a new **Text** cell. It must be the very first block in your document. Add your "YAML Header"—the instructions for how the PDF should look:
 
+```yaml
+---
+title: "Predicting Parkinson's Disease from Gut Microbiome Data"
+author: "Your Name"
+format:
+  pdf:
+    pdf-engine: typst
+---
+
+```
+
+### Step 2: Write Your Report
+
+Use standard Colab **Text** cells between your Python code blocks to write your actual report. Explain the biology, describe what your neural network is doing, and analyze the results.
+
+### Step 3: Install Quarto on Colab
+
+When your code is running perfectly and your writing is finished, scroll to the very bottom of your notebook and create a new **Code** cell. Paste the following commands to install Quarto onto Colab's temporary server:
+
+```bash
+!wget -q https://github.com/quarto-dev/quarto-cli/releases/download/v1.4.553/quarto-1.4.553-linux-amd64.deb
+!dpkg -i quarto-1.4.553-linux-amd64.deb
+
+```
+
+*(Run the cell. It will take a few seconds to install).*
+
+### Step 4: Render the PDF
+
+Create another **Code** cell at the bottom. We need to tell Quarto to take your current notebook (which Colab usually saves temporarily as a file in its background folders) and render it into a PDF:
+
+```bash
+# This saves the current state of your notebook
+from IPython.display import display, Javascript
+display(Javascript('IPython.notebook.save_checkpoint();'))
+
+# This tells Quarto to render the default Colab notebook file
+!quarto render /content/drive/MyDrive/Colab\ Notebooks/Your_Notebook_Name.ipynb --to pdf
+
+```
+
+*(Make sure to change `Your_Notebook_Name` to whatever you actually named your file in Google Drive!)*
+
+### Step 5: Download the Result
+
+Once the rendering cell finishes running, click the **Folder icon** on the far left menu of your Colab screen. You will see a list of files. Find your newly generated PDF, click the three dots next to it, and select **Download**.
+
+You now have a polished, competition-ready manuscript without ever leaving your browser!
+
+---
+
+## Plans and Goals
+
+To ensure this summer research project is both manageable and highly competitive for the upcoming science fair season, the work is divided into four distinct phases. Each phase builds a core competency in data science and computational biology, leading to a complete, reproducible scientific manuscript.
+
+###  Data Collection and Microbiome Pipeline
+
+* **The Mission:** Access and clean public gut microbiome datasets containing taxonomic profiles of individuals with and without Parkinson's Disease (PD).
+* **The Action:** Follow the provided Google Colab framework to process the raw abundance tables. You will handle tasks like normalizing data, filtering out low-abundance features, and ensuring taxonomic columns (such as unassigned operational taxonomic units) are properly structured for machine learning.
+
+###  Neural Network Development and Optimization
+
+* **The Mission:** Build and train a custom neural network architecture capable of detecting subtle bacterial signatures associated with PD.
+* **The Action:** Program a multi-layer perceptron (MLP) in Python using PyTorch or TensorFlow. You will optimize the network's predictive accuracy by adjusting parameters, evaluating performance metrics like AUC-ROC (Area Under the Receiver Operating Characteristic curve), and using cross-validation to prevent overfitting.
+
+###  Reproducible Reporting with Quarto
+
+* **The Mission:** Move beyond messy code notebooks and compile the entire project into a professional, reproducible scientific document.
+* **The Action:** Develop a dynamic Quarto document (`.qmd`) using a clean typesetting template. This document will seamlessly integrate your explanatory text, background biology, live Python code blocks, and automatically generated evaluation graphics into a cohesive report fit for judges.
+
+###  Competition Strategy and Registration
+
+* **The Mission:** Share your breakthroughs with the scientific community by entering provincial and national youth science competitions.
+* **The Action:** Use the finalized Quarto manuscript to prepare submissions for targeted data and biotechnology fairs:
+* **STEM Fellowship Big Data Challenge:** Prepare a digital poster and data-centric report tailored to this open-source AI challenge. Learn more and register at [stemfellowship.org/programs/hsbdc](https://www.stemfellowship.org/programs/hsbdc).
+* **Sanofi Biogenius Canada:** Submit a formal biotech-focused project proposal to enter the regional competition track. You can read up on their project requirements and application process at [biogenius.ca](https://biogenius.ca/).
+* **Canada-Wide Science Fair (CWSF) & Regional Qualifying:** To reach the national stage, you must first compete and qualify locally. You can enter the [Saskatoon Regional Science Fair](https://region.youthscience.ca/saskatoon/) which normally takes place in late March or early April, and acts as the stepping stone to the national [Youth Science Canada](https://youthscience.ca/) competition.
 
 ---
 
