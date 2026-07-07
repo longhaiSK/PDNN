@@ -260,14 +260,14 @@ To make a fair comparison, we have to cancel out the scoop-size problem. The fix
 ```{python}
 #| label: calculate-proportions
 #| echo: true
-#| column: body-outset
 # Calculate Proportions
 df_prop = df_raw.copy()
-for col in cols:
+for col in bacteria_cols:
     df_prop[col] = df_prop[col] / df_prop["Total_Reads"]
 
 # Show the cleaned proportion data
-df_view = df_prop[["Patient_ID", "Diagnosis"] + cols].round(3)
+df_view = df_prop[["Patient_ID", "Diagnosis"] + bacteria_cols].round(3)
+
 show(
     df_view, 
     classes="display compact nowrap", 
@@ -276,6 +276,7 @@ show(
     lengthMenu=[10, 20], 
     style="width: 100%; table-layout: fixed; font-size: 0.8rem;"
 )
+
 ```
 
 Now the numbers are finally comparable. But here's the humbling part: even with clean data, could a human doctor eyeball this spreadsheet and tell sick from healthy? Let's find out.
