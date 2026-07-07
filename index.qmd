@@ -24,6 +24,8 @@ format:
 jupyter: python3
 
 ---
+
+
 ## Welcome to the Project!
 
 Here's your mission for the summer: teach a computer to look at the bacteria living inside someone's gut and guess whether that person has Parkinson's Disease (PD). No blood test, no brain scan — just bacteria.
@@ -32,6 +34,35 @@ Sounds like science fiction? It's real, cutting-edge research, and by the end of
 
 Never touched biology or code before? Perfect — that's exactly who this guide is written for. We'll take the science, the data, the programming, and the final write-up one bite at a time, and you'll be surprised how far you get.
 
+```{python}
+#| label: setup-packages
+#| echo: true
+#| warning: false
+#| message: false
+
+# Standard Data Science stack
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Machine Learning & Stats stack
+from scipy.stats import gmean
+from sklearn.metrics import confusion_matrix
+
+# Neural Network stack (TensorFlow/Keras)
+import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Input
+from tensorflow.keras.optimizers import Adam
+
+# Visualization & Interaction stack
+import networkx as nx
+from itables import init_notebook_mode, show
+
+# Initialize environment tools
+init_notebook_mode(all_interactive=True)
+```
 ---
 
 ## The Biology: What is the Microbiome?
@@ -62,65 +93,105 @@ And the scoop is never the same size twice. The machine might catch 40,000 bacte
 
 This messiness is the first real boss you'll have to beat. Let's build a fake-but-realistic dataset of 100 patients (50 with Parkinson's, 50 healthy) and watch the problem show up with our own eyes. To keep things readable, we'll track just **6 bacterial families**.
 
-### Step 1: The Raw Data
+### Step 1: A Synthesized Raw Data
 
 First, let's generate the raw counts — the messy numbers straight off the machine, before anyone cleans them up.
+
+**Data Generating Function**
+```{python}
+import numpy as np
+import pandas as pd
+
+# Reusable Data Generating Process (DGP)
+def generate_microbiome_data(n_pd=50, n_healthy=50, seed=42):
+    np.random.seed(seed)
+    
+    # 1. Generate Total Reads (The Scoop Size - just for realism)
+    total_reads = np.concatenate([
+        np.random.normal(40000, 5000, n_pd).astype(int),
+        np.random.normal(15000, 3000, n_healthy).astype(int)
+    ])
+    
+    # 2. Pair 1: The Hidden Biological Signal (Bifido & Lacto)
+    # Bifido has the EXACT same distribution (0.02 - 0.13) in both groups now!
+    bifido_pd = np.random.uniform(0.01, 0.05, n_pd)
+    lacto_pd = 0.1 - bifido_pd + np.random.normal(0, 0.05, n_pd) 
+    
+    bifido_healthy = np.random.uniform(0.01, 0.05, n_pd)
+    lacto_healthy = 0.2 - bifido_healthy + np.random.normal(0, 0.05, n_healthy)
+    
+    # 3. Pair 3: Independent Noise (Esch & Kleb)
+    # Generated with a constant sum (0.20) for BOTH groups so they are totally uninformative
+    esch_pd = np.random.uniform(0.05, 0.1, n_pd)
+    kleb_pd = 0.20 - esch_pd + np.random.normal(0, 0.05, n_pd)
+    
+    esch_healthy = np.random.uniform(0.05, 0.1, n_pd)
+    kleb_healthy = 0.15 - esch_healthy + np.random.normal(0, 0.05, n_healthy)
+    
+    # 4. Pair 2: The Compositional Trap (Bact & Prev)
+    # Bact is random, but Prev MUST absorb the 100% boundary
+    bact_pd = np.random.uniform(0.10, 0.30, n_pd)
+    prev_pd = 1.0 - (bifido_pd + lacto_pd + esch_pd + kleb_pd + bact_pd)
+    
+    bact_healthy = np.random.uniform(0.10, 0.30, n_healthy)
+    prev_healthy = 1.0 - (bifido_healthy + lacto_healthy + esch_healthy + kleb_healthy + bact_healthy)
+    
+    # 5. Assemble into a unified matrix
+    bacteria_cols = ["Bifidobacterium", "Lactobacillus", "Bacteroides", "Prevotella", "Escherichia", "Klebsiella"]
+    proportions = np.column_stack([
+        np.concatenate([bifido_pd, bifido_healthy]),
+        np.concatenate([lacto_pd, lacto_healthy]),
+        np.concatenate([bact_pd, bact_healthy]),
+        np.concatenate([prev_pd, prev_healthy]),
+        np.concatenate([esch_pd, esch_healthy]),
+        np.concatenate([kleb_pd, kleb_healthy])
+    ])
+    
+    df = pd.DataFrame(proportions, columns=bacteria_cols)
+    df["Diagnosis"] = ["Parkinson's"] * n_pd + ["Healthy"] * n_healthy
+    
+    # Extract Features (X) and Target (y)
+    X = df[bacteria_cols].values
+    y = (df["Diagnosis"] == "Parkinson's").astype(int).values
+    
+    return X, y
+
+```
+
 
 ```{python}
 #| label: generate-raw-data
 #| echo: true
 #| warning: false
 #| message: false
-
-import pandas as pd
-import numpy as np
-import seaborn as sns
-import matplotlib.pyplot as plt
-from itables import init_notebook_mode, show
-
-# Initialize itables for interactive spreadsheets
+from itables import show, init_notebook_mode
 init_notebook_mode(all_interactive=True)
-np.random.seed(42)
-n_pd = 50
-n_healthy = 50
 
-# Total Reads (Let's say PD samples just happened to get sequenced deeper)
-reads_pd = np.random.normal(40000, 5000, n_pd).astype(int)
-reads_healthy = np.random.normal(15000, 3000, n_healthy).astype(int)
+# 1. Use the DGP to generate the core proportions and diagnosis labels
+X_data, y_data = generate_microbiome_data(n_pd=50, n_healthy=50, seed=42)
+
+# 2. Re-create the metadata (Total_Reads and Patient IDs) to match the DGP output
+reads_pd = np.random.normal(40000, 5000, 50).astype(int)
+reads_healthy = np.random.normal(15000, 3000, 50).astype(int)
 total_reads = np.concatenate([reads_pd, reads_healthy])
 
-# Generate 6 Bacteria Columns (Underlying Proportions)
-# PAIR 1 (The Hidden Rule): Bifido & Lacto (Negative correlation)
-bifido_pd = np.random.uniform(0.02, 0.13, n_pd)
-lacto_pd = 0.25 - bifido_pd + np.random.normal(0, 0.05, n_pd) 
-bifido_healthy = np.random.uniform(0.05, 0.30, n_healthy)
-lacto_healthy = 0.35 - bifido_healthy + np.random.normal(0, 0.05, n_healthy)
+# 3. Assemble into the final DataFrame
+bacteria_cols = ["Bifidobacterium", "Lactobacillus", "Bacteroides", "Prevotella", "Escherichia", "Klebsiella"]
+df_raw = pd.DataFrame(X_data, columns=bacteria_cols)
 
-# PAIR 2 (Distraction): Bact & Prev (No real difference between groups)
-bact_pd = np.random.uniform(0.10, 0.30, n_pd)
-prev_pd = 0.40 - bact_pd + np.random.normal(0, 0.05, n_pd)
-bact_healthy = np.random.uniform(0.10, 0.30, n_healthy)
-prev_healthy = 0.40 - bact_healthy + np.random.normal(0, 0.05, n_healthy)
+# Add metadata
+df_raw["Patient_ID"] = [f"PD_{str(i).zfill(3)}" for i in range(1, 51)] + [f"Healthy_{str(i).zfill(3)}" for i in range(1, 51)]
+df_raw["Diagnosis"] = ["Parkinson's"] * 50 + ["Healthy"] * 50
+df_raw["Total_Reads"] = total_reads
 
-# PAIR 3 (Random Noise): Esch & Kleb (Fills the rest of the gut space)
-esch_pd = np.random.uniform(0.05, 0.15, n_pd)
-kleb_pd = 1.0 - (bifido_pd + lacto_pd + bact_pd + prev_pd + esch_pd)
-esch_healthy = np.random.uniform(0.05, 0.15, n_healthy)
-kleb_healthy = 1.0 - (bifido_healthy + lacto_healthy + bact_healthy + prev_healthy + esch_healthy)
+# Convert proportions back to raw counts for the 'raw' table display
+for col in bacteria_cols:
+    df_raw[col] = (df_raw[col] * df_raw["Total_Reads"]).astype(int)
 
-# Convert underlying proportions to Raw Counts
-df_raw = pd.DataFrame({
-    "Patient_ID": [f"PD_{str(i).zfill(3)}" for i in range(1, n_pd+1)] + [f"Healthy_{str(i).zfill(3)}" for i in range(1, n_healthy+1)],
-    "Diagnosis": ["Parkinson's"] * n_pd + ["Healthy"] * n_healthy,
-    "Total_Reads": total_reads,
-    "Bifidobacterium": (np.concatenate([bifido_pd, bifido_healthy]) * total_reads).astype(int),
-    "Lactobacillus": (np.concatenate([lacto_pd, lacto_healthy]) * total_reads).astype(int),
-    "Bacteroides": (np.concatenate([bact_pd, bact_healthy]) * total_reads).astype(int),
-    "Prevotella": (np.concatenate([prev_pd, prev_healthy]) * total_reads).astype(int),
-    "Escherichia": (np.concatenate([esch_pd, esch_healthy]) * total_reads).astype(int),
-    "Klebsiella": (np.concatenate([kleb_pd, kleb_healthy]) * total_reads).astype(int)
-})
+# Reorder columns to look professional
+df_raw = df_raw[["Patient_ID", "Diagnosis", "Total_Reads"] + bacteria_cols]
 
+# 4. Display the table
 show(df_raw, classes="display", lengthMenu=[5, 10], scrollX=True)
 ```
 
@@ -383,6 +454,215 @@ A Neural Network is way craftier than that. It builds complex "recipes" called *
 The network can whip up dozens of these $z$ formulas at once, mixing and matching all 3,000 bacteria with positive weights, negative weights, and fractions to map out the entire ecosystem of the gut!
 
 **But how does it find the perfect weights for $z$?** We never type those numbers in ourselves — that's the whole magic. We feed the network hundreds of patients whose answers we *already know*. It starts with totally random weights, makes a guess, and checks how badly it missed. Then it nudges its own internal math a hair (a $2.0$ becomes a $2.1$, a plus flips to a minus) so the next guess lands a little closer. Repeat that thousands of times and the network teaches *itself*. That whole loop is called **training** the model — and soon you'll be running it.
+
+---
+
+## A Machine Learning Prodecure 
+
+### Generating the Synthetic Cohort
+
+Let's fire up the data generator. We need patients, and since recruiting 100 actual humans and sequencing their gut microbiomes takes years of effort and entirely too much grant funding, we will just conjure them out of thin air using NumPy.
+
+```{python}
+#| label: setup-train-test-data
+#| echo: true
+#| warning: false
+#| message: false
+
+# Generate our two independent datasets (Training and Testing)
+X_train, y_train = generate_microbiome_data(100,100)
+X_test, y_test = generate_microbiome_data(100,100)
+
+print("Data generated successfully!")
+print(f"Training set: {X_train.shape[0]} patients")
+print(f"Testing set: {X_test.shape[0]} patients")
+
+```
+
+### Training the "Lazy Detective"
+
+Time to unleash our neural network. For this round, we are intentionally handicapping it by using a single linear hidden node—effectively dressing up a classical Logistic Regression model in Deep Learning clothing.
+
+Let's see if this stripped-down detective can solve the case. More importantly, let's strictly grade its final exam by expanding our metrics to include **Precision** (how often it is right when it calls a positive) and the **True Negative Rate / Specificity** (how well it clears the truly healthy patients).
+
+```{python}
+#| label: full-neural-network-pipeline-baseline
+#| echo: true
+#| warning: false
+#| message: false
+#| fig-width: 12
+#| fig-height: 8
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import networkx as nx
+from sklearn.metrics import confusion_matrix
+from IPython.display import display
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Input
+from tensorflow.keras.optimizers import Adam
+from itables import show
+
+# --- 1. Build and Train the Baseline Neural Network ---
+model = Sequential([
+    # Explicit Input layer
+    Input(shape=(6,)), 
+    
+    # Hidden Layer: 1 node using linear activation (Logistic Regression in disguise)
+    Dense(2, activation='sigmoid'), 
+    
+    # Output Layer: 1 final decision maker
+    Dense(1, activation='sigmoid') 
+])
+
+# Compile and train (using the RAW X_train data)
+model.compile(optimizer=Adam(learning_rate=0.005), loss='binary_crossentropy', metrics=['accuracy'])
+history = model.fit(X_train, y_train, epochs=200, verbose=0)
+print("Model Training Complete!\n")
+
+# --- 2. Make Predictions ---
+# Predict using the RAW X_test data
+pred_probs = model.predict(X_test, verbose=0).flatten()
+y_hat = (pred_probs > 0.5).astype(int)
+
+# --- 3. View Individual Patient Predictions ---
+results_df = pd.DataFrame({
+    'True Diagnosis (y)': y_test,
+    'Predicted Probability': np.round(pred_probs, 3),
+    'Model Guess (y_hat)': y_hat
+})
+
+print("The Final Exam: Individual Patient Predictions")
+show(results_df, classes="display compact", style="width:100%;", scrollX=True, lengthMenu=[5, 10])
+
+# --- 4. Calculate and Display Metrics ---
+# Extract counts
+tn, fp, fn, tp = confusion_matrix(y_test, y_hat).ravel()
+
+# Calculate expanded metrics
+error_rate = (fp + fn) / len(y_test)
+fpr = fp / (tn + fp)
+recall = tp / (tp + fn)
+precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0
+tnr = tn / (tn + fp) # True Negative Rate (Specificity)
+
+# Calculate Negative Predictive Value (NPV) to perfectly balance the table
+npv = tn / (tn + fn) if (tn + fn) > 0 else 0.0
+
+# Build a textbook-style balanced Confusion Matrix
+cm_df = pd.DataFrame({
+    "Predicted Healthy": [
+        f"TN = {tn}", 
+        f"FN = {fn}", 
+        f"NPV: {npv:.2%}"
+    ],
+    "Predicted Parkinson's": [
+        f"FP = {fp}", 
+        f"TP = {tp}", 
+        f"Precision: {precision:.2%}"
+    ],
+    "Row Marginals": [
+        f"TNR (Specificity): {tnr:.2%}", 
+        f"Recall (Sensitivity): {recall:.2%}", 
+        f"Overall Error Rate: {error_rate:.2%}"
+    ]
+}, index=["Actual Healthy", "Actual Parkinson's", "Column Marginals"])
+
+# Display as a clean HTML table
+print("\nGrading the Exam: Model Metrics Summary")
+display(cm_df)
+
+```
+
+### Peeking Inside the Black Box
+
+Accuracy metrics are great, but in this class, we do not blindly trust a black box. Let's rip the learned weights right out of the model's brain and draw the exact connections it relied on.
+
+If our model fell for the compositional data trap (which, spoiler alert, it almost certainly did), this dynamic graph is going to expose the crime immediately.
+
+```{python}
+#| label: visualize-weights-dynamic-sigmoid
+#| echo: true
+#| fig-width: 10
+#| fig-height: 7
+
+import matplotlib.pyplot as plt
+import networkx as nx
+import numpy as np
+
+# 1. Extract weights directly from the model
+hidden_weights = model.layers[0].get_weights()[0] 
+output_weights = model.layers[1].get_weights()[0] 
+
+# Dynamically count the nodes based on the weight matrices
+n_inputs = hidden_weights.shape[0]
+n_hidden = hidden_weights.shape[1]
+n_outputs = output_weights.shape[1]
+
+# 2. Setup the Graph and dynamically generate node names with the Sigmoid symbol
+G = nx.DiGraph()
+inputs = ["Bifido", "Lacto", "Bact", "Prev", "Esch", "Kleb"] 
+# Append the Greek letter Sigma (σ) to indicate the non-linear activation (if applicable)
+hidden = [f"H{i+1}\n(linear)" for i in range(n_hidden)] # Updated to reflect your linear layer!
+outputs = ["PD\nProbability\n(σ)"]
+
+pos = {} 
+
+# Helper function to center nodes vertically
+def get_y_positions(n_nodes):
+    return np.linspace(n_nodes - 1, 0, n_nodes) - (n_nodes - 1) / 2
+
+# Place Input Nodes (x=0)
+y_inputs = get_y_positions(n_inputs)
+for i, name in enumerate(inputs):
+    G.add_node(name)
+    pos[name] = (0, y_inputs[i])
+
+# Place Hidden Nodes (x=1)
+y_hidden = get_y_positions(n_hidden)
+for i, name in enumerate(hidden):
+    G.add_node(name)
+    pos[name] = (1, y_hidden[i])
+
+# Place Output Node (x=2)
+for i, name in enumerate(outputs):
+    G.add_node(name)
+    pos[name] = (2, 0) 
+
+# 3. Create the Edges (Lines) based on the weights
+edges = []
+colors = []
+thickness = []
+
+for i, in_node in enumerate(inputs):
+    for j, h_node in enumerate(hidden):
+        weight = hidden_weights[i, j]
+        G.add_edge(in_node, h_node)
+        edges.append((in_node, h_node))
+        colors.append('#3498db' if weight > 0 else '#e74c3c') 
+        thickness.append(min(abs(weight) * 2, 4)) 
+
+for i, h_node in enumerate(hidden):
+    for j, out_node in enumerate(outputs):
+        weight = output_weights[i, j]
+        G.add_edge(h_node, out_node)
+        edges.append((h_node, out_node))
+        colors.append('#3498db' if weight > 0 else '#e74c3c')
+        thickness.append(min(abs(weight) * 2, 5))
+
+# 4. Draw the Graph
+plt.figure(figsize=(10, 7))
+nx.draw_networkx_nodes(G, pos, node_size=3000, node_color='white', edgecolors='black', linewidths=2)
+nx.draw_networkx_labels(G, pos, font_size=10, font_weight='bold')
+nx.draw_networkx_edges(G, pos, edgelist=edges, edge_color=colors, width=thickness, arrowsize=12, alpha=0.7)
+
+plt.title(f"Dynamic Network Visualization ({n_hidden} Linear Node)\n(Thick = Strong Weight | Blue = Positive | Red = Negative)", fontsize=14)
+plt.axis('off')
+plt.tight_layout()
+plt.show()
+
+```
 
 ---
 
