@@ -36,7 +36,7 @@ Never touched biology or code before? Perfect — that's exactly who this guide 
 
 ```{python}
 #| label: setup-packages
-#| echo: true
+#| echo: false
 #| warning: false
 #| message: false
 
@@ -65,15 +65,39 @@ init_notebook_mode(all_interactive=True)
 ```
 ---
 
-## The Biology: What is the Microbiome?
+
+
+## The Biology: What is the Microbiome and Parkinson's Disease?
 
 Picture your gut as a crowded, buzzing city. The "citizens" are *trillions* of tiny microorganisms — mostly bacteria — all living, eating, and elbowing each other for space inside you right now. Scientists call this hidden community your **gut microbiome**.
 
-In a healthy person, the microbial city runs in balance: lots of different bacterial families, all keeping one another in check. But in people with **Parkinson's Disease** — a condition that attacks the brain and messes with movement — the population of the gut city shifts. Some "good" families crash. Others explode. The whole neighborhood gets rearranged.
+In a healthy person, the microbial city runs in balance: lots of different bacterial families, all keeping one another in check. But in people with **Parkinson's Disease**, the population of the gut city shifts. Some "good" families crash. Others explode. The whole neighborhood gets rearranged.
 
-Here's the wild part, and the reason this project even exists: **your gut and your brain are constantly talking to each other.** They're wired together through nerves (especially one long one called the *vagus nerve*), plus a stream of chemical and immune signals. Scientists call this two-way phone line the **gut–brain axis**. In Parkinson's, many researchers now suspect the trouble may actually *start down in the gut, years before* the brain symptoms ever appear. That's why the bacteria in someone's stomach can act like an early-warning signal for a *brain* disease — and it's what makes your prediction model possible.
+### What Actually Happens in Parkinson's Disease?
 
-![The **gut–brain axis**: signals travel in both directions between the trillions of microbes in your gut and your brain, partly along the vagus nerve. In Parkinson's disease, this two-way connection appears to get disrupted — sometimes starting in the gut long before the brain. *(Image: Wikimedia Commons, CC BY 4.0. Feel free to swap in your own favorite diagram.)*](https://commons.wikimedia.org/wiki/Special:FilePath/Gut-brain_axis_overview.jpg){#fig-gutbrain fig-alt="Diagram of the gut-brain axis showing bidirectional communication between the gut microbiome and the brain" width="70%"}
+To understand why this gut connection is so revolutionary, we need to look closer at what Parkinson's actually does to the body. Historically, PD has been known as a *movement* disorder. It happens when the brain slowly loses a specific group of cells in an area called the substantia nigra.
+
+These cells have one main job: producing **dopamine**. Think of dopamine as the "oil" in your brain's engine. It acts as a chemical messenger that keeps your movements smooth, coordinated, and automatic. As those cells die off and dopamine levels drop, the engine starts to stutter. This is what causes the hallmark symptoms most people associate with PD: tremors, stiff muscles, famously slow movements, and trouble with balance.
+
+### The "Invisible" Alarms and the Braak Hypothesis
+
+But here is the twist that makes the microbiome project so vital: those famous movement issues are actually **late-stage alarms**. By the time a patient's hand first shakes, they have already lost roughly 60% to 80% of their dopamine-producing cells.
+
+Long before that happens, patients often experience a constellation of "invisible" non-motor symptoms. These include losing their sense of smell, vivid sleep disorders, and—importantly for our project—**severe, chronic constipation**. In fact, gastrointestinal issues can show up *a decade or more* before the brain symptoms.
+
+So, what is actually killing the dopamine cells? The prime suspect is a protein called **alpha-synuclein**. In healthy brains, this protein is harmless. But in Parkinson’s, it misfolds and clumps together into toxic roadblocks that choke the brain cells to death. In 2003, a neuroanatomist named Heiko Braak proposed a radical idea: what if these toxic protein clumps don't start in the brain at all?
+
+### The Gut–Brain Axis
+
+What if they form down in the gut—perhaps triggered by an out-of-balance bacterial city—and literally "crawl" up into the brain?
+
+This brings us to the wild part, and the reason this project even exists: **your gut and your brain are constantly talking to each other.** They're wired together through nerves (especially one long one called the *vagus nerve*), plus a stream of chemical and immune signals. Scientists call this two-way phone line the **gut–brain axis**.
+
+If the **Braak hypothesis** is right, the gut isn't just a bystander in Parkinson's; it might be Ground Zero. That’s why the bacteria in someone's stomach can act like an early-warning signal for a *brain* disease — and it's what makes your prediction model possible.
+
+{#fig-gutbrain fig-alt="Diagram of the gut-brain axis showing bidirectional communication between the gut microbiome and the brain" width="70%"}
+
+### Finding the Hidden Pattern
 
 So how do scientists actually *see* these bacteria? They can't line them up and count them by hand. Instead, they take a stool sample and sequence the DNA inside it — basically running a **census** of the gut city. What comes back is a giant spreadsheet:
 
@@ -81,7 +105,7 @@ So how do scientists actually *see* these bacteria? They can't line them up and 
 * Every **column** is a different type of bacteria.
 * Each **number** is how many of that specific bacteria showed up in that patient's gut.
 
-Your job is to find the hidden pattern buried in that spreadsheet — the one no human eye can catch, but a machine can.
+Reading this "census" isn't just a biological curiosity. It's a race to catch the disease at its roots, years before the brain is permanently damaged. Your job is to find the hidden pattern buried in that spreadsheet — the one no human eye can catch, but a machine can.
 
 ---
 
@@ -129,12 +153,15 @@ def generate_microbiome_data(n_pd=50, n_healthy=50, seed=42):
     kleb_healthy = 0.15 - esch_healthy + np.random.normal(0, 0.05, n_healthy)
     
     # 4. Pair 2: The Compositional Trap (Bact & Prev)
-    # Bact is random, but Prev MUST absorb the 100% boundary
     bact_pd = np.random.uniform(0.10, 0.30, n_pd)
     prev_pd = 1.0 - (bifido_pd + lacto_pd + esch_pd + kleb_pd + bact_pd)
-    
+    # Truncate below at 0 to prevent negative relative abundances
+    prev_pd = np.maximum(prev_pd, 0.0)
+
     bact_healthy = np.random.uniform(0.10, 0.30, n_healthy)
     prev_healthy = 1.0 - (bifido_healthy + lacto_healthy + esch_healthy + kleb_healthy + bact_healthy)
+    # Truncate below at 0 to prevent negative relative abundances
+    prev_healthy = np.maximum(prev_healthy, 0.0)
     
     # 5. Assemble into a unified matrix
     bacteria_cols = ["Bifidobacterium", "Lactobacillus", "Bacteroides", "Prevotella", "Escherichia", "Klebsiella"]
@@ -164,13 +191,16 @@ def generate_microbiome_data(n_pd=50, n_healthy=50, seed=42):
 #| echo: true
 #| warning: false
 #| message: false
+#| column: page
 from itables import show, init_notebook_mode
+import pandas as pd
+import numpy as np
 init_notebook_mode(all_interactive=True)
 
 # 1. Use the DGP to generate the core proportions and diagnosis labels
 X_data, y_data = generate_microbiome_data(n_pd=50, n_healthy=50, seed=42)
 
-# 2. Re-create the metadata (Total_Reads and Patient IDs) to match the DGP output
+# 2. Re-create the metadata (Total_Reads and Patient IDs)
 reads_pd = np.random.normal(40000, 5000, 50).astype(int)
 reads_healthy = np.random.normal(15000, 3000, 50).astype(int)
 total_reads = np.concatenate([reads_pd, reads_healthy])
@@ -184,15 +214,22 @@ df_raw["Patient_ID"] = [f"PD_{str(i).zfill(3)}" for i in range(1, 51)] + [f"Heal
 df_raw["Diagnosis"] = ["Parkinson's"] * 50 + ["Healthy"] * 50
 df_raw["Total_Reads"] = total_reads
 
-# Convert proportions back to raw counts for the 'raw' table display
+# Convert proportions back to raw counts
 for col in bacteria_cols:
     df_raw[col] = (df_raw[col] * df_raw["Total_Reads"]).astype(int)
 
-# Reorder columns to look professional
+# Reorder columns
 df_raw = df_raw[["Patient_ID", "Diagnosis", "Total_Reads"] + bacteria_cols]
 
-# 4. Display the table
-show(df_raw, classes="display", lengthMenu=[5, 10], scrollX=True)
+# 4. Display the table with strict container limits
+show(
+    df_raw, 
+    classes="display compact nowrap", 
+    scrollX=True,
+    autoWidth=False,
+    lengthMenu=[10, 20], 
+    style="width: 100%; table-layout: fixed; font-size: 0.8rem;"
+)
 ```
 
 If you hand these raw numbers straight to a computer, it'll be fooled — and honestly, so would you. In our data, the Parkinson's samples just happened to get scooped more deeply (bigger Total Reads), so *every single* bacteria count looks sky-high for them. It's a trap: the numbers look different, but only because of scoop size, not biology.
@@ -223,7 +260,7 @@ To make a fair comparison, we have to cancel out the scoop-size problem. The fix
 ```{python}
 #| label: calculate-proportions
 #| echo: true
-
+#| column: body-outset
 # Calculate Proportions
 df_prop = df_raw.copy()
 for col in cols:
@@ -231,7 +268,14 @@ for col in cols:
 
 # Show the cleaned proportion data
 df_view = df_prop[["Patient_ID", "Diagnosis"] + cols].round(3)
-show(df_view, classes="display", lengthMenu=[5, 10], scrollX=True)
+show(
+    df_view, 
+    classes="display compact nowrap", 
+    scrollX=True,
+    autoWidth=False,
+    lengthMenu=[10, 20], 
+    style="width: 100%; table-layout: fixed; font-size: 0.8rem;"
+)
 ```
 
 Now the numbers are finally comparable. But here's the humbling part: even with clean data, could a human doctor eyeball this spreadsheet and tell sick from healthy? Let's find out.
@@ -285,7 +329,7 @@ plt.show()
 
 Boom. Look at **Pair 1**: the red and green boxes suddenly pull apart — Parkinson's patients sit low, healthy patients sit high, with barely any overlap. The signal was hiding in the *combination* the whole time. Pairs 2 and 3? Still a jumbled mess — those are decoys we planted on purpose. Figuring out which combinations carry the signal (and which are traps) is the entire game.
 
-## The Tech: What is a Predictive Model?
+## Predictive Modelling?
 
 We got lucky above: with only 6 bacteria, we could hunt for the winning pair by hand. But a real gut has *thousands* of bacterial families. Nobody can eyeball a spreadsheet that wide and spot the magic combinations — your brain would melt trying.
 
@@ -457,7 +501,7 @@ The network can whip up dozens of these $z$ formulas at once, mixing and matchin
 
 ---
 
-## A Machine Learning Prodecure 
+## A Machine Learning Prodecure with Tensorflow
 
 ### Generating the Synthetic Cohort
 
@@ -479,9 +523,9 @@ print(f"Testing set: {X_test.shape[0]} patients")
 
 ```
 
-### Training the "Lazy Detective"
+### Training a Stripped-down Neural Network with Tensorflow
 
-Time to unleash our neural network. For this round, we are intentionally handicapping it by using a single linear hidden node—effectively dressing up a classical Logistic Regression model in Deep Learning clothing.
+Time to unleash our neural network. For this round, we are intentionally handicapping it by using a NN with very small number of neurons. 
 
 Let's see if this stripped-down detective can solve the case. More importantly, let's strictly grade its final exam by expanding our metrics to include **Precision** (how often it is right when it calls a positive) and the **True Negative Rate / Specificity** (how well it clears the truly healthy patients).
 
