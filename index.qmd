@@ -4,6 +4,7 @@ author: "Longhai Li"
 date: last-modified
 format: 
   html:
+    fontsize: 16px
     code-fold: true
     toc: true
     toc-depth: 2
@@ -12,6 +13,14 @@ format:
     fig-format: svg
     fig-dpi: 300
     fig-responsive: true
+    include-in-header:
+      text: |
+        <style>
+          body {
+            font-size: 16px;
+            text-align: justify;
+          }
+        </style>
 jupyter: python3
 
 ---
@@ -83,15 +92,15 @@ total_reads = np.concatenate([reads_pd, reads_healthy])
 # Generate 6 Bacteria Columns (Underlying Proportions)
 # PAIR 1 (The Hidden Rule): Bifido & Lacto (Negative correlation)
 bifido_pd = np.random.uniform(0.02, 0.13, n_pd)
-lacto_pd = 0.15 - bifido_pd + np.random.normal(0, 0.005, n_pd) 
+lacto_pd = 0.25 - bifido_pd + np.random.normal(0, 0.05, n_pd) 
 bifido_healthy = np.random.uniform(0.05, 0.30, n_healthy)
-lacto_healthy = 0.35 - bifido_healthy + np.random.normal(0, 0.005, n_healthy)
+lacto_healthy = 0.35 - bifido_healthy + np.random.normal(0, 0.05, n_healthy)
 
 # PAIR 2 (Distraction): Bact & Prev (No real difference between groups)
 bact_pd = np.random.uniform(0.10, 0.30, n_pd)
-prev_pd = 0.40 - bact_pd + np.random.normal(0, 0.01, n_pd)
+prev_pd = 0.40 - bact_pd + np.random.normal(0, 0.05, n_pd)
 bact_healthy = np.random.uniform(0.10, 0.30, n_healthy)
-prev_healthy = 0.40 - bact_healthy + np.random.normal(0, 0.01, n_healthy)
+prev_healthy = 0.40 - bact_healthy + np.random.normal(0, 0.05, n_healthy)
 
 # PAIR 3 (Random Noise): Esch & Kleb (Fills the rest of the gut space)
 esch_pd = np.random.uniform(0.05, 0.15, n_pd)
