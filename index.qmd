@@ -27,7 +27,7 @@ bibliography: refs.bib
 ---
 
 
-## Welcome to the Project!
+## Welcome to the Project! {-}
 
 Here's your mission for the summer: teach a computer to look at the bacteria living inside someone's gut and guess whether that person has Parkinson's Disease (PD). No blood test, no brain scan — just bacteria.
 
@@ -66,15 +66,14 @@ init_notebook_mode(all_interactive=True)
 ```
 ---
 
-## 📥 Access this Document as Interactive Notebook
+## 📥 Access this Document as Interactive Notebook {-}
 
 You can download the raw code for this project or run it directly in your browser using Google Colab.
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/longhaiSK/PDNN/blob/main/index.ipynb)
 
-[Download the .ipynb File](index.ipynb)
 
-## The Biology: What is the Microbiome and Parkinson's Disease?
+## The Problem: the Microbiome and Parkinson's Disease?
 
 Picture your gut as a crowded, buzzing city. The "citizens" are *trillions* of tiny microorganisms — mostly bacteria — all living, eating, and elbowing each other for space inside you right now. Scientists call this hidden community your **gut microbiome**.
 
@@ -116,7 +115,7 @@ And the scoop is never the same size twice. The machine might catch 40,000 bacte
 
 This messiness is the first real boss you'll have to beat. Let's build a fake-but-realistic dataset of 100 patients (50 with Parkinson's, 50 healthy) and watch the problem show up with our own eyes. To keep things readable, we'll track just **6 bacterial families**.
 
-### Step 1: A Synthesized Raw Data
+### Step 1: A Synthesized Raw Data {-}
 
 First, let's generate the raw counts — the messy numbers straight off the machine, before anyone cleans them up.
 
@@ -125,45 +124,67 @@ First, let's generate the raw counts — the messy numbers straight off the mach
 import numpy as np
 import pandas as pd
 
-# Reusable Data Generating Process (DGP)
 def generate_microbiome_data(n_pd=50, n_healthy=50, seed=42):
     np.random.seed(seed)
     
-    # 1. Generate Total Reads (The Scoop Size - just for realism)
-    total_reads = np.concatenate([
-        np.random.normal(40000, 5000, n_pd).astype(int),
-        np.random.normal(15000, 3000, n_healthy).astype(int)
-    ])
+    # --- 1. Lock in Pair 2: The Uninformative Baseline ---
+    bact_pd = np.random.uniform(0.10, 0.25, n_pd)
+    prev_pd = np.random.uniform(0.10, 0.25, n_pd)
     
-    # 2. Pair 1: The Hidden Biological Signal (Bifido & Lacto)
-    # Bifido has the EXACT same distribution (0.02 - 0.13) in both groups now!
-    bifido_pd = np.random.uniform(0.01, 0.05, n_pd)
-    lacto_pd = 0.1 - bifido_pd + np.random.normal(0, 0.05, n_pd) 
+    bact_healthy = np.random.uniform(0.10, 0.25, n_healthy)
+    prev_healthy = np.random.uniform(0.10, 0.25, n_healthy)
     
-    bifido_healthy = np.random.uniform(0.01, 0.05, n_pd)
-    lacto_healthy = 0.2 - bifido_healthy + np.random.normal(0, 0.05, n_healthy)
+    # The space left over for Pairs 1 and 3
+    remaining_pd = 1.0 - (bact_pd + prev_pd)
+    remaining_healthy = 1.0 - (bact_healthy + prev_healthy)
     
-    # 3. Pair 3: Independent Noise (Esch & Kleb)
-    # Generated with a constant sum (0.20) for BOTH groups so they are totally uninformative
-    esch_pd = np.random.uniform(0.05, 0.1, n_pd)
-    kleb_pd = 0.20 - esch_pd + np.random.normal(0, 0.05, n_pd)
+    # --- 2. Generate Informative Latent SUMS ---
+    # Pair 1 Sum is distinctly different (Signal)
+    sum1_pd = np.random.uniform(30, 80, n_pd)
+    sum1_healthy = np.random.uniform(60, 100, n_healthy) 
     
-    esch_healthy = np.random.uniform(0.05, 0.1, n_pd)
-    kleb_healthy = 0.15 - esch_healthy + np.random.normal(0, 0.05, n_healthy)
+    # Force Total Latent Sum to be a constant to balance the scales
+    target_latent_sum = 300
     
-    # 4. Pair 2: The Compositional Trap (Bact & Prev)
-    bact_pd = np.random.uniform(0.10, 0.30, n_pd)
-    prev_pd = 1.0 - (bifido_pd + lacto_pd + esch_pd + kleb_pd + bact_pd)
-    # Truncate below at 0 to prevent negative relative abundances
-    prev_pd = np.maximum(prev_pd, 0.0)
-
-    bact_healthy = np.random.uniform(0.10, 0.30, n_healthy)
-    prev_healthy = 1.0 - (bifido_healthy + lacto_healthy + esch_healthy + kleb_healthy + bact_healthy)
-    # Truncate below at 0 to prevent negative relative abundances
-    prev_healthy = np.maximum(prev_healthy, 0.0)
+    # Pair 3 Sum absorbs the difference
+    sum3_pd = target_latent_sum - sum1_pd
+    sum3_healthy = target_latent_sum - sum1_healthy
     
-    # 5. Assemble into a unified matrix
+    # --- 3. Randomly Split the Sums (Hiding the Individual Signal) ---
+    # Using a wide uniform split (0.1 to 0.9) ensures individual columns are noisy
+    
+    # Split Pair 1
+    split1_pd = np.random.uniform(0.1, 0.9, n_pd)
+    bifido_pd_latent = sum1_pd * split1_pd
+    lacto_pd_latent = sum1_pd * (1.0 - split1_pd)
+    
+    split1_healthy = np.random.uniform(0.1, 0.9, n_healthy)
+    bifido_healthy_latent = sum1_healthy * split1_healthy
+    lacto_healthy_latent = sum1_healthy * (1.0 - split1_healthy)
+    
+    # Split Pair 3
+    split3_pd = np.random.uniform(0.1, 0.9, n_pd)
+    esch_pd_latent = sum3_pd * split3_pd
+    kleb_pd_latent = sum3_pd * (1.0 - split3_pd)
+    
+    split3_healthy = np.random.uniform(0.1, 0.9, n_healthy)
+    esch_healthy_latent = sum3_healthy * split3_healthy
+    kleb_healthy_latent = sum3_healthy * (1.0 - split3_healthy)
+    
+    # --- 4. Normalize to fit the 'Remaining' space ---
+    latent_pd = np.column_stack([bifido_pd_latent, lacto_pd_latent, esch_pd_latent, kleb_pd_latent])
+    latent_healthy = np.column_stack([bifido_healthy_latent, lacto_healthy_latent, esch_healthy_latent, kleb_healthy_latent])
+    
+    # Because all rows sum to exactly 'target_latent_sum', we divide by it and multiply by remaining space
+    norm_pd = (latent_pd / target_latent_sum) * remaining_pd[:, None]
+    norm_healthy = (latent_healthy / target_latent_sum) * remaining_healthy[:, None]
+    
+    bifido_pd, lacto_pd, esch_pd, kleb_pd = norm_pd.T
+    bifido_healthy, lacto_healthy, esch_healthy, kleb_healthy = norm_healthy.T
+    
+    # --- 5. Assemble the Final Matrix ---
     bacteria_cols = ["Bifidobacterium", "Lactobacillus", "Bacteroides", "Prevotella", "Escherichia", "Klebsiella"]
+    
     proportions = np.column_stack([
         np.concatenate([bifido_pd, bifido_healthy]),
         np.concatenate([lacto_pd, lacto_healthy]),
@@ -176,12 +197,10 @@ def generate_microbiome_data(n_pd=50, n_healthy=50, seed=42):
     df = pd.DataFrame(proportions, columns=bacteria_cols)
     df["Diagnosis"] = ["Parkinson's"] * n_pd + ["Healthy"] * n_healthy
     
-    # Extract Features (X) and Target (y)
     X = df[bacteria_cols].values
     y = (df["Diagnosis"] == "Parkinson's").astype(int).values
     
     return X, y
-
 ```
 
 
@@ -252,7 +271,7 @@ plt.ylabel("Raw Bacteria Count")
 plt.show()
 ```
 
-### Step 2: Level the Playing Field with Proportions
+### Step 2: Level the Playing Field with Proportions {-}
 
 To make a fair comparison, we have to cancel out the scoop-size problem. The fix is simple but powerful: instead of raw counts, we ask *"what fraction of this patient's gut was this bacteria?"* We divide each bacteria count by that patient's `Total_Reads` to turn it into a **proportion** — a slice of their personal microbiome.
 
@@ -298,7 +317,7 @@ plt.show()
 
 Look closely at *Bifidobacterium* and *Lactobacillus* — the red and green boxes practically sit on top of each other. If a patient showed up with 10% *Bifidobacterium*, you'd be stuck: healthy people have that, and so do sick people. One bacteria at a time, the signal is basically invisible. Frustrating, right? Hang on — this is exactly where it gets good.
 
-### Step 3: Revealing the Hidden Pattern
+### Step 3: Revealing the Hidden Pattern {-}
 
 Real biology is sneaky. Bacteria don't live alone — they fight over food and territory, so what really matters is often the *relationship between* them, not any single one on its own. One bacteria can tell you nothing, while two of them *together* can tell you everything.
 
@@ -329,7 +348,7 @@ plt.show()
 
 Boom. Look at **Pair 1**: the red and green boxes suddenly pull apart — Parkinson's patients sit low, healthy patients sit high, with barely any overlap. The signal was hiding in the *combination* the whole time. Pairs 2 and 3? Still a jumbled mess — those are decoys we planted on purpose. Figuring out which combinations carry the signal (and which are traps) is the entire game.
 
-## Predictive Modelling?
+## The Tech: Machine Learning
 
 We got lucky above: with only 6 bacteria, we could hunt for the winning pair by hand. But a real gut has *thousands* of bacterial families. Nobody can eyeball a spreadsheet that wide and spot the magic combinations — your brain would melt trying.
 
@@ -426,7 +445,7 @@ The computer's entire job while learning is to hunt down the two best numbers: *
 
 As $z$ glides from negative to positive, the formula *automatically* traces that perfect "S." Nobody draws it by hand — the math does it for you.
 
-### Why We Need Neural Networks
+### Why Do We Need Neural Networks
 
 Logistic Regression is slick, but did you catch the cheat? *We* were the ones who combined *Bifidobacterium* and *Lactobacillus* into Pair 1. A human did the detective work of finding the pattern first.
 
@@ -485,7 +504,7 @@ graph LR
     style OutputLayer color:#000000, fill:none, stroke:#999
 ```
 
-### So What Are These Hidden Patterns ($z$), Really?
+### What Are These Hidden Patterns ($z$)?
 
 Back in our Pair 1 example, we built the pattern the lazy way — just add two bacteria together equally: $z = x_1 + x_2$.
 
@@ -501,7 +520,7 @@ The network can whip up dozens of these $z$ formulas at once, mixing and matchin
 
 ---
 
-## A Machine Learning Prodecure with Tensorflow
+## A Toy Machine Learning with Tensorflow
 
 ### Generating the Synthetic Cohort
 
@@ -554,7 +573,7 @@ model = Sequential([
     Input(shape=(6,)), 
     
     # Hidden Layer: 1 node using linear activation (Logistic Regression in disguise)
-    Dense(2, activation='sigmoid'), 
+    Dense(2, activation='linear'), 
     
     # Output Layer: 1 final decision maker
     Dense(1, activation='sigmoid') 
