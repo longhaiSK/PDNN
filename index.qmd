@@ -60,10 +60,11 @@ from tensorflow.keras.optimizers import Adam
 # Visualization & Interaction stack
 import networkx as nx
 from itables import init_notebook_mode, show
-
+from IPython.display import Markdown, display
 # Initialize environment tools
 init_notebook_mode(all_interactive=True)
 ```
+
 ---
 
 ## 📥 Access this Document as Interactive Notebook {-}
@@ -612,29 +613,30 @@ tnr = tn / (tn + fp) # True Negative Rate (Specificity)
 
 # Calculate Negative Predictive Value (NPV) to perfectly balance the table
 npv = tn / (tn + fn) if (tn + fn) > 0 else 0.0
+# Build a textbook-style balanced Confusion Matrix with LaTeX
 
-# Build a textbook-style balanced Confusion Matrix
 cm_df = pd.DataFrame({
     "Predicted Healthy": [
         f"TN = {tn}", 
         f"FN = {fn}", 
-        f"NPV: {npv:.2%}"
+        f"Precision_HT: {npv:.2%}" 
     ],
     "Predicted Parkinson's": [
         f"FP = {fp}", 
         f"TP = {tp}", 
-        f"Precision: {precision:.2%}"
+        f"Precision_PD: {precision:.2%}"
     ],
     "Row Marginals": [
-        f"TNR (Specificity): {tnr:.2%}", 
-        f"Recall (Sensitivity): {recall:.2%}", 
+        f"Recall_HT: {tnr:.2%}",    
+        f"Recall_PD: {recall:.2%}",      
         f"Overall Error Rate: {error_rate:.2%}"
     ]
 }, index=["Actual Healthy", "Actual Parkinson's", "Column Marginals"])
 
-# Display as a clean HTML table
+# Display as a clean table
 print("\nGrading the Exam: Model Metrics Summary")
 display(cm_df)
+
 
 ```
 
