@@ -9,7 +9,6 @@ format:
     toc: true
     toc-depth: 2
     theme: cosmo
-    code-tools: true
     number-sections: true
     fig-format: svg
     fig-dpi: 300
@@ -67,7 +66,7 @@ init_notebook_mode(all_interactive=True)
 ```
 ---
 
-## 📥 Access this Document Interactive Notebook
+## 📥 Access this Document as Interactive Notebook
 
 You can download the raw code for this project or run it directly in your browser using Google Colab.
 
