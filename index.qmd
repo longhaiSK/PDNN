@@ -393,24 +393,28 @@ for ax, pair, title in zip(axes, pairs, titles):
     X_test = np.linspace(X.min(), X.max(), 300).reshape(-1, 1)
     y_prob = model.predict_proba(X_test)[:, 1] # Probability of being PD (Class 1)
     
-    # Scatter plot of actual patients
-    ax.scatter(X[y==0], y[y==0], color='#2ecc71', label="Actual Healthy (0)", alpha=0.5)
+    # Scatter plot of actual patients with an offset in the y-axis
+    ax.scatter(X[y==0], y[y==0] , color='#2ecc71', label="Actual Healthy (0)", alpha=0.5)
     ax.scatter(X[y==1], y[y==1], color='#e74c3c', label="Actual PD (1)", alpha=0.5)
     
     # Plot the regression curve
     ax.plot(X_test, y_prob, color='black', linewidth=3, label="Logistic Prediction Curve")
+    
+    # Adjust y-limits so points don't get cut off by the frame
+    ax.set_ylim(-0.15, 1.15)
     
     ax.set_title(title)
     ax.set_xlabel("Combined Proportion")
     ax.set_ylabel("Probability of Parkinson's")
     ax.set_yticks([0, 0.5, 1.0])
     ax.set_yticklabels(['0 (Healthy)', '0.5', '1 (PD)'])
-    ax.legend()
+    
+    # Pin the upper right corner of the legend box to x=1.0 (right edge) and y=0.95
+    ax.legend(loc='upper right', bbox_to_anchor=(1.0, 0.85))
 
 plt.tight_layout()
 plt.show()
 ```
-
 **Reading the charts:** that black S-curve is the model's whole brain in one line. In the first chart, a new patient with a Pair 1 value of 0.15 lands where the curve sits near **1** → the model calls it Parkinson's. A patient at 0.35 lands where the curve has dropped to **0** → Healthy. It's a genuine prediction machine.
 
 Now check Pairs 2 and 3: the black line is nearly flat. That flatness is the model shrugging: *"This tells me nothing — I can't predict anything from here."* A flat curve is how the model calls out a decoy.
