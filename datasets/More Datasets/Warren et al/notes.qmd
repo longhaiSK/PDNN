@@ -1,0 +1,10 @@
+---
+title: Information about the data
+---
+
+**The Large-Scale US Cohort (Wallen et al., 2022)**
+
+* **BioProject Accession:** PRJNA834801
+* **Link:** <https://www.ncbi.nlm.nih.gov/bioproject/PRJNA834801>
+* **Details:** This contains the deep shotgun metagenomic sequencing data for the 724 individuals (490 Parkinson's patients and 234 neurologically healthy controls) from the Deep South of the United States.
+

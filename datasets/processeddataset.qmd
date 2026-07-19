@@ -1,0 +1,30 @@
+---
+title: Preprocessed Multiple Cohort Datasets
+author: Longhai Li
+date: last-modified
+---
+
+## The Paper
+**Official Publication (*Nature Communications*, May 2025):**
+[https://doi.org/10.1038/s41467-025-56829-3](https://doi.org/10.1038/s41467-025-56829-3)
+
+**PubMed Entry:**
+[https://pubmed.ncbi.nlm.nih.gov/40335465/](https://pubmed.ncbi.nlm.nih.gov/40335465/)
+
+The paper is completely open-access, so you can read the full text and download the supplementary methods (which describe exactly how they harmonized the 16S and shotgun datasets) without needing an academic paywall subscription.
+
+## Where to Find the Datasets
+
+The authors uploaded the fully harmonized taxonomic and functional profiles (derived from all 4,490 samples across the 11 countries) to **Zenodo**.
+
+* **Zenodo DOI:** `10.5281/zenodo.14261087`
+
+This repository contains the processed read-count matrices for both the 16S amplicon data and the shotgun metagenomic (SMG) data, mapped to taxonomy and functional pathways, alongside the clinical metadata necessary for classifying the patients versus controls.
+
+## Where to Find the LOSO Code
+
+In addition to the datasets, the exact scripts the researchers used to execute their LOSO cross-validation are available on **GitHub**.
+
+* **Repository:** `[https://github.com/StfnRomano/PD_ML_meta](https://github.com/StfnRomano/PD_ML_meta)`
+
+Inside the repository, their workflow is organized into numbered R scripts. You can download the feature tables from Zenodo and feed them directly into their repository to reproduce their findings, or you can fork their pipeline to test your own machine learning algorithms on the harmonized cohorts.
